@@ -50,12 +50,106 @@ function ProfileCard(){
     `;
 
     const CreditCard = styled.div`
-        width: 90%;
+        /* width: 90%;
         height: 180px;
         border-radius: 10px;
         background-color: #2A2A2A;
-        margin: 10px auto;
+        margin: 10px auto; */
 
+        .visa_card_container {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: 50px 60px 50px;
+            max-width: 310px;
+            margin: auto;
+            background: #e1e1eb;
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            border-radius: 10px;
+            padding: 20px 18px;
+            box-shadow: 0px 0px 20px rgba(253, 253, 253, 0.2);
+            grid-template-areas: "balance visa""cardnumber cardnumber""holder expiry"
+        }
+
+        .avail_balance,
+        .numeric_balance {
+            grid-area: balance;
+            margin: 0;
+        }
+
+        .visa_icon {
+            width: 47px;
+        }
+
+        .numeric_balance {
+            margin-top: 10px;
+        }
+
+        .numeric_balance,
+        .numeric_balance-2,
+        .card_number {
+            font-size: 1.1rem;
+            font-weight: 500;
+            -webkit-text-stroke: .2px;
+        }
+
+        .numeric_balance,
+        .numeric_balance-2,
+        .card_number,
+        .owner_name,
+        .expiry_date {
+            color: #464646;
+        }
+
+        .avail_balance,
+        .holder_text,
+        .expiry_text {
+            font-size: .53rem;
+            letter-spacing: 1px;
+            font-weight: 300;
+            color: #a1a1a4;
+        }
+
+        .visa_icon {
+            grid-area: visa;
+        }
+
+        .card_number {
+            grid-area: cardnumber;
+            letter-spacing: 2.1px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .hidden_pin {
+            -webkit-text-stroke: 1.4px;
+            letter-spacing: 5px;
+        }
+
+        .holder_text,
+        .owner_name {
+            grid-area: holder;
+        }
+
+        .expiry_text {
+            margin-right: 3.3px;
+        }
+
+        .expiry_text,
+        .expiry_date {
+            display: grid;
+            grid-area: expiry;
+            justify-content: end;
+        }
+
+        .owner_name,
+        .expiry_date {
+            margin-top: 23px;
+            font-size: .77rem;
+            letter-spacing: .7px;
+            text-transform: uppercase;
+            -webkit-text-stroke: .2px;
+            line-height: 2;
+        }
     `
 
     function getDate() {
@@ -89,12 +183,28 @@ function ProfileCard(){
                 </button>
             </CardButton>
             <CreditCard>
-                <span>icon</span>
-                Visa ending in 6987<br/>
+                <section className="visa_card">
+                    <div className="visa_card_container">
 
-                <span>Visa</span>
+                        <p className="avail_balance">Available Balance</p>
+                        <img src="https://res.cloudinary.com/dvhndpbun/image/upload/q_auto:eco/v1584302122/visa-card-logo-png-transparent_pljppj.png"
+                            alt="visa icon" className="visa_icon"/>
+                        <h2 className="numeric_balance">$24.560</h2>
+
+                        <p className="card_number"> 
+                            <span className="hidden_pin">••••</span>
+                            <span className="hidden_pin">••••</span>
+                            <span className="hidden_pin">••••</span>
+                            <span>1234</span>
+                        </p>
+                        <h3 className="holder_text">HOLDER</h3>
+                        <p className="owner_name">Kien</p>
+                        <h3 className="expiry_text">EXPIRY</h3>
+                        <p className="expiry_date">07/20</p>
+                    </div>
+                </section>
             </CreditCard>
-            <h1>Top Artist</h1>
+            <h2>Top Artist</h2>
             <p>{currentDate}</p>
             <div>Artist</div>
             <div>Artist</div>
