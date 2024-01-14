@@ -1,9 +1,9 @@
-import logo from '../assets/logo.png'
-import homeIcon from '../assets/house.svg'
-import shoppingIcon from '../assets/shopping-cart.svg'
-import exploreIcon from '../assets/explore.svg'
-import notificationIcon from '../assets/notification.svg'
-import settingIcon from '../assets/setting.svg'
+import logo from '../assets/nifty-logo/svg/logo-no-background.svg'
+import homeIcon from '../assets/icon/house.svg'
+import shoppingIcon from '../assets/icon/shopping-cart.svg'
+import exploreIcon from '../assets/icon/explore.svg'
+import notificationIcon from '../assets/icon/notification.svg'
+import settingIcon from '../assets/icon/setting.svg'
 
 import styled from 'styled-components'
 
@@ -13,17 +13,23 @@ function SideNavBar(){
     const NavigationBar = styled.div `
         height: 100%;
         width: 100%;
-
         display: flex;
         flex-direction: column;
-
         align-items: center;
+        gap: 40px;
+
+        .logo{
+            margin-top: 20px;
+        }
     `;
     
     const Menu = styled.ul `
         list-style: none;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
     `;
 
 

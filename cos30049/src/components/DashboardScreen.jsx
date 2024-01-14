@@ -5,9 +5,17 @@ import SmallCard from "./SmallCard.jsx";
 
 import bidImage from "../assets/Item1.png"
 
+import artistAvatar from "../assets/Item1.png"
+
+
 function Dashboard() {
 	const DashboardContainer = styled.div `
 		margin: 0px;
+		::-webkit-scrollbar {
+  			display: none;
+		}
+		display: grid;
+		gap: 20px;
 	`;
 
 	const Header = styled.div `
@@ -22,7 +30,6 @@ function Dashboard() {
 		background-color: #1C1C1C;
 		border-radius: 20px;
 		padding: 20px;
-		margin-right: 20px;
 		img, h2, h3, p {
 			margin: 0;
 			padding: 0;
@@ -39,17 +46,30 @@ function Dashboard() {
 			margin: 0;
 			padding: 0;
 		}
+		display: grid;
 	`;
+
+	const ArtistAvatar = styled.img`
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+	`
+
+	const Hr = styled.hr`
+		border: 0;
+		margin: auto 100px;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+	`
 
 	const ItemDisplay = styled.div`
 		width: 100%;
 		overflow-x: auto;
-		margin: 20px 0;
 	`;
 
 	const Button = styled.button`
 		align-items: center;
-        padding: 10px 20px;
+        padding: 15px 40px;
 		margin-right: 15px;
         border-radius: 50px;
         input {
@@ -66,8 +86,13 @@ function Dashboard() {
         max-width: 275px;
 	`
 	const BlueButton = styled(Button)`
-	background-color: #0441D8;
+		background-color: #0441D8;
   	`
+	const BlueBorderButton = styled(Button)`
+		border: 1px solid #0441D8;
+  	`
+
+
 
 	return (
 		<DashboardContainer>
@@ -78,29 +103,64 @@ function Dashboard() {
 				</div>
 				<Search/>
 			</Header>
-			<div style={{display: "flex", justifyContent: "space-between"}}>
+			<div style={{display: "flex", justifyContent: "space-between", gap: "20px"}}>
 				<BidCard>
 					<div style={{display: "flex"}}>
-						<div style={{width: "40%", height:"auto"}}>
+						<div style={{width: "40%"}}>
 							<img src={bidImage} alt="Item" style={{objectFit: "contain", width: "80%", borderRadius: "10px", margin: "0 auto"}}/>
 						</div>
-						<div style={{width: "60%", height:"auto"}}>
+						<div style={{width: "60%", height:"100%"}}>
+							<h3>Artist Name</h3>
 							<h2>Elon&Doge (Name) | Smart Toy (Catergory)</h2>
 							<p>Auction ending in (Time)</p>
 							<br />
 							<p>Current Bid</p>
 							<h1>0.0245 BTC</h1>
-							<br />
-							<BlueButton>Place a bid</BlueButton>
-							<Button>View Art</Button>
+							<div style={{display: "flex", justifyContent: "space-between"}}>
+								<BlueButton>Place a bid</BlueButton>
+								<BlueBorderButton>View Art</BlueBorderButton>
+							</div>
 						</div>
 					</div>
 				</BidCard>
 				<TopArtistCard>
 					<h2>Top Artist</h2>
+					<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+						<div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+							<ArtistAvatar src={artistAvatar}></ArtistAvatar>
+							<div>
+								<h3>Artist name</h3>
+								<p>Number of Items</p>
+							</div>
+						</div>
+						<a href="" style={{textDecoration: "none"}}>Follow</a>
+					</div>
+					<Hr />
+					<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+						<div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+							<ArtistAvatar src={artistAvatar}></ArtistAvatar>
+							<div>
+								<h3>Artist name</h3>
+								<p>Number of Items</p>
+							</div>
+						</div>
+						<a href="" style={{textDecoration: "none"}}>Follow</a>
+					</div>
+					<Hr />
+					<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+						<div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+							<ArtistAvatar src={artistAvatar}></ArtistAvatar>
+							<div>
+								<h3>Artist name</h3>
+								<p>Number of Items</p>
+							</div>
+						</div>
+						<a href="" style={{textDecoration: "none"}}>Follow</a>
+					</div>
+					<a href="#" style={{textDecoration: "none", margin: "auto auto"}}>View All →</a>
 				</TopArtistCard>
 			</div>
-			<div style={{display: "flex", justifyContent: "space-between", margin:"15px 0px"}}>
+			<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
 				<div>
 					<BlueButton>Collectible</BlueButton>
 					<Button>Arts</Button>
@@ -111,7 +171,14 @@ function Dashboard() {
 				<a href="#" style={{textDecoration: "none"}}>View All →</a>
 			</div>
 			<ItemDisplay>
-				<div style={{display: "flex",width: "fit-content"}}>
+				<div style={{display: "flex",width: "fit-content", gap: "30px"}}>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
+					<SmallCard></SmallCard>
 					<SmallCard></SmallCard>
 					<SmallCard></SmallCard>
 					<SmallCard></SmallCard>

@@ -1,5 +1,6 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: normal;
 	  
   color-scheme: dark;
   color: rgba(240, 240, 240);
@@ -11,15 +12,18 @@
   border-radius: 10px;
 }
 
+* { 
+  margin: 0; 
+  padding: 0; 
+}
+
 .logo {
-  width: 80px;
-  padding-bottom: 5rem;
+  width: 100%;
 }
 
 .icon {
   border-radius: 10px;
   width: 40px;
-  margin: 20px 0;
   padding: 15px;
 
   cursor: pointer;
@@ -28,6 +32,7 @@
 
 .icon:hover {
   background-color: #2A2A2A;
+  background-color: linear-gradient(0deg, #161616 0%, #2A2A2A 100%);
   transition: filter 1s ease;
 }
 

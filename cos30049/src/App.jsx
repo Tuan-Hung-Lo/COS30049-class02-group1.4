@@ -13,16 +13,21 @@ import ProfileCard from "./components/ProfileCard.jsx";
 function App() {
 	const StyledCounter = styled.div `
 		display: grid;
-		grid-template-columns: 100px 1fr 400px;
+		grid-template-columns: 90px 1fr 400px;
 		gap: 10px;
 		height: 100vh;
 		position: relative;
+		::-webkit-scrollbar {
+  			display: none;
+		}
 	`;
 
 	const Main = styled.div `
 		max-height: 100%;
 		overflow-y: auto;
-		padding: 10px;
+		::-webkit-scrollbar {
+  			display: none;
+		}
 	`;
 
 	return(
@@ -36,7 +41,7 @@ function App() {
 						<Route path="/shopping" element={<Shopping/>}></Route>
 						<Route path="/explore" element={<Explore/>}></Route>
 						<Route path="/notification" element={<Notification/>}></Route>
-						<Route path="/setting" element={<Setting/>}></Route>
+						<Route path="/setting" element={<Setting/>}></ Route>
 					</Routes>
 				</Main>
 				<ProfileCard/>

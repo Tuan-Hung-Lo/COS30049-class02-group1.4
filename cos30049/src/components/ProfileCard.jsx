@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-import HeartIcon from "../assets/heart.svg"
-import CommentIcon from "../assets/comment.svg"
-import BellIcon from "../assets/bell.svg"
+import HeartIcon from "../assets/icon/heart.svg"
+import CommentIcon from "../assets/icon/comment.svg"
+import BellIcon from "../assets/icon/bell.svg"
 
 import ProfilePic from "../assets/Capture.jpg"
+import artistAvatar from "../assets/Item1.png"
 
 import { useState } from 'react';
 
@@ -12,10 +13,13 @@ function ProfileCard(){
     // 	const [user, setUser] = useState(null);
 
     const Container = styled.div`
-        margin: 20px;
+        margin: 10px;
         padding: 20px;
         background-color: #1C1C1C;
         border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     `;
 
     const ProfilePicture = styled.img`
@@ -50,12 +54,6 @@ function ProfileCard(){
     `;
 
     const CreditCard = styled.div`
-        /* width: 90%;
-        height: 180px;
-        border-radius: 10px;
-        background-color: #2A2A2A;
-        margin: 10px auto; */
-
         .visa_card_container {
             display: grid;
             grid-template-columns: 1fr auto;
@@ -152,28 +150,41 @@ function ProfileCard(){
         }
     `
 
+    const TopArtistCard = styled.div`
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    `
+    
+
     function getDate() {
         const today = new Date();
-        const month = today.getMonth() + 1;
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        let monthIndex = (new Date().getMonth());
+        let monthName = monthNames[monthIndex];
         const year = today.getFullYear();
         const date = today.getDate();
-        return `${month}/${date}/${year}`;
+        return `${date} ${monthName} ${year}`;
     }
 
     const [currentDate] = useState(getDate());
 
+    const ArtistAvatar = styled.img`
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+	`
+
     return(
         <Container>
             <ProfilePicture src={ProfilePic}/>
-            <h2 className='card-title'>
-                Kinley
-            </h2>
-            <p className='card-text'>
-                Im a retard
-            </p>
+            <div>
+                <h2>Kinley</h2>
+                <p>Im a retard</p>
+            </div>
             <CardButton>
                 <button>
-                    <img src={HeartIcon} alt="" />
+                    <img src={HeartIcon} alt="" style={{stroke: "#2A2A2A", fill:"#2A2A2A"}}/>
                 </button>
                 <button>
                     <img src={CommentIcon} alt="" />
@@ -204,11 +215,37 @@ function ProfileCard(){
                     </div>
                 </section>
             </CreditCard>
-            <h2>Top Artist</h2>
-            <p>{currentDate}</p>
-            <div>Artist</div>
-            <div>Artist</div>
-            <div>Artist</div>
+            <TopArtistCard>
+                <h2>Top Artist</h2>
+                <p>{currentDate}</p>
+                <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+                    <div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+                        <ArtistAvatar src={artistAvatar}></ArtistAvatar>
+                        <div>
+                            <h3 style={{margin: "0px"}}>Artist name</h3>
+                            <p style={{margin: "0px"}}>Recent Action</p>
+                            <p style={{margin: "0px"}}>Active (time)</p>
+                        </div>
+                    </div>
+                    <div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+                        <ArtistAvatar src={artistAvatar}></ArtistAvatar>
+                        <div>
+                            <h3 style={{margin: "0px"}}>Artist name</h3>
+                            <p style={{margin: "0px"}}>Recent Action</p>
+                            <p style={{margin: "0px"}}>Active (time)</p>
+                        </div>
+                    </div>
+                    <div style={{display: "flex", gap: "20px", alignItems: "center"}}>
+                        <ArtistAvatar src={artistAvatar}></ArtistAvatar>
+                        <div>
+                            <h3 style={{margin: "0px"}}>Artist name</h3>
+                            <p style={{margin: "0px"}}>Recent Action</p>
+                            <p style={{margin: "0px"}}>Active (time)</p>
+                        </div>
+                    </div>
+                </div>
+            </TopArtistCard>
+                
         </Container>
     );
 }
