@@ -3,12 +3,16 @@ import TRUNK from "vanta/dist/vanta.trunk.min";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button'
-import { Link } from "@mui/material";
+import { CssBaseline } from "@mui/material";
+import { Link } from 'react-router-dom';
+
+
 
 function LoginPage() {
   const loginBackgroundRef = useRef(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
 
   useEffect(() => {
     if (loginBackgroundRef.current) {
@@ -24,7 +28,7 @@ function LoginPage() {
         color: 0x0547F0,
         backgroundColor: 0x101010,
         spacing: 8.00,
-        chaos: 2.00,
+        chaos: 1.50,
       });
     }
   }, []);
@@ -40,6 +44,7 @@ function LoginPage() {
     if (username === "your_username" && password === "your_password") {
       // Replace with your own logic for successful login
       console.log("Login successful");
+      // history.push("/");
     } else {
       // Replace with your own logic for failed login
       console.log("Invalid credentials");
@@ -56,32 +61,35 @@ function LoginPage() {
 
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <CssBaseline/>
       <div style={{ width: "50vw", height: "50vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" }}>
-            <TextField
-              id="Username"
-              label="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <TextField
-              id="Password"
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Link to={'/login'} alt="Login Page" style={{listStyle: "none"}}>
-                <Button variant="contained" color="primary">
-                    Login
-                </Button>
-            </Link>
-          </form>
-          <div>
-            Haven&apos;t got an account yet? Register now.
-          </div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" }}>
+                <TextField
+                id="Username"
+                label="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                />
+                <TextField
+                id="Password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                />
+                <Link to={'/'} alt="Login Page" style={{textDecoration: "none"}}>
+                  <Button variant="contained" color="primary">
+                      Login
+                  </Button>
+                </Link>
+            </form>
+            <div>
+                <Link to={'/register'} alt="Register Page" style={{textDecoration: "none"}}>
+                    Haven&apos;t got an account yet? Register now.
+                </Link>
+            </div>
         </div>
         <Hr />
         <div></div>

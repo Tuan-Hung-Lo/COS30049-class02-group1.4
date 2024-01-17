@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import ImageCarousel from "./CarouselComponent";
 
 import NavBar from "./NavBar";
+import Footer from "./Footer"
 
 function Dashboard() {
 	const DashboardContainer = styled.div `
@@ -53,7 +54,7 @@ function Dashboard() {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
 		
-		@media (max-width: 800px) {
+		@media (max-width: 1000px) {
 			grid-template-columns: 1fr 1fr;
 		}
 		
@@ -71,7 +72,7 @@ function Dashboard() {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
 		
-		@media (max-width: 800px) {
+		@media (max-width: 1000px) {
 			grid-template-columns: 1fr 1fr;
 		}
 		
@@ -96,7 +97,7 @@ function Dashboard() {
 
 	return (
 		<>
-			<NavBar/>
+			<NavBar />
 			<DashboardContainer>
 				<Header>
 					<h1>Home</h1>
@@ -120,26 +121,17 @@ function Dashboard() {
 				<ExploreProduct>
 					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
 						<h1>Explore Product</h1>
-						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-							<div>
-								<Button variant="text" color="primary">All Items</Button>
-								<Button variant="text" color="primary">Art</Button>
-								<Button variant="text" color="primary">Music</Button>
-								<Button variant="text" color="primary">Video</Button>
-								<Button variant="text" color="primary">Collectible</Button>
-								<Button variant="text" color="primary">Highest</Button>
-								<Button variant="text" color="primary">Lowest</Button>
-							</div>
+						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
+							<Button variant="contained" color="primary" style={{borderRadius:"1vw"}}>All Items</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Art</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Music</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Video</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Collectible</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Highest</Button>
+							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Lowest</Button>
 						</div>
 					</div>
 					<ResponsiveGrid>
-						<div style={{ backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
 						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
 						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
 						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
@@ -153,6 +145,7 @@ function Dashboard() {
 					</ResponsiveGrid>
 				</ExploreProduct>
 			</DashboardContainer>
+			<Footer />
 		</>
 	)
 }

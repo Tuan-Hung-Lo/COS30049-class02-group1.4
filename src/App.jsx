@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import LoginPage from "./components/LoginPage.jsx";
 import Dashboard from "./components/HomeScreen.jsx";
-import Shopping from "./components/ShoppingScreen.jsx";
+import Transaction from "./components/TransactionScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
 
 function App() {
@@ -19,14 +19,13 @@ function App() {
 
 	const Main = styled.div `
 		overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		::-webkit-scrollbar {
   			display: none;
 		}
 		background-color: #161616;
-
 	`;
 
 	const fetchData = async () => {
@@ -49,7 +48,7 @@ function App() {
 						<Route path="/login" element={<LoginPage/>}></Route>
 						<Route path="/" element={<Dashboard/>}></Route>
 						<Route path="/explore" element={<Explore/>}></Route>
-						<Route path="/shopping" element={<Shopping/>}></Route>
+						<Route path="/shopping" element={<Transaction/>}></Route>
 					</Routes>
 				</Main>
 			</StyledCounter>

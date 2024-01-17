@@ -4,10 +4,13 @@ import searchIcon from '../assets/icon/search.svg'
 
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 import Button from '@mui/material/Button'
 
 function NavBar(){
+    const location = useLocation();
+
     const NavigationBar = styled.div `
         height: 90px;
         width: 100vw;
@@ -20,6 +23,24 @@ function NavBar(){
         backdrop-filter: blur(10px);
         background-color: #161616a6;
     `;
+
+    const NavLink = styled(Link)`
+        font-size: larger;
+        text-decoration: none;
+
+        &:hover {
+        text-decoration: underline;
+        }
+
+        ${(props) =>
+        props.isSelected &&
+            `
+            text-decoration: underline;
+        `}
+        @media (max-width: 1000px) {
+            visibility: hidden;
+        }
+    `;
     
     const Menu = styled.ul `
         list-style: none;
@@ -29,6 +50,12 @@ function NavBar(){
         flex-direction: row;
         gap: 40px;
         align-items: center;
+        @media (max-width: 1000px) {
+            margin-top: 1vh;
+			display: flex;
+            flex-direction: column;
+            align-items: center;
+		}
     `;
 
     const Hr = styled.hr`
@@ -64,8 +91,7 @@ function NavBar(){
     }
     border: 1px solid #2A2A2A;
     background-color: #1C1C1C;
-    max-width: 275px;
-
+    max-width: 20vw;
     `;
 
     return (
@@ -74,17 +100,23 @@ function NavBar(){
                 <Menu>
                     <img src={logo} alt="Logo" className='logo'/>
                     <Hr />
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/explore'}>Explore</Link></li>
-                    <li><Link to={'/shopping'}>Transactions History</Link></li>
+                    <li><NavLink to={'/'} isSelected={location.pathname === '/'}>
+                        Home
+                        </NavLink></li>
+                    <li><NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
+                        Explore
+                        </NavLink></li>
+                    <li><NavLink to={'/shopping'} isSelected={location.pathname === '/shopping'}>
+                        Transactions History
+                        </NavLink></li>
                 </Menu>
                 <div style={{display: 'flex', alignItems: 'center', gap: "15px"}}>
                     <SearchContainer>
                         <img src={searchIcon} alt="Search" />
                         <input type="text" className="search-box" placeholder="Search for art"/>
                     </SearchContainer>
-                    <Link to={'/login'} alt="Login Page" style={{listStyle: "none"}}>
-                        <Button variant="contained" color="primary">
+                    <Link to={'/login'} alt="Login Page" style={{textDecoration: "none"}}>
+                        <Button variant="outlined" color="primary">
                             Log Out
                         </Button>
                     </Link>
