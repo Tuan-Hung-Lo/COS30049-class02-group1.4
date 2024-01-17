@@ -23,7 +23,7 @@ function ImageCarousel() {
         <Carousel
          style={{width: "100%",height: "100%",position: 'relative'}}
         >
-        <Carousel.Item interval={99999999999} style={{width: "100%", height: "100%"}}>
+        <Carousel.Item interval={2000} style={{width: "100%", height: "100%"}}>
             <Image
             src={BackgroundImage1}
             alt="First slide"
@@ -33,7 +33,7 @@ function ImageCarousel() {
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={99999999999} style={{height: "100%"}}>
+        <Carousel.Item interval={2000} style={{height: "100%"}}>
             <div style={{width: "100%", height: "100%"}}>
             <Image
             src={BackgroundImage2}
@@ -45,7 +45,7 @@ function ImageCarousel() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={99999999999} style={{width: "100%", height: "100%"}}>
+        <Carousel.Item interval={2000} style={{width: "100%", height: "100%"}}>
             <Image
             src={BackgroundImage3}
             alt="Third slide"
