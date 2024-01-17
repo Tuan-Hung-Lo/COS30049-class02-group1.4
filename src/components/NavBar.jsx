@@ -77,7 +77,7 @@ function NavBar(){
                 <Menu>
                     <img src={logo} alt="Logo" className='logo'/>
                     <Hr />
-                    <li><Link to={'/'}><img src={homeIcon} alt="Home" className='icon'/></Link></li>
+                    <li><Link to={'/home'}><img src={homeIcon} alt="Home" className='icon'/></Link></li>
                     <li><Link to={'/explore'}><img src={exploreIcon} alt="Explore" className='icon'/></Link></li>
                     <li><Link to={'/shopping'}><img src={shoppingIcon} alt="Shopping" className='icon'/></Link></li>
                     <li><Link to={'/notification'}><img src={notificationIcon} alt="Notifcation" className='icon'/></Link></li>
@@ -87,9 +87,12 @@ function NavBar(){
                         <img src={searchIcon} alt="Search" />
                         <input type="text" className="search-box" placeholder="Search for art"/>
                     </SearchContainer>
-                    <Button variant="contained" color="primary">
-                    Logout
-                    </Button>
+                    <Link to={'/login'} alt="Login Page" style={{listStyle: "none"}}>
+                        <Button variant="contained" color="primary">
+                            Log Out
+                        </Button>
+                    </Link>
+                    
                     <Button style={{width: "60px", height: "60px"}}>
                         <ProfilePicture src={ProfilePic} alt="avatar"/>
                     </Button>

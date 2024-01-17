@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
+
+import LoginPage from "./components/LoginPage.jsx";
 import Dashboard from "./components/HomeScreen.jsx";
 import Shopping from "./components/ShoppingScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
@@ -45,13 +47,13 @@ function App() {
 
 	
 	return(
-
 		<BrowserRouter>
 			<StyledCounter>
 				<NavBar/>
 				<Main>
 					<Routes>
-						<Route path="/" element={<Dashboard/>}></Route>
+						<Route path="/login" element={<LoginPage/>}></Route>
+						<Route path="/home" element={<Dashboard/>}></Route>
 						<Route path="/shopping" element={<Shopping/>}></Route>
 						<Route path="/explore" element={<Explore/>}></Route>
 						<Route path="/notification" element={<Notification/>}></Route>
@@ -59,7 +61,7 @@ function App() {
 				</Main>
 				<Footer/>
 			</StyledCounter>
-		</BrowserRouter>
+		</BrowserRouter>	
 	);
 }
 
