@@ -65,7 +65,6 @@ function Dashboard() {
 
 	const CustomGrid = styled(ResponsiveGrid)`
 
-	
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 
 		@media (max-width: 1500px) {

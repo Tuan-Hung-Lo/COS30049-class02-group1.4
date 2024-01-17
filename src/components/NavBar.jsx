@@ -32,11 +32,12 @@ function NavBar(){
         text-decoration: underline;
         }
 
-        ${(props) =>
-        props.isSelected &&
+        ${(props) => props.isSelected &&
             `
             text-decoration: underline;
-        `}
+            `
+        }
+        
         @media (max-width: 1000px) {
             visibility: hidden;
         }
@@ -59,39 +60,42 @@ function NavBar(){
     `;
 
     const Hr = styled.hr`
-    height: 70%;
-    border: 1px solid white;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+        height: 70%;
+        border: 1px solid white;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+        @media (max-width: 1000px) {
+            visibility: hidden;
+        }
     `;
 
     const ProfilePicture = styled.img`
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
     `;
 
     const SearchContainer = styled.div `
-    display: flex;
-    img{
-        margin-right: 5px;
-        width:20px;
-        height:20px;
-    }
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 50px;
-    input {
-        font-size: 16px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-    }
-    input::placeholder {
-        color: #2A2A2A;
-    }
-    border: 1px solid #2A2A2A;
-    background-color: #1C1C1C;
-    max-width: 20vw;
+        display: flex;
+        img{
+            margin-right: 5px;
+            width:20px;
+            height:20px;
+        }
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 50px;
+        input {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+        input::placeholder {
+            color: #2A2A2A;
+        }
+        border: 1px solid #2A2A2A;
+        background-color: #1C1C1C;
+        max-width: 20vw;
     `;
 
     return (

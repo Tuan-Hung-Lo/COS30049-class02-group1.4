@@ -9,7 +9,6 @@ import Explore from "./components/ExploreScreen.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
-		gap: 10vh;
 		height: auto;
 		position: relative;
 		::-webkit-scrollbar {
