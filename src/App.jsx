@@ -6,10 +6,6 @@ import LoginPage from "./components/LoginPage.jsx";
 import Dashboard from "./components/HomeScreen.jsx";
 import Shopping from "./components/ShoppingScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
-import Notification from "./components/NotificationScreen.jsx";
-
-import NavBar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -22,7 +18,6 @@ function App() {
 	`;
 
 	const Main = styled.div `
-		margin-top: 100px;
 		overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -49,17 +44,14 @@ function App() {
 	return(
 		<BrowserRouter>
 			<StyledCounter>
-				<NavBar/>
 				<Main>
 					<Routes>
 						<Route path="/login" element={<LoginPage/>}></Route>
-						<Route path="/home" element={<Dashboard/>}></Route>
-						<Route path="/shopping" element={<Shopping/>}></Route>
+						<Route path="/" element={<Dashboard/>}></Route>
 						<Route path="/explore" element={<Explore/>}></Route>
-						<Route path="/notification" element={<Notification/>}></Route>
+						<Route path="/shopping" element={<Shopping/>}></Route>
 					</Routes>
 				</Main>
-				<Footer/>
 			</StyledCounter>
 		</BrowserRouter>	
 	);

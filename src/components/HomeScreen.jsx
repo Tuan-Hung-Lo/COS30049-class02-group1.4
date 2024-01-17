@@ -2,9 +2,11 @@ import styled from "styled-components"
 import Button from '@mui/material/Button'
 import ImageCarousel from "./CarouselComponent";
 
+import NavBar from "./NavBar";
+
 function Dashboard() {
 	const DashboardContainer = styled.div `
-		margin: 0px;
+		margin-top: 100px;
 		::-webkit-scrollbar {
   			display: none;
 		}
@@ -93,62 +95,65 @@ function Dashboard() {
 	`
 
 	return (
-		<DashboardContainer>
-			<Header>
-				<h1>Home</h1>
-                <p>Buy and Sell NFTs</p>
-			</Header>
-			<div style={{width: "95%",height: "450px",margin: "0 auto"}}>
-				<ImageCarousel/>
-			</div>
-			<TopCollection>
-				<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
-					<h1>Top Collections</h1>
-					<a href="#" style={{textDecoration: "none"}}>View All →</a>
+		<>
+			<NavBar/>
+			<DashboardContainer>
+				<Header>
+					<h1>Home</h1>
+					<p>Buy and Sell NFTs</p>
+				</Header>
+				<div style={{width: "95%",height: "450px",margin: "0 auto"}}>
+					<ImageCarousel/>
 				</div>
-				<CustomGrid>
-					<SquareItem><div>Card</div></SquareItem>
-					<SquareItem><div>Card</div></SquareItem>
-					<SquareItem><div>Card</div></SquareItem>
-					<SquareItem><div>Card</div></SquareItem>
-				</CustomGrid>
-			</TopCollection>
-			<ExploreProduct>
-				<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
-					<h1>Explore Product</h1>
-					<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-						<div>
-							<Button variant="text" color="primary">All Items</Button>
-							<Button variant="text" color="primary">Art</Button>
-							<Button variant="text" color="primary">Music</Button>
-							<Button variant="text" color="primary">Video</Button>
-							<Button variant="text" color="primary">Collectible</Button>
-							<Button variant="text" color="primary">Highest</Button>
-							<Button variant="text" color="primary">Lowest</Button>
+				<TopCollection>
+					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
+						<h1>Top Collections</h1>
+						<a href="#" style={{textDecoration: "none"}}>View All →</a>
+					</div>
+					<CustomGrid>
+						<SquareItem><div>Card</div></SquareItem>
+						<SquareItem><div>Card</div></SquareItem>
+						<SquareItem><div>Card</div></SquareItem>
+						<SquareItem><div>Card</div></SquareItem>
+					</CustomGrid>
+				</TopCollection>
+				<ExploreProduct>
+					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
+						<h1>Explore Product</h1>
+						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+							<div>
+								<Button variant="text" color="primary">All Items</Button>
+								<Button variant="text" color="primary">Art</Button>
+								<Button variant="text" color="primary">Music</Button>
+								<Button variant="text" color="primary">Video</Button>
+								<Button variant="text" color="primary">Collectible</Button>
+								<Button variant="text" color="primary">Highest</Button>
+								<Button variant="text" color="primary">Lowest</Button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<ResponsiveGrid>
-					<div style={{ backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-				</ResponsiveGrid>
-			</ExploreProduct>
-		</DashboardContainer>
+					<ResponsiveGrid>
+						<div style={{ backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
+					</ResponsiveGrid>
+				</ExploreProduct>
+			</DashboardContainer>
+		</>
 	)
 }
 

@@ -1,8 +1,4 @@
 import logo from '../assets/nifty-logo/svg/logo-no-background.svg'
-import homeIcon from '../assets/icon/house.svg'
-import shoppingIcon from '../assets/icon/shopping-cart.svg'
-import exploreIcon from '../assets/icon/explore.svg'
-import notificationIcon from '../assets/icon/notification.svg'
 import ProfilePic from "../assets/Capture.jpg" 
 import searchIcon from '../assets/icon/search.svg'
 
@@ -14,7 +10,7 @@ import Button from '@mui/material/Button'
 function NavBar(){
     const NavigationBar = styled.div `
         height: 90px;
-        width: 100%;
+        width: 100vw;
         top: 0;
         z-index: 10;
         position: fixed;
@@ -37,6 +33,7 @@ function NavBar(){
 
     const Hr = styled.hr`
     height: 70%;
+    border: 1px solid white;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
     `;
 
@@ -77,10 +74,9 @@ function NavBar(){
                 <Menu>
                     <img src={logo} alt="Logo" className='logo'/>
                     <Hr />
-                    <li><Link to={'/home'}><img src={homeIcon} alt="Home" className='icon'/></Link></li>
-                    <li><Link to={'/explore'}><img src={exploreIcon} alt="Explore" className='icon'/></Link></li>
-                    <li><Link to={'/shopping'}><img src={shoppingIcon} alt="Shopping" className='icon'/></Link></li>
-                    <li><Link to={'/notification'}><img src={notificationIcon} alt="Notifcation" className='icon'/></Link></li>
+                    <li><Link to={'/'}>Home</Link></li>
+                    <li><Link to={'/explore'}>Explore</Link></li>
+                    <li><Link to={'/shopping'}>Transactions History</Link></li>
                 </Menu>
                 <div style={{display: 'flex', alignItems: 'center', gap: "15px"}}>
                     <SearchContainer>
