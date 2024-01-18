@@ -1,22 +1,12 @@
 import styled from "styled-components"
-import Button from '@mui/material/Button'
+import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from "@mui/material";
 import ImageCarousel from "./CarouselComponent";
+import { useState } from "react";
 
 import NavBar from "./NavBar";
 import Footer from "./Footer"
 
 function Dashboard() {
-	const DashboardContainer = styled.div `
-		margin-top: 100px;
-		::-webkit-scrollbar {
-  			display: none;
-		}
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		width: 90vw;
-		gap: 5vh;
-	`;
 
 	const Header = styled.div `
 		display: flex;
@@ -25,13 +15,6 @@ function Dashboard() {
 	`;
 	
 	const TopCollection = styled.div`
-		display: flex;
-		flex-direction: column;
-		gap: 5vh;
-		align-items: center;
-	`
-
-	const ExploreProduct = styled.div`
 		display: flex;
 		flex-direction: column;
 		gap: 5vh;
@@ -93,10 +76,16 @@ function Dashboard() {
 		}
 	`
 
+	const numberOfCards = 12;
+	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
+
+	const [isHovering, setIsHovering] = useState(null)
+
+
 	return (
 		<>
 			<NavBar />
-			<DashboardContainer>
+			<Box sx={{mt: 15 , width: 0.9 , display: "flex" , flexDirection: "column" , gap: 5 , justifyContent: "center" }}>
 				<Header>
 					<h1>Home</h1>
 					<p>Buy and Sell NFTs</p>
@@ -116,7 +105,8 @@ function Dashboard() {
 						<SquareItem><div>Card</div></SquareItem>
 					</CustomGrid>
 				</TopCollection>
-				<ExploreProduct>
+				<Box 
+				sx={{ display: "flex" , flexDirection: "column" , gap: 5 , alignItems: "center" }}>
 					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
 						<h1>Explore Product</h1>
 						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
@@ -129,20 +119,47 @@ function Dashboard() {
 							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Lowest</Button>
 						</div>
 					</div>
-					<ResponsiveGrid>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-						<div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-					</ResponsiveGrid>
-				</ExploreProduct>
-			</DashboardContainer>
+					<Box 
+					sx={{ width: 0.9, mx: "auto" }}>
+                        <Grid container spacing={4}>
+                            {cards.map((card) => (
+                                <Grid item key={card} xs={12} sm={6} md={4} lg={3} xl={2}>
+                                    <Box 
+									sx={{position: "relative"}}>
+                                        <Box 
+                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
+                                        <Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
+                                        sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
+                                        >
+                                            <CardMedia
+                                                component="div"
+                                                sx={{
+                                                // 16:9
+                                                pt: '56.25%',
+                                                }}
+                                                image="https://source.unsplash.com/random?wallpapers"
+                                            />
+                                            <CardContent sx={{ flexGrow: 1 }}>
+                                                <Typography gutterBottom variant="h5" component="h2">
+                                                Heading
+                                                </Typography>
+                                                <Typography>
+                                                This is a media card. You can use this section to describe the
+                                                content.
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button variant="contained">View</Button>
+                                                <Button variant="outlined">Edit</Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Box>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+				</Box>
+			</Box>
 			<Footer />
 		</>
 	)

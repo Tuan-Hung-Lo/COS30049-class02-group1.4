@@ -3,9 +3,12 @@ import Footer from "./Footer";
 import styled from "styled-components";
 import Button from '@mui/material/Button'
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography  } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography , Collapse , Divider } from "@mui/material";
 
 import * as React from 'react';
+import { useState } from "react";
+
 
 function valuetext(value) {
     return `${value}`;
@@ -95,122 +98,135 @@ function Explore(){
         setValue(newValue);
     };
 
-    const numberOfCards = 15;
+    const numberOfCards = 18;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
+
+    const [isOpen, setisOpen] = React.useState(false)
+
+    const [isHovering, setIsHovering] = useState(null)
+
 
     return(
         <>
             <NavBar />
-            <Box sx={{mt: 15, width: 0.8, displayPrint: "flex", flexDirection: "column", gap: 20, justifyContent: "center"}}>
+            <Box sx={{mt: 15, width: 0.8, display: "flex", flexDirection: "column", gap: 5, justifyContent: "center"}}>
                 <Header>
                     <h1>Explore</h1>
                     <p>Buy and Sell NFTs</p>
                 </Header>
-                <Box sx={{display: "flex", flexDirection: "column", gap: 5}}>
+                <Box 
+                sx={{display: "flex", flexDirection: "column", gap: 5}}>
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
                         <h1>Explore Products</h1>
-                        <Button variant="contained" color="primary" size="large" endIcon={<FilterAltOutlinedIcon/>}>
+                        <Button onClick={() => setisOpen(!isOpen)}
+                        variant={!isOpen ? "contained" : "outlined"} color="primary" size="large" endIcon={!isOpen ? <FilterAltOutlinedIcon/> : <CloseIcon />}>
                         Filter
                         </Button>
-                    </Box>
-                    <hr style={{margin: 0}}/>
-                    <Box sx={{width: 0.9, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
-                        <TextField
-                            id="select-likes"
-                            select
-                            label="LIKES"
-                            defaultValue="most_liked"
-                            variant="filled"
-                            sx={{width: 0.15}}
-                            >
-                            {likes.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            id="select-catergory"
-                            select
-                            label="CATERGORY"
-                            defaultValue="category"
-                            variant="filled"
-                            sx={{width: 0.15}}
-                            >
-                            {categories.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            id="select-collections"
-                            select
-                            label="COLLECTIONS"
-                            defaultValue="collections"
-                            variant="filled"
-                            sx={{width: 0.15}}
-                            >
-                            {collections.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            id="select-sale-types"
-                            select
-                            label="SALE TYPES"
-                            defaultValue="sale_type"
-                            variant="filled"
-                            sx={{width: 0.15}}
-                            >
-                            {saleTypes.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <Box>
-                            <span>PRICE RANGE</span>
-                            <Slider
-                                getAriaLabel={() => 'Temperature range'}
-                                value={value}
-                                onChange={handleChange}
-                                getAriaValueText={valuetext}
-                            />
-                            <span>Price: ${value[0]} - ${value[1]} </span>
+                    </Box>                        
+                    <Divider/>
+                    <Collapse in={isOpen}>
+                        <Box sx={{width: 0.9, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
+                            <TextField
+                                id="select-likes"
+                                select
+                                label="LIKES"
+                                defaultValue="most_liked"
+                                variant="filled"
+                                sx={{width: 0.15}}
+                                >
+                                {likes.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            <TextField
+                                id="select-catergory"
+                                select
+                                label="CATERGORY"
+                                defaultValue="category"
+                                variant="filled"
+                                sx={{width: 0.15}}
+                                >
+                                {categories.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            <TextField
+                                id="select-collections"
+                                select
+                                label="COLLECTIONS"
+                                defaultValue="collections"
+                                variant="filled"
+                                sx={{width: 0.15}}
+                                >
+                                {collections.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            <TextField
+                                id="select-sale-types"
+                                select
+                                label="SALE TYPES"
+                                defaultValue="sale_type"
+                                variant="filled"
+                                sx={{width: 0.15}}
+                                >
+                                {saleTypes.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            <Box>
+                                <span>PRICE RANGE</span>
+                                <Slider
+                                    getAriaLabel={() => 'Temperature range'}
+                                    value={value}
+                                    onChange={handleChange}
+                                    getAriaValueText={valuetext}
+                                />
+                                <span>Price: ${value[0]} - ${value[1]} </span>
+                            </Box>
                         </Box>
-                    </Box>
+                    </Collapse>
                     <Box sx={{ width: 1, mx: "auto" }}>
                         <Grid container spacing={4}>
                             {cards.map((card) => (
-                                <Grid item key={card} xs={12} sm={5} md={4} lg={3} xl={2}>
-                                    <Card
-                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                    >
-                                    <CardMedia
-                                        component="div"
-                                        sx={{
-                                        // 16:9
-                                        pt: '56.25%',
-                                        }}
-                                        image="https://source.unsplash.com/random?wallpapers"
-                                    />
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                        Heading
-                                        </Typography>
-                                        <Typography>
-                                        This is a media card. You can use this section to describe the
-                                        content.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button variant="contained">View</Button>
-                                        <Button variant="outlined">Edit</Button>
-                                    </CardActions>
-                                    </Card>
+                                <Grid item key={card} xs={12} sm={6} md={4} lg={3} xl={2}>
+                                    <Box sx={{position: "relative"}}>
+                                        <Box 
+                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
+                                        <Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
+                                        sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
+                                        >
+                                            <CardMedia
+                                                component="div"
+                                                sx={{
+                                                // 16:9
+                                                pt: '56.25%',
+                                                }}
+                                                image="https://source.unsplash.com/random?wallpapers"
+                                            />
+                                            <CardContent sx={{ flexGrow: 1 }}>
+                                                <Typography gutterBottom variant="h5" component="h2">
+                                                Heading
+                                                </Typography>
+                                                <Typography>
+                                                This is a media card. You can use this section to describe the
+                                                content.
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button variant="contained">View</Button>
+                                                <Button variant="outlined">Edit</Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Box>
                                 </Grid>
                             ))}
                         </Grid>
