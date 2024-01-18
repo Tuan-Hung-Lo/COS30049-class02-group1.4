@@ -80,6 +80,7 @@ function Dashboard() {
 	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
 	const [isHovering, setIsHovering] = useState(null)
+    const [isOpen, setisOpen] = useState(false)
 
 
 	return (
@@ -110,7 +111,7 @@ function Dashboard() {
 					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
 						<h1>Explore Product</h1>
 						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
-							<Button variant="contained" color="primary" style={{borderRadius:"1vw"}}>All Items</Button>
+							<Button onClick={() => setisOpen(!isOpen)} variant={!isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"1vw"}}>All Items</Button>
 							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Art</Button>
 							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Music</Button>
 							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Video</Button>
@@ -141,16 +142,16 @@ function Dashboard() {
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
                                                 <Typography gutterBottom variant="h5" component="h2">
-                                                Heading
+                                                Item
                                                 </Typography>
                                                 <Typography>
                                                 This is a media card. You can use this section to describe the
                                                 content.
                                                 </Typography>
                                             </CardContent>
-                                            <CardActions>
-                                                <Button variant="contained">View</Button>
-                                                <Button variant="outlined">Edit</Button>
+                                            <CardActions sx={{justifyContent: "space-around"}}>
+                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
+                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
                                             </CardActions>
                                         </Card>
                                     </Box>

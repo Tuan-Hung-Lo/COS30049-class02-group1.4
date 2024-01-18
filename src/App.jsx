@@ -6,6 +6,7 @@ import LoginPage from "./components/LoginPage.jsx";
 import Dashboard from "./components/HomeScreen.jsx";
 import Transaction from "./components/TransactionScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
+import ProductScreen from "./components/ProductScreen.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -48,6 +49,7 @@ function App() {
 						<Route path="/" element={<Dashboard/>}></Route>
 						<Route path="/explore" element={<Explore/>}></Route>
 						<Route path="/shopping" element={<Transaction/>}></Route>
+						<Route path="/product" element={<ProductScreen/>}></Route>
 					</Routes>
 				</Main>
 			</StyledCounter>

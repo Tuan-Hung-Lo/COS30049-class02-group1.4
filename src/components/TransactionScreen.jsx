@@ -47,16 +47,16 @@ function Transaction(){
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
                                                 <Typography gutterBottom variant="h5" component="h2">
-                                                Heading
+                                                Item
                                                 </Typography>
                                                 <Typography>
                                                 This is a media card. You can use this section to describe the
                                                 content.
                                                 </Typography>
                                             </CardContent>
-                                            <CardActions>
-                                                <Button variant="contained">View</Button>
-                                                <Button variant="outlined">Edit</Button>
+                                            <CardActions sx={{justifyContent: "space-around"}}>
+                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
+                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
                                             </CardActions>
                                         </Card>
                                     </Box>

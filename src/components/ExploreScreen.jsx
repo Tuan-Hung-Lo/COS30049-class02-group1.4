@@ -6,7 +6,6 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography , Collapse , Divider } from "@mui/material";
 
-import * as React from 'react';
 import { useState } from "react";
 
 
@@ -92,7 +91,7 @@ function Explore(){
         },
     ];
 
-    const [value, setValue] = React.useState([10, 30]);
+    const [value, setValue] = useState([10, 30]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -101,7 +100,7 @@ function Explore(){
     const numberOfCards = 18;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
-    const [isOpen, setisOpen] = React.useState(false)
+    const [isOpen, setisOpen] = useState(false)
 
     const [isHovering, setIsHovering] = useState(null)
 
@@ -125,7 +124,7 @@ function Explore(){
                     </Box>                        
                     <Divider/>
                     <Collapse in={isOpen}>
-                        <Box sx={{width: 0.9, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
+                        <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
                             <TextField
                                 id="select-likes"
                                 select
@@ -214,16 +213,16 @@ function Explore(){
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
                                                 <Typography gutterBottom variant="h5" component="h2">
-                                                Heading
+                                                Item
                                                 </Typography>
                                                 <Typography>
                                                 This is a media card. You can use this section to describe the
                                                 content.
                                                 </Typography>
                                             </CardContent>
-                                            <CardActions>
-                                                <Button variant="contained">View</Button>
-                                                <Button variant="outlined">Edit</Button>
+                                            <CardActions sx={{justifyContent: "space-around"}}>
+                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
+                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
                                             </CardActions>
                                         </Card>
                                     </Box>
