@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import styled from "styled-components";
 import Button from '@mui/material/Button'
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { TextField , MenuItem , Box , Slider } from "@mui/material";
+import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography  } from "@mui/material";
 
 import * as React from 'react';
 
@@ -16,30 +16,6 @@ function Explore(){
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-    `
-
-    const ResponsiveGrid = styled.div`
-        display: grid;
-        width: 100%;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 20px;
-
-        @media (max-width: 1600px) {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        @media (max-width: 1200px) {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        @media (max-width: 1000px) {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        @media (max-width: 400px) {
-            grid-template-columns: 1fr;
-        }
     `
     const likes = [
         {
@@ -119,103 +95,126 @@ function Explore(){
         setValue(newValue);
     };
 
+    const numberOfCards = 15;
+    const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
+
     return(
         <>
             <NavBar />
-            <Box sx={{mt: 15, displayPrint: "flex", flexDirection: "column", gap: 20, width: 0.9}}>
+            <Box sx={{mt: 15, width: 0.8, displayPrint: "flex", flexDirection: "column", gap: 20, justifyContent: "center"}}>
                 <Header>
                     <h1>Explore</h1>
                     <p>Buy and Sell NFTs</p>
                 </Header>
                 <Box sx={{display: "flex", flexDirection: "column", gap: 5}}>
-                    <div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
+                    <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
                         <h1>Explore Products</h1>
                         <Button variant="contained" color="primary" size="large" endIcon={<FilterAltOutlinedIcon/>}>
                         Filter
                         </Button>
-                    </div>
-                    <hr />
-                    <Box sx={{width: 0.9, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto"}}>
-                        <div style={{width: "50%", display: "flex", flexDirection:"row", justifyContent: "space-between"}}>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="LIKES"
-                                defaultValue="most_liked"
-                                variant="filled"
-                                >
-                                {likes.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="CATERGORY"
-                                defaultValue="category"
-                                variant="filled"
-                                >
-                                {categories.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="COLLECTIONS"
-                                defaultValue="collections"
-                                variant="filled"
-                                >
-                                {collections.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="filled-select-currency"
-                                select
-                                label="SALE TYPES"
-                                defaultValue="sale_type"
-                                variant="filled"
-                                >
-                                {saleTypes.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </div>
-                        <div>
-                            <Box sx={{width: 300}}>
-                                <span>PRICE RANGE</span>
-                                <Slider
-                                    getAriaLabel={() => 'Temperature range'}
-                                    value={value}
-                                    onChange={handleChange}
-                                    valueLabelDisplay="auto"
-                                    getAriaValueText={valuetext}
-                                />
-                                <span>Price: ${value[0]}0 - ${value[1]}0 </span>
-                            </Box>
-                        </div>
                     </Box>
-                    <ResponsiveGrid>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                            <div style={{height:"300px", backgroundColor:"#5a5a5a"}}>Card</div>
-                    </ResponsiveGrid>
+                    <hr style={{margin: 0}}/>
+                    <Box sx={{width: 0.9, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
+                        <TextField
+                            id="select-likes"
+                            select
+                            label="LIKES"
+                            defaultValue="most_liked"
+                            variant="filled"
+                            sx={{width: 0.15}}
+                            >
+                            {likes.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            id="select-catergory"
+                            select
+                            label="CATERGORY"
+                            defaultValue="category"
+                            variant="filled"
+                            sx={{width: 0.15}}
+                            >
+                            {categories.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            id="select-collections"
+                            select
+                            label="COLLECTIONS"
+                            defaultValue="collections"
+                            variant="filled"
+                            sx={{width: 0.15}}
+                            >
+                            {collections.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            id="select-sale-types"
+                            select
+                            label="SALE TYPES"
+                            defaultValue="sale_type"
+                            variant="filled"
+                            sx={{width: 0.15}}
+                            >
+                            {saleTypes.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <Box>
+                            <span>PRICE RANGE</span>
+                            <Slider
+                                getAriaLabel={() => 'Temperature range'}
+                                value={value}
+                                onChange={handleChange}
+                                getAriaValueText={valuetext}
+                            />
+                            <span>Price: ${value[0]} - ${value[1]} </span>
+                        </Box>
+                    </Box>
+                    <Box sx={{ width: 1, mx: "auto" }}>
+                        <Grid container spacing={4}>
+                            {cards.map((card) => (
+                                <Grid item key={card} xs={12} sm={5} md={4} lg={3} xl={2}>
+                                    <Card
+                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                                    >
+                                    <CardMedia
+                                        component="div"
+                                        sx={{
+                                        // 16:9
+                                        pt: '56.25%',
+                                        }}
+                                        image="https://source.unsplash.com/random?wallpapers"
+                                    />
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                        Heading
+                                        </Typography>
+                                        <Typography>
+                                        This is a media card. You can use this section to describe the
+                                        content.
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button variant="contained">View</Button>
+                                        <Button variant="outlined">Edit</Button>
+                                    </CardActions>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
                 </Box>
             </Box>
             <Footer />
