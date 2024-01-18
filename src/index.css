@@ -2,7 +2,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: normal;
 	  
-  color-scheme: light;
   color: rgba(240, 240, 240);
   background-color: #161616;
   
@@ -15,6 +14,10 @@ body {
 * { 
   margin: 0; 
   padding: 0;
+  color: rgba(240, 240, 240);
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 p {
@@ -40,4 +43,3 @@ p {
   background-color: linear-gradient(0deg, #161616 0%, #2A2A2A 100%);
   transition: filter 1s ease;
 }
-
