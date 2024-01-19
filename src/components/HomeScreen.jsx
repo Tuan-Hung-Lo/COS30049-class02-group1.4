@@ -80,11 +80,14 @@ function Dashboard() {
 	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
 	const [isHovering, setIsHovering] = useState(null)
-    const [isOpen, setisOpen] = useState(false)
 
+    const [isOpen, setisOpen] = useState("All Items")
+
+	const buttons = ["All Items" , "Art" , "Music" , "Video" , "Collectible" , "Highest" , "Lowest"]
 
 	return (
 		<>
+
 			<NavBar />
 			<Box sx={{mt: 15 , width: 0.9 , display: "flex" , flexDirection: "column" , gap: 5 , justifyContent: "center" }}>
 				<Header>
@@ -108,18 +111,16 @@ function Dashboard() {
 				</TopCollection>
 				<Box 
 				sx={{ display: "flex" , flexDirection: "column" , gap: 5 , alignItems: "center" }}>
-					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
+					<Box style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
 						<h1>Explore Product</h1>
-						<div style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
-							<Button onClick={() => setisOpen(!isOpen)} variant={!isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"1vw"}}>All Items</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Art</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Music</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Video</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Collectible</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Highest</Button>
-							<Button variant="outlined" color="primary" style={{borderRadius:"1vw"}}>Lowest</Button>
-						</div>
-					</div>
+						<Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
+							{buttons.map((button) => (
+								<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"1vw"}}>
+									{button}
+								</Button>
+							))}
+						</Box>
+					</Box>
 					<Box 
 					sx={{ width: 0.9, mx: "auto" }}>
                         <Grid container spacing={4}>

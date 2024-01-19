@@ -1,7 +1,16 @@
 import NavBar from './NavBar'
 import Footer from './Footer'
 import { useState } from 'react';
-import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography , Collapse , Divider , Button } from '@mui/material'
+import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from '@mui/material'
+
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt';
+import ShareIcon from '@mui/icons-material/Share';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import XIcon from '@mui/icons-material/X';
 
 function ProfileScreen() {
 
@@ -10,12 +19,56 @@ function ProfileScreen() {
 
     const [isHovering, setIsHovering] = useState(null)
 
+    const [isOpen, setisOpen] = useState("Owned")
+	const buttons = ["On Sale" , "Owned" , "Created" , "Liked"]
+
 	return (
 		<>
 			<NavBar />
-			<Box sx={{mt: 15 , display: "flex" , flexDirection: "column" , alignItems: "center", width: 0.9}}>
-				<img src="src\assets\bg\bg-image-18.jpg" alt="" style={{objectFit: "contain" , overflow: "hidden"}}/>
-				<h1>Profile</h1>
+			<Box sx={{mt: 12 , width: 1 , height: "300px" ,  position: "relative" , overflow: "hidden" , zIndex: 1 }}>
+				<img src="src\assets\bg\bg-image-19.jpg" alt="" style={{objectFit: "fit" , width: "100%" }} />
+			</Box>
+			<Box sx={{mt: -12 , zIndex: 2 , display: "flex" , flexDirection: "column" , alignItem: "center" , gap: 2}}>
+				<Box sx={{mx: "auto"}}>
+					<img src="src\assets\Capture.jpg" alt="ava" style={{width: "200px" , borderRadius: "5px" , boxShadow: "5px 5px #2a2a2a8a"}} />
+				</Box>
+				<Box sx={{display: "flex" , flexDirection: "column" , justifyContent: "center" , alignItems: "center" , gap: 2}}>
+					<h2 style={{margin: 0}}>
+						<b>UserName</b>
+					</h2>
+					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
+						<FacebookIcon></FacebookIcon>
+						<InstagramIcon></InstagramIcon>
+						<XIcon></XIcon>
+					</Box>
+					<Box sx={{ display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 1}}>
+						<div> 100 follower</div>
+						<div> 100 following</div>
+					</Box>
+					<div>
+						<Button startIcon={<PersonAddAlt1Icon />}>
+							Follow
+						</Button>
+						<Button>
+							<ShareIcon />
+						</Button>
+						<Button>
+							<MoreHorizIcon />
+						</Button>
+						<Button>
+							<ModeEditIcon />
+						</Button>
+					</div>
+				</Box>
+			</Box>
+			<Box sx={{ mt: 10 , display: "flex" , flexDirection: "column" , alignItems: "center", width: 0.8 , gap : 5}}>
+				<Box sx={{display: "flex", width: "100%" , alignItems: "center", gap: "1vw"}}>
+					{buttons.map((button) => (
+						<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"5px"}}>
+							{button}
+						</Button>
+					))}
+				</Box>
 				<Box sx={{ width: 1, mx: "auto" }}>
 					<Grid container spacing={4}>
 						{cards.map((card) => (
