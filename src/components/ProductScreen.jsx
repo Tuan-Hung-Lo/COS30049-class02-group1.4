@@ -1,6 +1,5 @@
-import React from 'react'
 import NavBar from './NavBar'
-import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Divider } from "@mui/material";
+import { Box , Divider } from "@mui/material";
 
 const styles = {
   root: {
@@ -27,7 +26,7 @@ function ProductScreen() {
         <>
             <NavBar />
                 <Box sx={{mt: 15 , display: "flex" , flexDirection: "column" , alignItems: "center"}}>
-                <h1 sx={{}}>Product Details</h1>
+                <h1>Product Details</h1>
                 <Divider sx={styles.divider} />
             </Box>
         </>

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import TRUNK from "vanta/dist/vanta.trunk.min";
-import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button'
 import { CssBaseline } from "@mui/material";
@@ -27,17 +26,11 @@ function LoginPage() {
         scaleMobile: 1.00,
         color: 0x0547F0,
         backgroundColor: 0x101010,
-        spacing: 8.00,
-        chaos: 1.50,
+        spacing: 10.00,
+        chaos: 1.00,
       });
     }
   }, []);
-
-  const Hr = styled.hr`
-    height: 70%;
-    border: 1px solid white;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-  `
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,8 +55,7 @@ function LoginPage() {
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline/>
-      <div style={{ width: "50vw", height: "50vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
-        <Hr />
+      <div style={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
             <h1>Login</h1>
             <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" }}>
@@ -92,7 +84,6 @@ function LoginPage() {
                 </Link>
             </div>
         </div>
-        <Hr />
       </div>
     </div>
   );

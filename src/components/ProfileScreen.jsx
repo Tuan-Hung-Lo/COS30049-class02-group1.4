@@ -37,9 +37,9 @@ function ProfileScreen() {
 						<b>UserName</b>
 					</h2>
 					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
-						<FacebookIcon></FacebookIcon>
-						<InstagramIcon></InstagramIcon>
-						<XIcon></XIcon>
+						<FacebookIcon />
+						<InstagramIcon />
+						<XIcon />
 					</Box>
 					<Box sx={{ display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 1}}>
 						<div> 100 follower</div>
