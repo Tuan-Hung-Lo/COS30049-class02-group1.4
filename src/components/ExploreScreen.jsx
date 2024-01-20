@@ -19,75 +19,44 @@ function Explore(){
         flex-direction: column;
         align-items: center;
     `
-    const likes = [
+    const prices = [
         {
-          value: 'most_liked',
-          label: 'Most Liked',
+          value: 'highest-price',
+          label: 'Highest Price ',
         },
         {
-          value: 'least_liked',
-          label: 'Least Liked',
+          value: 'lowest-price',
+          label: 'Lowest Price',
         },
     ];
 
     const categories = [
         {
-            value: 'category',
-            label: 'Category',
+            value: 'all-items',
+            label: 'All Items',
         },
         {
-            value: 'art',
-            label: 'Art',
+            value: 'painting',
+            label: 'Painting',
+        },
+        {
+            value: 'digital',
+            label: 'Digital',
         },
         {
             value: 'photograph',
             label: 'Photograph',
         },
-        {
-            value: 'metaverses',
-            label: 'Metaverses',
-        },
-        {
-            value: 'potato',
-            label: 'Potato',
-        },
     ];
 
-    const collections = [
+    const publishedDate = [
         {
-            value: 'collections',
-            label: 'Collections',
+            value: 'oldest',
+            label: 'Oldest',
         },
         {
-            value: 'bored_ape',
-            label: 'BoredApeYatchClub',
-        },
-        {
-            value: 'mutant_ape',
-            label: 'MutantApeYatchClub',
-        },
-        {
-            value: 'art_block_factory',
-            label: 'Art Block Factory',
-        },
-    ];
-
-    const saleTypes = [
-        {
-            value: 'sale_type',
-            label: 'Sale Type',
-        },
-        {
-            value: 'fixed_price',
-            label: 'Fixed price',
-        },
-        {
-            value: 'not_for_sale',
-            label: 'Not for sale',
-        },
-        {
-            value: 'open_for_offer',
-            label: 'Open for offer',
+            value: 'latest',
+            label: 'Latest',
         },
     ];
 
@@ -126,14 +95,14 @@ function Explore(){
                     <Collapse in={isOpen}>
                         <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
                             <TextField
-                                id="select-likes"
+                                id="select-prices"
                                 select
-                                label="LIKES"
-                                defaultValue="most_liked"
+                                label="ORDER BY"
+                                defaultValue=""
                                 variant="filled"
                                 sx={{width: 0.15}}
                                 >
-                                {likes.map((option) => (
+                                {prices.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                     {option.label}
                                     </MenuItem>
@@ -143,7 +112,7 @@ function Explore(){
                                 id="select-catergory"
                                 select
                                 label="CATERGORY"
-                                defaultValue="category"
+                                defaultValue=""
                                 variant="filled"
                                 sx={{width: 0.15}}
                                 >
@@ -156,26 +125,12 @@ function Explore(){
                             <TextField
                                 id="select-collections"
                                 select
-                                label="COLLECTIONS"
-                                defaultValue="collections"
+                                label="PUBLISHED DATE"
+                                defaultValue=""
                                 variant="filled"
                                 sx={{width: 0.15}}
                                 >
-                                {collections.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="select-sale-types"
-                                select
-                                label="SALE TYPES"
-                                defaultValue="sale_type"
-                                variant="filled"
-                                sx={{width: 0.15}}
-                                >
-                                {saleTypes.map((option) => (
+                                {publishedDate.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                     {option.label}
                                     </MenuItem>
@@ -207,22 +162,26 @@ function Explore(){
                                                 component="div"
                                                 sx={{
                                                 // 16:9
-                                                pt: '56.25%',
+                                                // pt: '56.25%',
+                                                // 1:1
+                                                pt: '100%'
                                                 }}
                                                 image="https://source.unsplash.com/random?wallpapers"
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
-                                                <Typography gutterBottom variant="h5" component="h2">
+                                                <Typography variant="h5" component="h2">
                                                 Item
                                                 </Typography>
                                                 <Typography>
-                                                This is a media card. You can use this section to describe the
-                                                content.
+                                                @ Owner
+                                                </Typography>
+												<Typography variant="h7" sx={{color: "#0441D8" , fontWeight: "bold"}}>
+                                                Prices (BTC)
                                                 </Typography>
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
-                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
+                                                <Button variant="contained" style={{borderRadius:"1vw"}}>Buy</Button>
+                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
                                             </CardActions>
                                         </Card>
                                     </Box>

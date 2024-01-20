@@ -3,7 +3,6 @@ import Footer from './Footer'
 import { useState } from 'react';
 import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from '@mui/material'
 
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
@@ -41,14 +40,7 @@ function ProfileScreen() {
 						<InstagramIcon />
 						<XIcon />
 					</Box>
-					<Box sx={{ display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 1}}>
-						<div> 100 follower</div>
-						<div> 100 following</div>
-					</Box>
 					<div>
-						<Button startIcon={<PersonAddAlt1Icon />}>
-							Follow
-						</Button>
 						<Button>
 							<ShareIcon />
 						</Button>
@@ -83,7 +75,9 @@ function ProfileScreen() {
 											component="div"
 											sx={{
 											// 16:9
-											pt: '56.25%',
+											// pt: '56.25%',
+											// 1:1
+											pt: '100%'
 											}}
 											image="https://source.unsplash.com/random?wallpapers"
 										/>

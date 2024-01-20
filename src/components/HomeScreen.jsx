@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from "@mui/material";
+import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Link } from "@mui/material";
 import ImageCarousel from "./CarouselComponent";
 import { useState } from "react";
 
@@ -13,68 +13,6 @@ function Dashboard() {
 		flex-direction: column;
 		align-items: center;
 	`;
-	
-	const TopCollection = styled.div`
-		display: flex;
-		flex-direction: column;
-		gap: 5vh;
-		align-items: center;
-	`
-
-	const ResponsiveGrid = styled.div`
-		display: grid;
-		width: 90%;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		gap: 20px;
-
-		
-		@media (max-width: 1600px) {
-			grid-template-columns: 1fr 1fr 1fr 1fr;
-		}
-
-		@media (max-width: 1200px) {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-		
-		@media (max-width: 1000px) {
-			grid-template-columns: 1fr 1fr;
-		}
-		
-		@media (max-width: 400px) {
-			grid-template-columns: 1fr;
-		}
-	`
-
-	const CustomGrid = styled(ResponsiveGrid)`
-
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-
-		@media (max-width: 1500px) {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-		
-		@media (max-width: 1000px) {
-			grid-template-columns: 1fr 1fr;
-		}
-		
-		@media (max-width: 400px) {
-			grid-template-columns: 1fr;
-		}
-	`
-
-	const SquareItem = styled.div`
-		display: block;
-		content: "";
-		padding-top: 100%;
-		background-color: #5a5a5a;
-		position: relative;
-		div {
-			top: 0;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-		}
-	`
 
 	const numberOfCards = 12;
 	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
@@ -83,7 +21,7 @@ function Dashboard() {
 
     const [isOpen, setisOpen] = useState("All Items")
 
-	const buttons = ["All Items" , "Art" , "Music" , "Video" , "Collectible" , "Highest" , "Lowest"]
+	const buttons = ["All Items" , "Art" , "Collectible" , "Highest" , "Lowest" ]
 
 	return (
 		<>
@@ -97,28 +35,21 @@ function Dashboard() {
 				<div style={{width: "95%",height: "450px",margin: "0 auto"}}>
 					<ImageCarousel/>
 				</div>
-				<TopCollection>
-					<div style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
-						<h1>Top Collections</h1>
-						<a href="#" style={{textDecoration: "none"}}>View All →</a>
-					</div>
-					<CustomGrid>
-						<SquareItem><div>Card</div></SquareItem>
-						<SquareItem><div>Card</div></SquareItem>
-						<SquareItem><div>Card</div></SquareItem>
-						<SquareItem><div>Card</div></SquareItem>
-					</CustomGrid>
-				</TopCollection>
 				<Box 
 				sx={{ display: "flex" , flexDirection: "column" , gap: 5 , alignItems: "center" }}>
 					<Box style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
 						<h1>Explore Product</h1>
 						<Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
 							{buttons.map((button) => (
-								<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"1vw"}}>
+								<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" sx={{borderRadius:"1vw"}}>
 									{button}
 								</Button>
 							))}
+							<Link to={'/explore'}>
+								<Button sx={{borderRadius:"1vw"}}>
+									View All →
+								</Button>
+							</Link>
 						</Box>
 					</Box>
 					<Box 
@@ -137,22 +68,26 @@ function Dashboard() {
                                                 component="div"
                                                 sx={{
                                                 // 16:9
-                                                pt: '56.25%',
+                                                // pt: '56.25%',
+												// 1:1
+												pt: '100%',
                                                 }}
                                                 image="https://source.unsplash.com/random?wallpapers"
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
-                                                <Typography gutterBottom variant="h5" component="h2">
+                                                <Typography variant="h5" component="h2">
                                                 Item
                                                 </Typography>
                                                 <Typography>
-                                                This is a media card. You can use this section to describe the
-                                                content.
+                                                @ Owner
+                                                </Typography>
+												<Typography variant="h7" sx={{color: "#0441D8" , fontWeight: "bold"}}>
+                                                Prices (BTC)
                                                 </Typography>
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
-                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
+                                                <Button variant="contained" style={{borderRadius:"1vw"}}>Buy</Button>
+                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
                                             </CardActions>
                                         </Card>
                                     </Box>
