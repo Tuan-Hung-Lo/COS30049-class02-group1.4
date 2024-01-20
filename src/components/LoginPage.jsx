@@ -54,9 +54,9 @@ function LoginPage() {
 
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-        <CssBaseline/>
-      <div style={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
+		<CssBaseline/>
+        <div style={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
             <h1>Login</h1>
             <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" }}>
                 <TextField
@@ -73,18 +73,18 @@ function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <Link to={'/'} alt="Login Page" style={{textDecoration: "none"}}>
-                  <Button variant="contained" color="primary">
-                      Login
-                  </Button>
+                <Button variant="contained" color="primary">
+                Login
+                </Button>
                 </Link>
             </form>
             <div>
                 <Link to={'/register'} alt="Register Page" style={{textDecoration: "none"}}>
-                    Haven&apos;t got an account yet? Register now.
+                Haven&apos;t got an account yet? Register now.
                 </Link>
             </div>
+            </div>
         </div>
-      </div>
     </div>
   );
 }

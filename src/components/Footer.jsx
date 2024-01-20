@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { Divider } from "@mui/material";
 
 function Footer(){
     const Footer = styled.div `
@@ -25,6 +26,8 @@ function Footer(){
     return(
         <Footer>
             ©{currentDate} NiFTy, Inc. All rights reserved.
+            <Divider/>
+            Terms · Policy · Contact
         </Footer>
 
     )
