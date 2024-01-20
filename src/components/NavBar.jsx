@@ -141,25 +141,27 @@ function NavBar(){
                         </Button>
                     </Link>
                     
-                    <Button style={{width: "60px", height: "60px"}} onClick={handleClick}>
-                        <ProfilePicture src={ProfilePic} alt="avatar"/>
-                    </Button>
-                    <Popover 
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    >
-                    </Popover>
 
+                    <Link to={'/profile'} alt="Profile Page" style={{textDecoration: "none"}}>
+                        <Button style={{width: "60px", height: "60px"}} onClick={handleClick}>
+                            <ProfilePicture src={ProfilePic} alt="avatar"/>
+                        </Button>
+                        <Popover 
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        >
+                        </Popover>
+                    </Link>
                 </div>
             </NavigationBar>
         </>
