@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Footer(){
     const Footer = styled.div `
@@ -27,7 +28,9 @@ function Footer(){
         <Footer>
             ©{currentDate} NiFTy, Inc. All rights reserved.
             <Divider/>
-            Terms · Policy · Contact
+            <Link to='/error' >
+                Terms · Policy · Contact
+            </Link>
         </Footer>
 
     )

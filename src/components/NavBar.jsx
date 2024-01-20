@@ -6,9 +6,8 @@ import styled from 'styled-components'
 
 import { Link, useLocation } from 'react-router-dom';
 
-import { Button , Popover } from '@mui/material'
+import { Button } from '@mui/material'
 
-import { useState } from 'react';
 
 function NavBar(){
     const location = useLocation();
@@ -100,20 +99,6 @@ function NavBar(){
         max-width: 20vw;
     `;
 
-
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
-
     return (
         <>
             <NavigationBar>
@@ -143,24 +128,9 @@ function NavBar(){
                     
 
                     <Link to={'/profile'} alt="Profile Page" style={{textDecoration: "none"}}>
-                        <Button style={{width: "60px", height: "60px"}} onClick={handleClick}>
+                        <Button style={{width: "60px", height: "60px"}}>
                             <ProfilePicture src={ProfilePic} alt="avatar"/>
                         </Button>
-                        <Popover 
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        >
-                        </Popover>
                     </Link>
                 </div>
             </NavigationBar>
