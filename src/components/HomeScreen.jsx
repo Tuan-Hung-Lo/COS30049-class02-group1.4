@@ -1,10 +1,9 @@
 import styled from "styled-components"
-import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Link } from "@mui/material";
+import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from "@mui/material";
+import { Link } from 'react-router-dom';
 import ImageCarousel from "./CarouselComponent";
 import { useState } from "react";
 
-import NavBar from "./NavBar";
-import Footer from "./Footer"
 
 function Dashboard() {
 
@@ -19,14 +18,8 @@ function Dashboard() {
 
 	const [isHovering, setIsHovering] = useState(null)
 
-    const [isOpen, setisOpen] = useState("All Items")
-
-	const buttons = ["All Items" , "Art" , "Collectible" , "Highest" , "Lowest" ]
-
 	return (
 		<>
-
-			<NavBar />
 			<Box sx={{mt: 15 , width: 0.9 , display: "flex" , flexDirection: "column" , gap: 5 , justifyContent: "center" }}>
 				<Header>
 					<h1>Home</h1>
@@ -35,25 +28,14 @@ function Dashboard() {
 				<div style={{width: "95%",height: "450px",margin: "0 auto"}}>
 					<ImageCarousel/>
 				</div>
-				<Box 
-				sx={{ display: "flex" , flexDirection: "column" , gap: 5 , alignItems: "center" }}>
-					<Box style={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '90%'}}>
+				<Box sx={{ display: "flex" , flexDirection: "column" , gap: 5 , alignItems: "center" }}>
+					<Box sx={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: 0.9}}>
 						<h1>Explore Product</h1>
-						<Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1vw"}}>
-							{buttons.map((button) => (
-								<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" sx={{borderRadius:"1vw"}}>
-									{button}
-								</Button>
-							))}
-							<Link to={'/explore'}>
-								<Button sx={{borderRadius:"1vw"}}>
-									View All →
-								</Button>
-							</Link>
-						</Box>
+						<Link to='/explore' style={{textDecoration: "none"}}>
+							<Button onClick={() => console.log("Button clicked")}>View All →</Button>
+						</Link>
 					</Box>
-					<Box 
-					sx={{ width: 0.9, mx: "auto" }}>
+					<Box sx={{ width: 0.9, mx: "auto" }}>
                         <Grid container spacing={4}>
                             {cards.map((card) => (
                                 <Grid item key={card} xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -81,7 +63,7 @@ function Dashboard() {
                                                 <Typography>
                                                 @ Owner
                                                 </Typography>
-												<Typography variant="h7" sx={{color: "#0441D8" , fontWeight: "bold"}}>
+												<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
                                                 Prices (BTC)
                                                 </Typography>
                                             </CardContent>
@@ -97,7 +79,6 @@ function Dashboard() {
                     </Box>
 				</Box>
 			</Box>
-			<Footer />
 		</>
 	)
 }

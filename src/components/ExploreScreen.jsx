@@ -1,5 +1,3 @@
-import NavBar from "./NavBar"
-import Footer from "./Footer";
 import styled from "styled-components";
 import Button from '@mui/material/Button'
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
@@ -7,7 +5,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography , Collapse , Divider } from "@mui/material";
 
 import { useState } from "react";
-
 
 function valuetext(value) {
     return `${value}`;
@@ -76,14 +73,12 @@ function Explore(){
 
     return(
         <>
-            <NavBar />
-            <Box sx={{mt: 15, width: 0.8, display: "flex", flexDirection: "column", gap: 5, justifyContent: "center"}}>
+            <Box sx={{mt: 15, width: 0.9, display: "flex", flexDirection: "column", gap: 5, justifyContent: "center"}}>
                 <Header>
                     <h1>Explore</h1>
                     <p>Buy and Sell NFTs</p>
                 </Header>
-                <Box 
-                sx={{display: "flex", flexDirection: "column", gap: 5}}>
+                <Box sx={{display: "flex", flexDirection: "column", gap: 5 , width: 0.9 ,  mx: "auto" }}>
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
                         <h1>Explore Products</h1>
                         <Button onClick={() => setisOpen(!isOpen)}
@@ -191,7 +186,6 @@ function Explore(){
                     </Box>
                 </Box>
             </Box>
-            <Footer />
         </>
     )
 }

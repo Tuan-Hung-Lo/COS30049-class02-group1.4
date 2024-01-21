@@ -1,14 +1,17 @@
 import { BrowserRouter , Routes , Route } from "react-router-dom";
 import styled from "styled-components";
 
+import NavBar from "./components/NavBar.jsx";
+import Footer from "./components/Footer.jsx"
 
 import LoginPage from "./components/LoginPage.jsx";
+import RegisterPage from "./components/RegisterPage.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 import Dashboard from "./components/HomeScreen.jsx";
 import Transaction from "./components/TransactionScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
 import ProductScreen from "./components/ProductScreen.jsx";
 import ProfileScreen from "./components/ProfileScreen.jsx";
-import RegisterPage from "./components/RegisterPage.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -49,11 +52,12 @@ function App() {
 					<Routes>
 						<Route path="/login" element={<LoginPage/>}></Route>
 						<Route path="/register" element={<RegisterPage/>}></Route>
-						<Route path="/" element={<Dashboard/>}></Route>
-						<Route path="/explore" element={<Explore/>}></Route>
-						<Route path="/shopping" element={<Transaction/>}></Route>
-						<Route path="/product" element={<ProductScreen/>}></Route>
-						<Route path="/profile" element={<ProfileScreen/>}></Route>
+						<Route path="/error" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
+						<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
+						<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
+						<Route path="/shopping" element={<><NavBar/><Transaction/><Footer /></>}></Route>
+						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
+						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
 					</Routes>
 				</Main>
 			</StyledCounter>

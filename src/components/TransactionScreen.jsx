@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import { Card , CardActions , CardMedia , CardContent , Box , Grid , Typography , Button} from "@mui/material";
-import { useState } from "react";
-
+import { Box } from "@mui/material";
+import { DataGrid } from '@mui/x-data-grid';
 
 function Transaction(){
 
@@ -14,60 +11,70 @@ function Transaction(){
         justify-content: space-between;
     `;
 
-    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'purchasedDate', headerName: 'Purchased Date', width: 150 },
+        { field: 'name', headerName: 'NFT Name', width: 150 },
+        { field: 'collection', headerName: 'Collection', width: 150 },
+        { field: 'seller', headerName: 'Seller', width: 150 },
+        { field: 'price', headerName: 'Price', type: 'number', width: 100, },
+        { field: 'tokenId', headerName: 'Token ID', width: 150 },
+        { field: 'blockchain', headerName: 'Blockchain', width: 150 },
+        { field: 'transactionHash', headerName: 'Transaction Hash', width: 300 },
+    ];
+        
+    const rows = [];
+        for (let i = 0; i < 10; i++) {
+        const id = i + 1;
+        const purchasedDate = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString();
+        const name = `NFT #${id}`;
+        const collection = `Collection #${Math.floor(Math.random() * 100)}`;
+        const seller = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
+        const price = Math.floor(Math.random() * 10000) * 0.01;
+        const tokenId = Math.floor(Math.random() * 1000000);
+        const blockchain = ['Ethereum', 'Solana', 'Flow', 'Tezos', 'Binance Smart Chain'][Math.floor(Math.random() * 5)];
+        const transactionHash = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
 
-    const [isHovering, setIsHovering] = useState(null)
+        rows.push({
+            id,
+            purchasedDate,
+            name,
+            collection,
+            seller,
+            price,
+            tokenId,
+            blockchain,
+            transactionHash,
+        });
+    }
 
 
     return(
         <>
-            <NavBar />
-                <Box sx={{mt: 15, display: "flex", flexDirection: "column", gap: 20, width: 0.9}}>
-                    <Header>
-                        <h1>Transactions History</h1>
-                        <p>Buy and Sell NFTs</p>
-                    </Header>
-                    <Box sx={{ width: 1, mx: "auto" }}>
-                        <Grid container spacing={4}>
-                            {cards.map((card) => (
-                                <Grid item key={card} xs={12} sm={6} md={4} lg={3} xl={2}>
-                                    <Box sx={{position: "relative"}}>
-                                        <Box 
-                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
-                                        <Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
-                                        sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
-                                        >
-                                            <CardMedia
-                                                component="div"
-                                                sx={{
-                                                // 16:9
-                                                pt: '56.25%',
-                                                }}
-                                                image="https://source.unsplash.com/random?wallpapers"
-                                            />
-                                            <CardContent sx={{ flexGrow: 1 }}>
-                                                <Typography gutterBottom variant="h5" component="h2">
-                                                Item
-                                                </Typography>
-                                                <Typography>
-                                                This is a media card. You can use this section to describe the
-                                                content.
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions sx={{justifyContent: "space-around"}}>
-                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
-                                            </CardActions>
-                                        </Card>
-                                    </Box>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Box>
+            <Box sx={{mt: 15, display: "flex", flexDirection: "column", gap: 5, width: 0.9}}>
+                <Header>
+                    <h1>Transactions History</h1>
+                    <p>Buy and Sell NFTs</p>
+                </Header>
+                <Box sx={{ width: 1, mx: "auto" }}>
+                    <div style={{ height: "65vh", width: '100%' }}>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            initialState={{
+                            pagination: {
+                                paginationModel: { page: 0, pageSize: 5 },
+                            },
+                            }}
+                            pageSizeOptions={[5, 10]}
+                            checkboxSelection
+                        />
+                    </div>
                 </Box>
-            <Footer />
+            </Box>
         </>
     );
 }
 
 export default Transaction
+

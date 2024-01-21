@@ -1,5 +1,3 @@
-import NavBar from './NavBar'
-import Footer from './Footer'
 import { useState } from 'react';
 import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button } from '@mui/material'
 
@@ -23,7 +21,6 @@ function ProfileScreen() {
 
 	return (
 		<>
-			<NavBar />
 			<Box sx={{mt: 12 , width: 1 , height: "300px" ,  position: "relative" , overflow: "hidden" , zIndex: 1 }}>
 				<img src="src\assets\bg\bg-image-19.jpg" alt="" style={{objectFit: "fit" , width: "100%" }} />
 			</Box>
@@ -53,7 +50,7 @@ function ProfileScreen() {
 					</div>
 				</Box>
 			</Box>
-			<Box sx={{ mt: 10 , display: "flex" , flexDirection: "column" , alignItems: "center", width: 0.8 , gap : 5}}>
+			<Box sx={{ mt: 5 , display: "flex" , flexDirection: "column" , alignItems: "center", width: 0.8 , gap : 5}}>
 				<Box sx={{display: "flex", width: "100%" , alignItems: "center", gap: "1vw"}}>
 					{buttons.map((button) => (
 						<Button onClick={() => setisOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"5px"}}>
@@ -101,7 +98,6 @@ function ProfileScreen() {
 					</Grid>
 				</Box>
 			</Box>
-			<Footer />
 		</>
 	)
 }
