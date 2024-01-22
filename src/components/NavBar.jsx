@@ -4,13 +4,12 @@ import searchIcon from '../assets/icon/search.svg'
 
 import styled from 'styled-components'
 
-import { Link, useLocation } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { Button } from '@mui/material'
 
-
-function NavBar(){
-    const location = useLocation();
+function NavBar() {
+    const location = useLocation()
 
     const NavigationBar = styled.div `
         height: 90px;
@@ -29,21 +28,20 @@ function NavBar(){
         font-size: larger;
         text-decoration: none;
 
-        &:hover {
+        &:hover{
         text-decoration: underline;
         }
 
         ${(props) => props.isSelected &&
             `
             text-decoration: underline;
-            `
-        }
-        
+            `}
+
         @media (max-width: 1000px) {
             visibility: hidden;
         }
     `;
-    
+
     const Menu = styled.ul `
         list-style: none;
         margin: 0;
@@ -54,16 +52,17 @@ function NavBar(){
         align-items: center;
         @media (max-width: 1000px) {
             margin-top: 1vh;
-			display: flex;
+            display: flex;
             flex-direction: column;
             align-items: center;
-		}
+        }
     `;
 
     const Hr = styled.hr`
         height: 70%;
         border: 1px solid white;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+
         @media (max-width: 1000px) {
             visibility: hidden;
         }
@@ -85,13 +84,13 @@ function NavBar(){
         align-items: center;
         padding: 10px 20px;
         border-radius: 50px;
-        input {
+        input{
             font-size: 16px;
             border: none;
             outline: none;
             background-color: transparent;
         }
-        input::placeholder {
+        input::placeholder{
             color: #2A2A2A;
         }
         border: 1px solid #2A2A2A;
@@ -99,19 +98,26 @@ function NavBar(){
         max-width: 20vw;
     `;
 
+    NavLink.propTypes = {
+        isSelected: PropTypes.bool,
+        to: PropTypes.string.isRequired,
+    };
+
     return (
         <>
             <NavigationBar>
                 <Menu>
-                    <img src={logo} alt="Logo" className='logo'/>
+                    <Link to={'/'}>
+                        <img src={logo} alt="Logo" className='logo'/>
+                    </Link>
                     <Hr />
-                    <li><NavLink to={'/'} isSelected={location.pathname === '/'}>
+                    <li><NavLink to={'/'} isSelected={location.pathname === '/'} >
                         Home
                         </NavLink></li>
-                    <li><NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
+                    <li><NavLink to={'/explore'} isSelected={location.pathname === '/explore'} >
                         Explore
                         </NavLink></li>
-                    <li><NavLink to={'/shopping'} isSelected={location.pathname === '/shopping'}>
+                    <li><NavLink to={'/shopping'} isSelected={location.pathname === '/shopping'} >
                         Transactions History
                         </NavLink></li>
                 </Menu>
@@ -125,7 +131,6 @@ function NavBar(){
                             Log Out
                         </Button>
                     </Link>
-                    
 
                     <Link to={'/profile'} alt="Profile Page" style={{textDecoration: "none"}}>
                         <Button style={{width: "60px", height: "60px"}}>
@@ -135,7 +140,7 @@ function NavBar(){
                 </div>
             </NavigationBar>
         </>
-    );
+    )
 }
 
 export default NavBar

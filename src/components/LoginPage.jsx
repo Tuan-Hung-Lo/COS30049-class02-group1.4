@@ -55,17 +55,17 @@ function LoginPage() {
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
 		<CssBaseline/>
-        <div style={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
+        <div style={{ width: "50vw", height: "50vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" }}>
-                <TextField
+            <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" , width: "100%" }}>
+                <TextField sx={{width: 1}}
                 id="Username"
                 label="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 />
-                <TextField
+                <TextField sx={{width: 1}}
                 id="Password"
                 label="Password"
                 type="password"

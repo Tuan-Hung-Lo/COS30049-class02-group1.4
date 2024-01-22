@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Footer(){
@@ -28,9 +28,14 @@ function Footer(){
         <Footer>
             ©{currentDate} NiFTy, Inc. All rights reserved.
             <Divider/>
-            <Link to='/error' >
-                Terms · Policy · Contact
-            </Link>
+            <Box sx={{width: 0.15 , display: "flex" , flexDirection: "row" , justifyContent: "space-around"}}>
+                <Link to='/error'>Terms</Link>
+                ·
+                <Link to='/error'>Policy</Link>
+                ·
+                <Link to='/error'>Contact </Link>
+            </Box>
+            
         </Footer>
 
     )
