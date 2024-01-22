@@ -42,9 +42,9 @@ function RegisterPage() {
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline/>
-        <Box sx={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
+        <Box sx={{ width: "50vw", height: "60vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
             <Box
-            sx={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center" }}
+            sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
@@ -54,48 +54,48 @@ function RegisterPage() {
                 </h1>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.5 , gap: 2}}>
                     <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        autoComplete="given-name"
-                        name="firstName"
-                        required
-                        fullWidth
-                        id="firstName"
-                        label="First Name"
-                        autoFocus
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        required
-                        fullWidth
-                        id="lastName"
-                        label="Last Name"
-                        name="lastName"
-                        autoComplete="family-name"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        />
-                    </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            autoComplete="given-name"
+                            name="firstName"
+                            required
+                            fullWidth
+                            id="firstName"
+                            label="First Name"
+                            autoFocus
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            required
+                            fullWidth
+                            id="lastName"
+                            label="Last Name"
+                            name="lastName"
+                            autoComplete="family-name"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="new-password"
+                            />
+                        </Grid>
                     </Grid>
                     <Box sx={{display: "flex" , flexDirection: "column" ,alignItems: "center" , mt: 2 , gap: 2}}>
                         <Link to={'/'} >
@@ -103,7 +103,7 @@ function RegisterPage() {
                                 Sign Up
                             </Button>
                         </Link>
-                        <Link to={'/login'} variant="body2">
+                        <Link to={'/login'} variant="body2" style={{textDecoration: "none"}}>
                             Already have an account? Sign in
                         </Link>
                     </Box>

@@ -11,6 +11,7 @@ function valuetext(value) {
 }
 
 function Explore(){
+    
     const Header = styled.div `
         display: flex;
         flex-direction: column;
@@ -146,7 +147,7 @@ function Explore(){
                     <Box sx={{ width: 1, mx: "auto" }}>
                         <Grid container spacing={4}>
                             {cards.map((card) => (
-                                <Grid item key={card} xs={12} sm={6} md={4} lg={3} xl={2}>
+                                <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
                                     <Box sx={{position: "relative"}}>
                                         <Box 
                                         sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
@@ -170,7 +171,7 @@ function Explore(){
                                                 <Typography>
                                                 @ Owner
                                                 </Typography>
-												<Typography variant="h7" sx={{color: "#0441D8" , fontWeight: "bold"}}>
+												<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
                                                 Prices (BTC)
                                                 </Typography>
                                             </CardContent>

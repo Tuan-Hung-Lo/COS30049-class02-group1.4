@@ -12,6 +12,7 @@ import Transaction from "./components/TransactionScreen.jsx";
 import Explore from "./components/ExploreScreen.jsx";
 import ProductScreen from "./components/ProductScreen.jsx";
 import ProfileScreen from "./components/ProfileScreen.jsx";
+import EditProfile from "./components/EditProfilePage.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -58,6 +59,8 @@ function App() {
 						<Route path="/shopping" element={<><NavBar/><Transaction/><Footer /></>}></Route>
 						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
 						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
+						<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
+						<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
 					</Routes>
 				</Main>
 			</StyledCounter>
