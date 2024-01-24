@@ -3,12 +3,11 @@ import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography 
 
 import ShareIcon from '@mui/icons-material/Share';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
-
-import CreditCard from './CreditCard.jsx';
 
 import { Link } from 'react-router-dom';
 
@@ -66,51 +65,60 @@ function ProfileScreen() {
 				</Box>
 				<Collapse in={"Wallet" === isOpen}>
 					<Box sx={{ display: "flex" , flexDirection: "column", alignItems: "center"}}>
-						<CreditCard />
+						<h1>Wallet Details:</h1>
+						<h3>Wallet ID: 4yd918374d174ynd1987235yb</h3>
+						<Button variant="text" color="primary">
+							<ContentCopyIcon />					
+						</Button>
 					</Box>
 				</Collapse>
 				<Collapse in={"Owned" === isOpen}>
-					<Box sx={{ width: 1, mx: "auto" }}>
-						<Grid container spacing={4}>
-							{cards.map((card) => (
-								<Grid item key={card} xs={12} sm={6} md={4} lg={3}>
-									<Box sx={{position: "relative"}}>
-										<Box 
-										sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
-										<Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
-										sx={{position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
-										>
-											<CardMedia
-												component="div"
-												sx={{
-												// 16:9
-												// pt: '56.25%',
-												// 1:1
-												pt: '100%'
-												}}
-												image="https://source.unsplash.com/random?wallpapers"
-											/>
-											<CardContent sx={{ flexGrow: 1 }}>
-                                                <Typography variant="h5" component="h2">
-                                                Item
-                                                </Typography>
-                                                <Typography>
-                                                @ Owner
-                                                </Typography>
-												<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
-                                                Prices (BTC)
-                                                </Typography>
-                                            </CardContent>
+					<Box sx={{ width: 1 }}>
+					<Grid container spacing={4}>
+                            {cards.map((card) => (
+                                <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+                                    <Box 
+                                    sx={{position: "relative"}}>
+                                        <Box 
+                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#ffffff", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
+                                        <Card 
+                                            onMouseOver = {() => {setIsHovering(card)}} 
+                                            onMouseOut = {() => {setIsHovering(null)}} 
+                                            sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
+                                            >
+                                            <Link to={'/product'} style={{textDecoration: "none"}}>
+                                                <CardMedia
+                                                component="div"
+                                                sx={{
+                                                // 16:9
+                                                // pt: '56.25%',
+                                                // 1:1
+                                                pt: '100%',
+                                                }}
+                                                image="https://source.unsplash.com/random?wallpapers"
+                                                />
+                                                <CardContent sx={{ flexGrow: 1 }}>
+                                                    <Typography variant="h5" component="h2">
+                                                    Item #{card}
+                                                    </Typography>
+                                                    <Typography>
+                                                    @ Owner
+                                                    </Typography>
+                                                    <Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
+                                                    Prices (BTC)
+                                                    </Typography>
+                                                </CardContent>
+                                            </Link>
                                             <CardActions sx={{justifyContent: "space-around"}}>
-												<Link to={'/product'}>
+                                                <Link to={'/product'}>
                                                     <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
                                                 </Link>
                                             </CardActions>
-										</Card>
-									</Box>
-								</Grid>
-							))}
-						</Grid>
+                                        </Card>
+                                    </Box>
+                                </Grid>
+                            ))}
+                        </Grid>
 					</Box>
 				</Collapse>
 				<Collapse in={"Sales" === isOpen}>

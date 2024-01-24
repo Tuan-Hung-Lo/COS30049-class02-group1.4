@@ -31,7 +31,7 @@ function App() {
 		::-webkit-scrollbar {
   			display: none;
 		}
-		background-color: #161616;
+		background-color: #101010;
 	`;
 
 	const fetchData = async () => {

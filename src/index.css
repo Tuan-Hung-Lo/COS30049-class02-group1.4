@@ -2,8 +2,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: normal;
 	  
-  color: rgba(240, 240, 240);
-  background-color: #161616;
+  color: #ffffff;
+  background-color: #101010;
   
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ body {
 * { 
   margin: 0; 
   padding: 0;
-  color: rgba(240, 240, 240);
+  color: #ffffff;
 
   ::-webkit-scrollbar {
     display: none;
@@ -25,7 +25,7 @@ body {
 }
 
 p {
-  color: #4A4A4A;
+  color: #ffffff9a;
 }
 
 .logo {
