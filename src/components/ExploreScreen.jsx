@@ -85,7 +85,10 @@ function Explore(){
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
                         <h1>Explore Products</h1>
                         <Button onClick={() => setisOpen(!isOpen)}
-                        variant={!isOpen ? "contained" : "outlined"} color="primary" size="large" endIcon={!isOpen ? <FilterAltOutlinedIcon/> : <CloseIcon />}>
+                        variant={!isOpen ? "contained" : "outlined"} 
+                        color="primary" 
+                        size="large" 
+                        endIcon={!isOpen ? <FilterAltOutlinedIcon sx={{fill: "#2a2a2a"}}/> : <CloseIcon />}>
                         Filter
                         </Button>
                     </Box>                        
@@ -98,7 +101,7 @@ function Explore(){
                                 label="ORDER BY"
                                 defaultValue=""
                                 variant="filled"
-                                sx={{width: 0.15}}
+                                sx={{width: 0.2}}
                                 >
                                 {prices.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -112,7 +115,7 @@ function Explore(){
                                 label="CATERGORY"
                                 defaultValue=""
                                 variant="filled"
-                                sx={{width: 0.15}}
+                                sx={{width: 0.2}}
                                 >
                                 {categories.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
@@ -126,7 +129,7 @@ function Explore(){
                                 label="PUBLISHED DATE"
                                 defaultValue=""
                                 variant="filled"
-                                sx={{width: 0.15}}
+                                sx={{width: 0.2}}
                                 >
                                 {publishedDate.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>

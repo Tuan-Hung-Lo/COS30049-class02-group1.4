@@ -51,25 +51,22 @@ function Transaction(){
 
     return(
         <>
-            <Box sx={{mt: 15, display: "flex", flexDirection: "column", gap: 5, width: 0.9}}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 5, width: 1 , mx: "auto"}}>
                 <Header>
                     <h1>Transactions History</h1>
-                    <p>Buy and Sell NFTs</p>
                 </Header>
-                <Box sx={{ width: 1, mx: "auto" }}>
-                    <div style={{ height: "auto", width: '100%' }}>
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            initialState={{
-                            pagination: {
-                                paginationModel: { page: 0, pageSize: 5 },
-                            },
-                            }}
-                            pageSizeOptions={[5, 10]}
-                            checkboxSelection
-                        />
-                    </div>
+                <Box sx={{ width: 1 , height: "auto"}}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                        }}
+                        pageSizeOptions={[5, 10]}
+                        checkboxSelection
+                    />
                 </Box>
             </Box>
         </>
