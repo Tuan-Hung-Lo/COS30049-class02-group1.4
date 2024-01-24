@@ -93,10 +93,10 @@ function NavBar() {
             background-color: transparent;
         }
         input::placeholder{
-            color: #2A2A2A;
+            color: #3A3A3A;
         }
-        border: 1px solid #2A2A2A;
-        background-color: #1C1C1C;
+        border: 1px solid #3A3A3A;
+        background-color: #101010;
         max-width: 20vw;
     `;
 
@@ -119,11 +119,8 @@ function NavBar() {
                     <li><NavLink to={'/explore'} isSelected={location.pathname === '/explore'} >
                         Explore
                         </NavLink></li>
-                    <li><NavLink to={'/shopping'} isSelected={location.pathname === '/shopping'} >
-                        Transactions History
-                        </NavLink></li>
-                    <li><NavLink to={'*'}>
-                        Contract
+                    <li><NavLink to={'*'} isSelected={location.pathname === '/wallet'}>
+                        Wallet
                         </NavLink></li>
                 </Menu>
                 <div style={{display: 'flex', alignItems: 'center', gap: "15px"}}>
@@ -138,7 +135,7 @@ function NavBar() {
                     </Link>
 
                     <Link to={'/profile'} alt="Profile Page" style={{textDecoration: "none"}}>
-                        <Button style={{width: "60px", height: "60px"}}>
+                        <Button style={{width: "60px" , height: "60px"}}>
                             <ProfilePicture src={ProfilePic} alt="avatar"/>
                         </Button>
                     </Link>

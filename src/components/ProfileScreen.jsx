@@ -11,6 +11,8 @@ import XIcon from '@mui/icons-material/X';
 
 import { Link } from 'react-router-dom';
 
+import Transaction from './Transaction';
+
 
 function ProfileScreen() {
 
@@ -20,7 +22,7 @@ function ProfileScreen() {
     const [isHovering, setIsHovering] = useState(null)
 
     const [isOpen, setisOpen] = useState("Owned")
-	const buttons = ["Wallet" , "Owned" , "Sales"]
+	const buttons = ["Wallet" , "Owned" , "Sales" , "Transactions"]
 
 	return (
 		<>
@@ -31,13 +33,13 @@ function ProfileScreen() {
 				<Box sx={{mx: "auto"}}>
 					<img src="src\assets\Capture.jpg" alt="ava" style={{width: "200px" , borderRadius: "5px" , boxShadow: "5px 5px #2a2a2a8a"}} />
 				</Box>
-				<Box sx={{display: "flex" , flexDirection: "column" , justifyContent: "center" , alignItems: "center" , gap: 2}}>
+				<Box sx={{display: "flex" , flexDirection: "column" , justifyContent: "center" , alignItems: "center" , gap: 1}}>
 					<h2 style={{margin: 0}}>
 						<b>UserName</b>
 					</h2>
-					<h3 style={{margin: 0}}>
+					<Typography variant="h6" color="grey">
 						user@email.com
-					</h3>
+					</Typography>
 					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
 						<FacebookIcon />
 						<InstagramIcon />
@@ -162,6 +164,9 @@ function ProfileScreen() {
 							))}
 						</Grid>
 					</Box>
+				</Collapse>
+				<Collapse in={"Transactions" === isOpen}>
+					<Transaction />
 				</Collapse>
 			</Box>
 		</>

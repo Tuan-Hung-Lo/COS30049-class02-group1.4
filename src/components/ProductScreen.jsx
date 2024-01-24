@@ -27,10 +27,9 @@ function ProductScreen() {
             <Box sx={{mt: 15 , display: "flex" , flexDirection: "column" , alignItems: "center" , width: 1 , gap: 2}}>
                 <Header>
                     <h1>Product Detail</h1>
-                    <p>Buy and Sell NFTs</p>
                 </Header>
                 <Box sx={{width: 0.8, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center"}}>
-                    <Box sx={{backgroundColor: "#2a2a2a", width: 1}}>
+                    <Box sx={{width: 0.75}}>
                         <Card sx={{width: 1, display: 'flex', flexDirection: 'row'}}
                         >
                             <CardMedia
@@ -44,7 +43,7 @@ function ProductScreen() {
                                 }}
                                 image="https://source.unsplash.com/random?wallpapers"
                             />
-                            <Box sx={{ display: "flex" , flexDirection: "column" , justifyContent: "space-between" , width: 0.5}}>
+                            <Box sx={{ display: "flex" , flexDirection: "column" , justifyContent: "space-between" , width: 0.4}}>
                                 <CardContent sx={{ display: "flex" , flexDirection: "column" , gap: 2}}>
                                     <Typography variant="h2">
                                     Item

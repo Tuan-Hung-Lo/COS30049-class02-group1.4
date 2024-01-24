@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import TRUNK from "vanta/dist/vanta.trunk.min";
+import TOPOLOGY from "vanta/dist/vanta.topology.min";
 import TextField from "@mui/material/TextField";
 import { Button , Avatar , Grid , Box } from '@mui/material'
 import { CssBaseline } from "@mui/material";
@@ -13,20 +13,18 @@ function RegisterPage() {
 
     useEffect(() => {
         if (loginBackgroundRef.current) {
-        TRUNK({
-            el: loginBackgroundRef.current,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x0547F0,
-            backgroundColor: 0x101010,
-            spacing: 10.00,
-            chaos: 1.00,
-        });
+            TOPOLOGY({
+                el: loginBackgroundRef.current,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x8a8a8a,
+                backgroundColor: 0x0
+            });
         }
     }, []);
 
@@ -42,12 +40,12 @@ function RegisterPage() {
   return (
     <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline/>
-        <Box sx={{ width: "50vw", height: "60vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
+        <Box sx={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
             <Box
             sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon sx={{fill: "#2a2a2a"}} />
                 </Avatar>
                 <h1>
                     Sign Up

@@ -108,7 +108,7 @@ function EditProfile() {
 								/>
 							</Box>
 						</Box>
-						<Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+						<Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{fill: "#2a2a2a"}} />}>
 							Upload file
 							<VisuallyHiddenInput type="file" name="profileImage" inputProps={{ accept: 'image/*'}} />
 						</Button>
@@ -124,7 +124,7 @@ function EditProfile() {
 								/>
 							</Box>
 						</Box>
-						<Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+						<Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{fill: "#2a2a2a"}} />}>
 							Upload file
 							<VisuallyHiddenInput type="file" name="backgroundImage" inputProps={{ accept: 'image/*'}}/>
 						</Button>
