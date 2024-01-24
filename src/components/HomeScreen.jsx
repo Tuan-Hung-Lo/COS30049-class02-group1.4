@@ -13,7 +13,7 @@ function Dashboard() {
 		align-items: center;
 	`;
 
-	const numberOfCards = 12;
+	const numberOfCards = 8;
 	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
 	const [isHovering, setIsHovering] = useState(null)
@@ -42,7 +42,7 @@ function Dashboard() {
                                     <Box 
 									sx={{position: "relative"}}>
                                         <Box 
-                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
+                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#ffffff", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
                                         <Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
                                         sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
                                         >

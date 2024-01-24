@@ -98,7 +98,7 @@ function RegisterPage() {
                         </Grid>
                     </Grid>
                     <Box sx={{display: "flex" , flexDirection: "column" ,alignItems: "center" , mt: 2 , gap: 2}}>
-                        <Link to={'/'} >
+                        <Link to={'/profile'} >
                             <Button variant="contained" color="primary">
                                 Sign Up
                             </Button>

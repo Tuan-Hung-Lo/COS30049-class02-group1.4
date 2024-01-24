@@ -66,7 +66,7 @@ function Explore(){
         setValue(newValue);
     };
 
-    const numberOfCards = 18;
+    const numberOfCards = 12;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
     const [isOpen, setisOpen] = useState(false)
@@ -152,7 +152,7 @@ function Explore(){
                                 <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
                                     <Box sx={{position: "relative"}}>
                                         <Box 
-                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#0441D8", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
+                                        sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", backgroundColor: "#ffffff", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
                                         <Card onMouseOver = {() => {setIsHovering(card)}} onMouseOut = {() => {setIsHovering(null)}}
                                         sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
                                         >
@@ -173,7 +173,7 @@ function Explore(){
                                                 <Typography>
                                                 @ Owner
                                                 </Typography>
-												<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
+												<Typography variant="h6" color="primary" sx={{fontWeight: "bold"}}>
                                                 Prices (BTC)
                                                 </Typography>
                                             </CardContent>

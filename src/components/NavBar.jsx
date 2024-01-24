@@ -1,4 +1,4 @@
-import logo from '../assets/nifty-logo/svg/logo-no-background.svg'
+import logo from '../assets/nifty-logo/svg/logo-no-background-white.svg'
 import ProfilePic from "../assets/Capture.jpg" 
 import searchIcon from '../assets/icon/search.svg'
 
@@ -20,13 +20,15 @@ function NavBar() {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        backdrop-filter: blur(10px);
-        background-color: #161616a6;
+        backdrop-filter: blur(15px);
+        background-color: #101010a0;
     `;
 
     const NavLink = styled(Link)`
         font-size: larger;
         text-decoration: none;
+
+        color: #ffffff;
 
         &:hover{
         text-decoration: underline;

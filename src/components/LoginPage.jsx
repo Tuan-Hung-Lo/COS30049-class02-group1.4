@@ -72,7 +72,7 @@ function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
-                <Link to={'/'} alt="Login Page" style={{textDecoration: "none"}}>
+                <Link to={'/profile'} alt="Login Page" style={{textDecoration: "none"}}>
                 <Button variant="contained" color="primary">
                 Login
                 </Button>
