@@ -21,7 +21,7 @@ function ProfileScreen() {
     const [isHovering, setIsHovering] = useState(null)
 
     const [isOpen, setisOpen] = useState("Owned")
-	const buttons = ["User Info" , "Wallet" , "Owned" , "Sales"]
+	const buttons = ["Wallet" , "Owned" , "Sales"]
 
 	return (
 		<>
@@ -36,6 +36,9 @@ function ProfileScreen() {
 					<h2 style={{margin: 0}}>
 						<b>UserName</b>
 					</h2>
+					<h3 style={{margin: 0}}>
+						user@email.com
+					</h3>
 					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
 						<FacebookIcon />
 						<InstagramIcon />
@@ -61,13 +64,6 @@ function ProfileScreen() {
 						</Button>
 					))}
 				</Box>
-				<Collapse in={"User Info" === isOpen}>
-					<Box sx={{ display: "flex" , flexDirection: "column", alignItems: "center"}}>			
-						<Typography variant="h2">Name</Typography>
-						<Typography variant="h4">Age</Typography>
-						<Typography variant="h4">Gmail</Typography>
-					</Box>
-				</Collapse>
 				<Collapse in={"Wallet" === isOpen}>
 					<Box sx={{ display: "flex" , flexDirection: "column", alignItems: "center"}}>
 						<CreditCard />
@@ -106,8 +102,9 @@ function ProfileScreen() {
                                                 </Typography>
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
-                                                <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
+												<Link to={'/product'}>
+                                                    <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
+                                                </Link>
                                             </CardActions>
 										</Card>
 									</Box>
@@ -150,7 +147,6 @@ function ProfileScreen() {
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
                                                 <Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>Edit</Button>
                                             </CardActions>
 										</Card>
 									</Box>

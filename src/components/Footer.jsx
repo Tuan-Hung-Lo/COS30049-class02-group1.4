@@ -29,11 +29,11 @@ function Footer(){
             ©{currentDate} NiFTy, Inc. All rights reserved.
             <Divider/>
             <Box sx={{width: 0.15 , display: "flex" , flexDirection: "row" , justifyContent: "space-around"}}>
-                <Link to='/error'>Terms</Link>
+                <Link to='*'>Terms</Link>
                 ·
-                <Link to='/error'>Policy</Link>
+                <Link to='*'>Policy</Link>
                 ·
-                <Link to='/error'>Contact </Link>
+                <Link to='*'>Contact </Link>
             </Box>
             
         </Footer>

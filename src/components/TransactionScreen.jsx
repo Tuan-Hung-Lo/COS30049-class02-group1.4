@@ -24,7 +24,7 @@ function Transaction(){
     ];
         
     const rows = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
         const id = i + 1;
         const purchasedDate = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString();
         const name = `NFT #${id}`;
@@ -57,7 +57,7 @@ function Transaction(){
                     <p>Buy and Sell NFTs</p>
                 </Header>
                 <Box sx={{ width: 1, mx: "auto" }}>
-                    <div style={{ height: "65vh", width: '100%' }}>
+                    <div style={{ height: "auto", width: '100%' }}>
                         <DataGrid
                             rows={rows}
                             columns={columns}

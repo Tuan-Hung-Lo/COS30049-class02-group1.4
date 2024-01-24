@@ -6,6 +6,8 @@ import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , 
 
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 function valuetext(value) {
     return `${value}`;
 }
@@ -177,7 +179,9 @@ function Explore(){
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
                                                 <Button variant="contained" style={{borderRadius:"1vw"}}>Buy</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
+                                                <Link to={'/product'}>
+                                                    <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
+                                                </Link>
                                             </CardActions>
                                         </Card>
                                     </Box>
