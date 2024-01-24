@@ -120,6 +120,9 @@ function NavBar() {
                     <li><NavLink to={'/shopping'} isSelected={location.pathname === '/shopping'} >
                         Transactions History
                         </NavLink></li>
+                    <li><NavLink to={'*'}>
+                        Contract
+                        </NavLink></li>
                 </Menu>
                 <div style={{display: 'flex', alignItems: 'center', gap: "15px"}}>
                     <SearchContainer>

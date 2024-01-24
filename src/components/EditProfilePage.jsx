@@ -96,7 +96,7 @@ function EditProfile() {
 				</Link>
 			</Box>  
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{width: 0.8 , gap: 2}}>
-				<Box sx={{ display: "flex-wrap", flexDirection: "row", justifyContent: "flex-start" , height: "auto" , alignItem: "center"}}>
+				<Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-start" , height: "auto" , alignItem: "center", width: 1}}>
 					<Box sx={{ width: '50%', display: "flex", flexDirection: "column" , justifyContent: "space-between" , alignItems: "center" , gap: 2 , mx: "auto"}}>
 						<h3>Change Your Profile Picture</h3>
 						<Box sx={{ width: 200}}>

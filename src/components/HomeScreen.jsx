@@ -58,7 +58,7 @@ function Dashboard() {
                                             />
                                             <CardContent sx={{ flexGrow: 1 }}>
                                                 <Typography variant="h5" component="h2">
-                                                Item
+                                                Item #{card}
                                                 </Typography>
                                                 <Typography>
                                                 @ Owner
@@ -69,7 +69,9 @@ function Dashboard() {
                                             </CardContent>
                                             <CardActions sx={{justifyContent: "space-around"}}>
                                                 <Button variant="contained" style={{borderRadius:"1vw"}}>Buy</Button>
-                                                <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
+                                                <Link to={'/product'}>
+                                                    <Button variant="outlined" style={{borderRadius:"1vw"}}>View</Button>
+                                                </Link>
                                             </CardActions>
                                         </Card>
                                     </Box>
