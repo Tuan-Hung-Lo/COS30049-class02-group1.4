@@ -57,3 +57,8 @@ Reference Metamask (https://metamask.io/):
 	+ Table như trang transaction, gồm các cột: No., BTC Amount, USD, Date, From (Tên)
 ---
 7. Buy page (link from buy button)
+
+---
+8. Product details
+
+---
