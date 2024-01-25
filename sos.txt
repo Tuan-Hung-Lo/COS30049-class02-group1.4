@@ -36,7 +36,7 @@ Reference Metamask (https://metamask.io/):
 	+ Credit card/Visa... (Khum biết nên để tên là j cho hợp lí)
 - Owned: giữ nguyên, add filter như ở trang explore
 - Sales:
-	+ Thêm button để upload picture for sale => thêm một trang upload, design cứ copy format như trang edit profile
+	+ Thêm button để upload picture for sale => thêm một trang upload, design cứ copy format như trang edit profile (Thêm 1 dòng show số tiền trích hoa hồng (0.5%))
 	+ add filter như ở trang explore
 ---
 5. Edit profile page
