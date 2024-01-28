@@ -5,7 +5,7 @@ Reference Metamask (https://metamask.io/):
 *Carousel:
 - Thay ảnh
 - Thay content:
-	+ Introduction
+	+ Introduction: Create and sell your own NFT's: We provide a secure marketplace for buying and selling your arts. Join our community now and start earning.
 	+ Exchange rate of ETH
 	+ Wallet
 		+ Link to Receive
@@ -47,18 +47,40 @@ Reference Metamask (https://metamask.io/):
 - Thêm 1 banner to to hoặc table 2 dòng show balance: currency, balance, usd
 - Filter selection: Send, Recieve, Transactions
 - Send (https://bitcoinist.com/best-bitcoin-wallet/) - (https://bitcoinist.com/best-bitcoin-wallet/):
-	+ Receive Address
+	+ Contract Address
 	+ BTC Amount
 	+ USD
 	+ Transaction Fee (phần này chỉ show số và title đóng mở ngoặc ghi là 0,2%)
 	+ Clear + Send button
 - Recieve:
-	+ Recieve Address (phần này của người dùng chỉ show, không cho edit)
+	+ Contract Address (phần này của người dùng chỉ show, không cho edit) - [https://help.1inch.io/en/articles/5711414-what-is-the-difference-between-a-wallet-address-contract-address-and-a-private-key]
 	+ Table như trang transaction, gồm các cột: No., BTC Amount, USD, Date, From (Tên)
+- Transactions - columns:
+	+ ID
+	+ Purchase Date
+	+ NFT Name
+	+ Category
+	+ Collection
+	+ Author (Contract Address)
+	+ Value
+	+ Token ID
+	+ Transaction Hash
 ---
-7. Buy page (link from buy button)
-
+7. Payment => pop up
+	+ Purchase Date
+	+ NFT Name
+	+ Contract Address (Author)
+	+ Value ETH <-> USD
+	+ Accept policy
+	+ Confirm
 ---
 8. Product details
-
+- Product Name
+- Published Date
+- Author
+- Curent price
+- Description
+- Collection
+- Category
+- Token ID
 ---
