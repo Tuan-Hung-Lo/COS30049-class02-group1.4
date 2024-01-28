@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Collapse } from '@mui/material'
+import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Collapse, TextField } from '@mui/material'
 
 import ShareIcon from '@mui/icons-material/Share';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -11,8 +10,7 @@ import XIcon from '@mui/icons-material/X';
 
 import { Link } from 'react-router-dom';
 
-import Transaction from './Transaction';
-
+import CreditCard  from './CreditCard';
 
 function ProfileScreen() {
 
@@ -22,7 +20,7 @@ function ProfileScreen() {
     const [isHovering, setIsHovering] = useState(null)
 
     const [isOpen, setisOpen] = useState("Owned")
-	const buttons = ["Wallet" , "Owned" , "Sales" , "Transactions"]
+	const buttons = ["User Info" , "Owned" , "Sales"]
 
 	return (
 		<>
@@ -37,9 +35,6 @@ function ProfileScreen() {
 					<h2 style={{margin: 0}}>
 						<b>UserName</b>
 					</h2>
-					<Typography variant="h6" color="grey">
-						user@email.com
-					</Typography>
 					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
 						<FacebookIcon />
 						<InstagramIcon />
@@ -65,13 +60,83 @@ function ProfileScreen() {
 						</Button>
 					))}
 				</Box>
-				<Collapse in={"Wallet" === isOpen}>
-					<Box sx={{ display: "flex" , flexDirection: "column", alignItems: "center"}}>
-						<h1>Wallet Details:</h1>
-						<h3>Wallet ID: 4yd918374d174ynd1987235yb</h3>
-						<Button variant="text" color="primary">
-							<ContentCopyIcon />					
-						</Button>
+				<Collapse in={"User Info" === isOpen}>
+					<Box sx={{ width: 1 , display: "flex" , flexDirection: "column", alignItems: "center" , gap: 2 }}>
+						<Grid container spacing={2} justifyContent={"center"}>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+								<h3>Email</h3>
+								<TextField
+									id="email"
+									label="Email"
+									value="user@gmail.com"
+									variant='outlined'
+									placeholder='user@gmail.com'
+									InputProps={{
+										readOnly: true,
+										focused: true,
+									}}
+								/>
+							</Grid>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+								<h3>Mobile</h3>
+								<TextField
+									id="mobile"
+									label="Mobile"
+									variant='outlined'
+									placeholder='example: +84425678436924'
+								/>
+								<Box sx={{ width: 0.3 , display: "flex" , flexDirection: "row" , justifyContent: "space-around"}}>
+									<Button variant='contained'>Edit</Button>
+									<Button variant='outlined'>Verify</Button>
+								</Box>
+							</Grid>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+								<h3>Personal Info</h3>
+								<Grid container spacing={2}>
+									<Grid item xs={6}>
+										<TextField
+										autoComplete="given-name"
+										name="firstName"
+										fullWidth
+										id="firstName"
+										label="First Name"
+										autoFocus
+										/>
+									</Grid>
+									<Grid item xs={6}>
+										<TextField
+										fullWidth
+										id="lastName"
+										label="Last Name"
+										name="lastName"
+										autoComplete="family-name"
+										/>
+									</Grid>
+									<Grid item xs={6}>
+										<TextField
+										fullWidth
+										id="birthday"
+										label="Birthday"
+										name="birthday"
+										placeholder='mm/dd/yyyy'
+										/>
+									</Grid>
+									<Grid item xs={6}>
+										<TextField
+										fullWidth
+										id="nationality"
+										label="Nationality"
+										name="nationality"
+										placeholder=''
+										/>
+									</Grid>
+								</Grid>
+							</Grid>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+								<h3>Banking</h3>
+								<CreditCard />
+							</Grid>
+						</Grid>
 					</Box>
 				</Collapse>
 				<Collapse in={"Owned" === isOpen}>
@@ -164,9 +229,6 @@ function ProfileScreen() {
 							))}
 						</Grid>
 					</Box>
-				</Collapse>
-				<Collapse in={"Transactions" === isOpen}>
-					<Transaction />
 				</Collapse>
 			</Box>
 		</>
