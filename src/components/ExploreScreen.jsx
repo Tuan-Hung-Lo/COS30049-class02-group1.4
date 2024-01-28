@@ -7,6 +7,10 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+function valuetext() {
+    return '${value}';
+}
+
 function Explore(){
     const prices = [
         {
@@ -49,7 +53,7 @@ function Explore(){
         },
     ];
 
-    const [value, setValue] = useState([0, 100]);
+    const [value, setValue] = useState([10, 70]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
