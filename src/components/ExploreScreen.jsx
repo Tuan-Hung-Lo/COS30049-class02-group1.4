@@ -68,8 +68,7 @@ function Explore(){
 
     const [isHovering, setIsHovering] = useState(null)
 
-    // Set the number of items to display per page
-	const [itemsPerPage , setItemPerPage] = useState(8)
+	const itemsPerPage = 8
 
 	const [currentPage , setCurrentPage] = useState(1)
 

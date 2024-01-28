@@ -93,6 +93,10 @@ function NavBar() {
         }
         input::placeholder{
             color: #3A3A3A;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 10vw;
         }
         border: 1px solid #3A3A3A;
         background-color: #101010;
