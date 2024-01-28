@@ -13,7 +13,7 @@ function Footer(){
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        background-color: #2a2a2a;
+        background-color: #1a1a1a;
     `;
 
     function getDate() {

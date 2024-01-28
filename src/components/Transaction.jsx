@@ -55,7 +55,7 @@ function Transaction(){
                 <Header>
                     <h1>Transactions History</h1>
                 </Header>
-                <Box sx={{ width: 1 , height: "auto"}}>
+                <Box sx={{ width: "80vw" , height: "auto"}}>
                     <DataGrid
                         rows={rows}
                         columns={columns}

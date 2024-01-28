@@ -53,7 +53,6 @@ function NavBar() {
         gap: 40px;
         align-items: center;
         @media (max-width: 1000px) {
-            margin-top: 1vh;
             display: flex;
             flex-direction: column;
             align-items: center;
