@@ -44,7 +44,6 @@ Reference Metamask (https://metamask.io/):
 - Thêm các thông tin như ở Identity trong Profile page
 ---
 6. Wallet page
-- Thêm 1 banner to to hoặc table 2 dòng show balance: currency, balance, usd
 - Filter selection: Send, Recieve, Transactions
 - Send (https://bitcoinist.com/best-bitcoin-wallet/) - (https://bitcoinist.com/best-bitcoin-wallet/):
 	+ Contract Address
