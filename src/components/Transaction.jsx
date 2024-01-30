@@ -41,7 +41,6 @@ function Transaction(){
         });
     }
 
-
     return(
         <>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 5, width: 1 , mx: "auto"}}>

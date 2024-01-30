@@ -19,7 +19,7 @@ function PaymentDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} maxWidth="lg">
+    <Dialog onClose={handleClose} open={open} maxWidth= {false} >
         <DialogTitle>Payment Details</DialogTitle>
         <List sx={{ pt: 0 }}>
             <ListItem disableGutters>

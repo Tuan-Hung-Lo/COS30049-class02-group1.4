@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import React from 'react'
 import { Box, TextField, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Tab, Tabs, Typography } from '@mui/material'
 
@@ -53,11 +52,8 @@ function WalletPage() {
         setValue(newValue)
     }
 
-    const [isOpen, setisOpen] = useState("Send")
-    const buttons = ["Send", "Receive", "Transactions"]
-
     return (
-        <Box sx={{ mt: 15, display: "flex", flexDirection: "column", px: "auto" }}>
+        <Box sx={{ mt: 15, height: "70vh" , display: "flex", flexDirection: "column", px: "auto" }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', mx: "auto" }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Send" {...a11yProps(0)} />
@@ -81,7 +77,7 @@ function WalletPage() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>No.</TableCell>
-                                    <TableCell>BTC Amount</TableCell>
+                                    <TableCell>ETH Amount</TableCell>
                                     <TableCell>USD</TableCell>
                                     <TableCell>Date</TableCell>
                                     <TableCell>From (Name)</TableCell>
