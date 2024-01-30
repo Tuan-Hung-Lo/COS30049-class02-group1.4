@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import { Box } from "@mui/material";
 import { CssBaseline } from "@mui/material";
 import { Link } from 'react-router-dom';
+import Fade from '@mui/material/Fade';
 
 
 
@@ -55,34 +56,36 @@ function LoginPage() {
 		<Box ref={loginBackgroundRef} sx={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
 			<CssBaseline/>
 			<Box sx={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
-				<div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
-				<h1>Login</h1>
-				<form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" , width: "100%" }}>
-					<TextField sx={{width: 1}}
-					id="Username"
-					label="Username"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					/>
-					<TextField sx={{width: 1}}
-					id="Password"
-					label="Password"
-					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					/>
-					<Link to={'/profile'} alt="Login Page" style={{textDecoration: "none"}}>
-					<Button variant="contained" color="primary">
-					Login
-					</Button>
-					</Link>
-				</form>
-				<div>
-					<Link to={'/register'} alt="Register Page" style={{textDecoration: "none"}}>
-					Haven&apos;t got an account yet? Register now.
-					</Link>
-				</div>
-				</div>
+				<Fade in={true} timeout={1500}>
+					<div style={{ display: "flex", flexDirection: "column", gap: "2vh", alignItems: "center"}}>
+						<h1>Login</h1>
+						<form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "2vh",alignItems: "center" , width: "100%" }}>
+							<TextField sx={{width: 1}}
+							id="Username"
+							label="Username"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							/>
+							<TextField sx={{width: 1}}
+							id="Password"
+							label="Password"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							/>
+							<Link to={'/profile'} alt="Login Page" style={{textDecoration: "none"}}>
+							<Button variant="contained" color="primary">
+							Login
+							</Button>
+							</Link>
+						</form>
+						<div>
+							<Link to={'/register'} alt="Register Page" style={{textDecoration: "none"}}>
+							Haven&apos;t got an account yet? Register now.
+							</Link>
+						</div>
+					</div>
+				</Fade>
 			</Box>
 		</Box>
 	);
