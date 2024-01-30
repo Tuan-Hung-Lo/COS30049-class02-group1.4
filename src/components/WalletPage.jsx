@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import { Box, Select, MenuItem, TextField, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Collapse, Grid, Tab, Tabs, Typography } from '@mui/material'
+import { Box, TextField, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Tab, Tabs, Typography } from '@mui/material'
 
 import PropTypes from 'prop-types'
 
@@ -70,7 +70,7 @@ function WalletPage() {
                     <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
                     <TextField  type="number" label="ETH Amount" variant="outlined" placeholder="" />
                     <TextField  type="number" label="USD" variant="outlined" placeholder="" />
-                    <Typography>Transaction Fee (0.2%)</Typography>
+                    <Typography>&#x2022; Transaction Fee (0.2%)</Typography>
                     <Button variant="contained" color="primary">
                         Clear + Send
                     </Button>
@@ -95,15 +95,18 @@ function WalletPage() {
             <CustomTabPanel value={value} index={1}>
                 <Box display={"flex"} flexDirection={"column"} px={"auto"}>
                     <Box sx={{ mt: 3 }}>
-                        <Typography variant="h6">My Wallet ID: {generateWalletId()}</Typography>
+                        <Typography variant="h5">My Wallet ID: {generateWalletId()}</Typography>
                     </Box>
-                    <Box sx={{ mt: 3 }}>
+                    <Box sx={{ mt: 3 , justifyContent: "center"}}>
+                        <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
+                            <h1>Transactions History</h1>
+                        </Box>
                         <TableContainer>
                             <Table>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>No.</TableCell>
-                                        <TableCell>BTC Amount</TableCell>
+                                        <TableCell>ETH Amount</TableCell>
                                         <TableCell>USD</TableCell>
                                         <TableCell>Date</TableCell>
                                         <TableCell>From (Name)</TableCell>

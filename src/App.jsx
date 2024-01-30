@@ -13,6 +13,7 @@ import ProductScreen from "./components/ProductScreen.jsx";
 import ProfileScreen from "./components/ProfileScreen.jsx";
 import EditProfile from "./components/EditProfilePage.jsx";
 import WalletPage from "./components/WalletPage.jsx";
+import PaymentDialogDemo from "./components/PurchaseScreen.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -59,6 +60,7 @@ function App() {
 						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
 						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
 						<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
+						<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
 						<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
 					</Routes>
 				</Main>

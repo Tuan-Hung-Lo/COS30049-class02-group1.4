@@ -4,13 +4,6 @@ import { DataGrid } from '@mui/x-data-grid';
 
 function Transaction(){
 
-    const Header = styled.div `
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-    `;
-
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'purchasedDate', headerName: 'Purchased Date', width: 150 },
@@ -52,9 +45,9 @@ function Transaction(){
     return(
         <>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 5, width: 1 , mx: "auto"}}>
-                <Header>
+                <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
                     <h1>Transactions History</h1>
-                </Header>
+                </Box>
                 <Box sx={{ width: "80vw" , height: "auto"}}>
                     <DataGrid
                         rows={rows}
