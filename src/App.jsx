@@ -12,6 +12,7 @@ import Explore from "./components/ExploreScreen.jsx";
 import ProductScreen from "./components/ProductScreen.jsx";
 import ProfileScreen from "./components/ProfileScreen.jsx";
 import EditProfile from "./components/EditProfilePage.jsx";
+import WalletPage from "./components/WalletPage.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -54,6 +55,7 @@ function App() {
 						<Route path="/register" element={<RegisterPage/>}></Route>
 						<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
 						<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
+						<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
 						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
 						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
 						<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>

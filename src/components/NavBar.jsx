@@ -122,7 +122,7 @@ function NavBar() {
                     <li><NavLink to={'/explore'} isSelected={location.pathname === '/explore'} >
                         Explore
                         </NavLink></li>
-                    <li><NavLink to={'*'} isSelected={location.pathname === '/wallet'}>
+                    <li><NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
                         Wallet
                         </NavLink></li>
                 </Menu>
