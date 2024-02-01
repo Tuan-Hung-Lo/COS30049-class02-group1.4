@@ -98,9 +98,9 @@ function EditProfile() {
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{width: 0.8 , gap: 2}}>
 				<Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-start" , height: "auto" , alignItem: "center", width: 1}}>
 					<Box sx={{ width: '50%', display: "flex", flexDirection: "column" , justifyContent: "space-between" , alignItems: "center" , gap: 2 , mx: "auto"}}>
-						<h3>Change Your Profile Picture</h3>
-						<Box sx={{ width: 200}}>
-							<Box sx={{ width: '100%', paddingBottom: '100%' , boxShadow: "5px 5px #2a2a2a" , position: 'relative' }}>
+						<h3>Change Profile Picture</h3>
+						<Box sx={{ width: "13vw"}}>
+							<Box sx={{ width: '100%', paddingBottom: '100%' , boxShadow: "5px 5px #1a1a1a" , position: 'relative' }}>
 								<img
 									src="https://source.unsplash.com/random?wallpapers"
 									alt="ava"
@@ -114,9 +114,9 @@ function EditProfile() {
 						</Button>
 					</Box>
 					<Box sx={{ width: '50%', display: "flex", flexDirection: "column" , justifyContent: "space-between" , alignItems: "center" , gap: 2 ,  mx: "auto"}}>
-						<h3>Change Your Background Image</h3>
-						<Box sx={{ width: 400}}>
-							<Box sx={{ width: '100%', paddingBottom: '50%' , boxShadow: "5px 5px #2a2a2a" , position: 'relative' }}>
+						<h3>Change Background Image</h3>
+						<Box sx={{ width: "26vw"}}>
+							<Box sx={{ width: '100%', paddingBottom: '50%' , boxShadow: "5px 5px #1a1a1a" , position: 'relative' }}>
 								<img
 									src="https://source.unsplash.com/random?wallpapers"
 									alt="background"

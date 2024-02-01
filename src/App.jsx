@@ -2,7 +2,7 @@ import { BrowserRouter , Routes , Route } from "react-router-dom";
 import styled from "styled-components";
 
 import NavBar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx"
+import Footer from "./components/Footer.jsx";
 
 import LoginPage from "./components/LoginPage.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
@@ -14,6 +14,9 @@ import ProfileScreen from "./components/ProfileScreen.jsx";
 import EditProfile from "./components/EditProfilePage.jsx";
 import WalletPage from "./components/WalletPage.jsx";
 import PaymentDialogDemo from "./components/PurchaseScreen.jsx";
+
+import Fade from '@mui/material/Fade';
+
 
 function App() {
 	const StyledCounter = styled.div `
@@ -50,20 +53,22 @@ function App() {
 	return(
 		<BrowserRouter>
 			<StyledCounter>
-				<Main>
-					<Routes>
-						<Route path="/login" element={<LoginPage/>}></Route>
-						<Route path="/register" element={<RegisterPage/>}></Route>
-						<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
-						<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
-						<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
-						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
-						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
-						<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
-						<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
-						<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
-					</Routes>
-				</Main>
+				<Fade in={true} timeout={1500}>
+					<Main>
+						<Routes>
+							<Route path="/login" element={<LoginPage/>}></Route>
+							<Route path="/register" element={<RegisterPage/>}></Route>
+							<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
+							<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
+							<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
+							<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
+							<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
+							<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
+							<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
+							<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
+						</Routes>
+					</Main>
+				</Fade>
 			</StyledCounter>
 		</BrowserRouter>	
 	);

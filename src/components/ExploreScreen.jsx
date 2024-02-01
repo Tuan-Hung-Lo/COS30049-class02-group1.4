@@ -2,11 +2,9 @@ import Button from '@mui/material/Button'
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { TextField , MenuItem , Box , Slider , Card , CardActions , CardMedia , CardContent , Grid , Typography , Collapse , Divider } from "@mui/material";
-
 import { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
-
+import Grow from '@mui/material/Grow';
 import PaginationComponent from './PaginationComponent';
 
 function valuetext() {
@@ -82,7 +80,7 @@ function Explore(){
 
 
     return(
-        <>
+        <Grow in={true} timeout={1000}>
             <Box sx={{mt: 15, width: 0.9, display: "flex", flexDirection: "column", gap: 5, justifyContent: "center"}}>
                 <Box sx={{display: "flex", flexDirection: "column", gap: 5 , width: 0.9 ,  mx: "auto" }}>
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
@@ -96,7 +94,7 @@ function Explore(){
                         </Button>
                     </Box>                        
                     <Divider/>
-                    <Collapse in={isOpen}>
+                    <Collapse in={isOpen} timeout={750}>
                         <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
                             <TextField
                                 id="select-prices"
@@ -203,7 +201,7 @@ function Explore(){
                     </Box>
                 </Box>
             </Box>
-        </>
+        </Grow>
     )
 }
 
