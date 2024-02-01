@@ -1,6 +1,8 @@
 import NavBar from './NavBar'
 import { Box , Card , CardMedia , CardContent , Typography , CardActions , Button } from "@mui/material";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import PaymentDialogDemo from './PurchaseScreen';
 
 function ProductScreen() {
 
@@ -14,10 +16,6 @@ function ProductScreen() {
         {
             value: 'digital',
             label: 'Digital',
-        },
-        {
-            value: 'photograph',
-            label: 'Photograph',
         },
     ];
 
@@ -53,18 +51,22 @@ function ProductScreen() {
                                     </Typography>
                                     <Typography variant="h8" color="#6A6A6A">
                                     Categories: {categories.map((option) => (
-                                                    <Button variant="contained" key={option.value} value={option.value} sx={{mx: 2}}> {option.label} </Button>
+                                                    <Link to={"/explore"} key={option.value}>
+                                                        <Button variant="contained" key={option.value} value={option.value} sx={{mx: 2}}> 
+                                                            {option.label} 
+                                                        </Button>
+                                                    </Link>
                                                 ))}
                                     </Typography>
                                     <Typography  variant="h4">
                                     @ Author
                                     </Typography>
                                     <Typography variant="h4" color="primary" sx={{fontWeight: "bold"}}>
-                                    Value (BTC)
+                                    Value (ETH)
                                     </Typography>
                                 </CardContent>
                                 <CardActions sx={{mx: "auto"}}>
-                                    <Button variant="contained" size='large' style={{borderRadius:"1vw" }}>Buy</Button>
+                                    <PaymentDialogDemo />
                                 </CardActions>
                             </Box>
                         </Card>

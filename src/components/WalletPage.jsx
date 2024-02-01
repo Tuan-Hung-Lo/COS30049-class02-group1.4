@@ -1,10 +1,9 @@
-import React from 'react'
 import { Box, TextField, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Tab, Tabs, Typography } from '@mui/material'
 
 import PropTypes from 'prop-types'
 
 import Transaction from './Transaction'
-
+import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function generateWalletId() {
@@ -46,11 +45,33 @@ function a11yProps(index) {
 }
 
 function WalletPage() {
-    const [value, setValue] = React.useState(0)
+    const [value, setValue] = useState(0)
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
+        const { name, value } = event.target;
+		setFormData({
+			...formData,
+			[name]: value,
+		});
     }
+
+    const [formData, setFormData] = useState({
+        price: 0, // Initialize price state
+    });
+
+    const [transactionFee, setTransactionFee] = useState(0);
+
+	useEffect(() => {
+        // Calculate transaction fee whenever price changes
+        const calculatetransaction = () => {
+            const price = parseFloat(formData.price);
+            const fee = price * 0.002; // 0.2% transaction fee
+            setTransactionFee(fee);
+        };
+
+        calculatetransaction();
+    }, [formData.price]);
 
     return (
         <Box sx={{ mt: 15, height: "70vh" , display: "flex", flexDirection: "column", px: "auto" }}>
@@ -65,8 +86,22 @@ function WalletPage() {
                 <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"}>
                     <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
                     <TextField  type="number" label="ETH Amount" variant="outlined" placeholder="" />
-                    <TextField  type="number" label="USD" variant="outlined" placeholder="" />
-                    <Typography>&#x2022; Transaction Fee (0.2%)</Typography>
+                    <TextField  
+                        type="number" 
+                        label="USD" 
+                        variant="outlined" 
+                        inputProps={{ min: 0 }} // Set minimum value as 0
+                        onChange={(event) => {
+                            const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
+                            setFormData({
+                                ...formData,
+                                price: newPrice // Update the price in formData with the new value
+                            });
+                        }}
+                    />
+                    <Typography>
+                        &#x2022; Transaction Fee (0.2%): ${transactionFee.toFixed(2)}
+                    </Typography>
                     <Button variant="contained" color="primary">
                         Clear + Send
                     </Button>

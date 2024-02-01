@@ -89,19 +89,19 @@ function ImageCarousel() {
           style={{ width: "100%", height: "100%" }}
         >
           <Image src={BackgroundImage3} alt="Third slide" />
-          <Carousel.Caption>
-            <h1>Do anything with your wallet</h1>
-            <Link to={{ pathname: "/wallet", search: "?open=Receive" }}>
-              <Button variant="contained" className="button" style={{ borderRadius: "1vw" }}>
-                Receive
-              </Button>
-            </Link>
-            <Link to={{ pathname: "/wallet", search: "?open=Send" }}>
-              <Button variant="outlined" className="button" style={{ borderRadius: "1vw" }}>
-                Send
-              </Button>
-            </Link>
-          </Carousel.Caption>
+            <Carousel.Caption>
+              <h1>Do anything with your wallet</h1>
+              <Link to={{ pathname: "/wallet", search: "?open=Receive" }}>
+                <Button variant="contained" className="button" style={{ borderRadius: "1vw" }}>
+                  Receive
+                </Button>
+              </Link>
+              <Link to={{ pathname: "/wallet", search: "?open=Send" }}>
+                <Button variant="outlined" className="button" style={{ borderRadius: "1vw" }}>
+                  Send
+                </Button>
+              </Link>
+            </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     </CustomCarousel>

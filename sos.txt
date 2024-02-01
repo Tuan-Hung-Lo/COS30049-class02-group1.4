@@ -34,8 +34,9 @@ Reference Metamask (https://metamask.io/):
 	+ Mobile
 	+ Personal info (First Name, Last Name, DOB, Street, City, State, Zip, Country)
 	+ Credit card/Visa... (Khum biết nên để tên là j cho hợp lí)
-- Owned: giữ nguyên, add filter như ở trang explore
-- Sales:
+- Owned: DONE
+	+giữ nguyên, add filter như ở trang explore
+- Sales: DONE
 	+ Thêm button để upload picture for sale => thêm một trang upload, design cứ copy format như trang edit profile (Thêm 1 dòng show số tiền trích hoa hồng (0.5%))
 	+ add filter như ở trang explore
 ---
