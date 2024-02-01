@@ -60,22 +60,22 @@ function WalletPage() {
 
     const  columnsSend = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'priceETH', headerName: 'Price (ETH)', type: 'number', width: 100, },
-        { field: 'priceUSD', headerName: 'Price (USD)', type: 'number', width: 100, },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
         { field: 'date', headerName: 'Date', width: 150 },
         { field: 'receiver', headerName: 'To', width: 300 },
     ];
 
     const  columnsReceive = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'priceETH', headerName: 'Price (ETH)', type: 'number', width: 100, },
-        { field: 'priceUSD', headerName: 'Price (USD)', type: 'number', width: 100, },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
         { field: 'date', headerName: 'Date', width: 150 },
         { field: 'sender', headerName: 'From', width: 300 },
     ];
         
     const rows = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 10; i++) {
         const id = i + 1;
         const date = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];// Generate a random price for ETH
         const priceETH = Math.floor(Math.random() * 1000) * 0.01;

@@ -80,7 +80,7 @@ function Explore(){
 
 
     return(
-        <Grow in={true} timeout={1000}>
+        <Grow in={true} timeout={1500}>
             <Box sx={{mt: 15, width: 0.9, display: "flex", flexDirection: "column", gap: 5, justifyContent: "center"}}>
                 <Box sx={{display: "flex", flexDirection: "column", gap: 5 , width: 0.9 ,  mx: "auto" }}>
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
