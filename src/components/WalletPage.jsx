@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Fade from '@mui/material/Fade';
 import { DataGrid } from '@mui/x-data-grid'
+import { useSearchParams } from 'react-router-dom'
 
 function generateWalletId() {
   return `${uuidv4()}`
@@ -47,7 +48,22 @@ function a11yProps(index) {
 }
 
 function WalletPage() {
-    const [value, setValue] = useState(0)
+    const [queryParameters] = useSearchParams()
+
+    const getOpenTab = (tabName) => {
+        switch(tabName) {
+            case "Send":
+                return 0
+            case "Receive":
+                return 1
+            case "Transactions":
+                return 2
+            default:
+                return 0
+        }
+    }
+    console.log()
+    const [value, setValue] = useState(getOpenTab(queryParameters.get('open')))
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
@@ -59,7 +75,7 @@ function WalletPage() {
     }
 
     const  columnsSend = [
-        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'id', headerName: 'ID', width: 100 },
         { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
         { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
         { field: 'date', headerName: 'Date', width: 150 },
@@ -67,7 +83,7 @@ function WalletPage() {
     ];
 
     const  columnsReceive = [
-        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'id', headerName: 'ID', width: 100 },
         { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
         { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
         { field: 'date', headerName: 'Date', width: 150 },
@@ -79,8 +95,8 @@ function WalletPage() {
         const id = i + 1;
         const date = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];// Generate a random price for ETH
         const priceETH = Math.floor(Math.random() * 1000) * 0.01;
-        const conversionRate = 2000;
-        const priceUSD = priceETH * conversionRate;
+        const conversionRate = 2265.65;
+        const priceUSD = (priceETH * conversionRate).toFixed(2);
         const tokenId = Math.floor(Math.random() * 1000000);
         const blockchain = ['Ethereum', 'Solana', 'Flow', 'Tezos', 'Binance Smart Chain'][Math.floor(Math.random() * 5)];
         const receiver = generateWalletId();

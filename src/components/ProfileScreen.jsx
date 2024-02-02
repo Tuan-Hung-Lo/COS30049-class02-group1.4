@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box , Card , CardActions , CardMedia , CardContent , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow } from '@mui/material'
+import { Box , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material'
 import ShareIcon from '@mui/icons-material/Share';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -10,14 +10,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Link } from 'react-router-dom';
 import CreditCard  from './CreditCard';
+import CardItem from './CardItem';
 
 
 function ProfileScreen() {
 	const numberOfCards = 12;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
-    const [isHovering, setIsHovering] = useState(null);
-    const [isOpen, setIsOpen] = useState("Owned");
+    const [isOpen, setIsOpen] = useState("User Info");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const buttons = ["User Info", "Owned", "Sales", "Add Product"];
 
@@ -42,6 +42,20 @@ function ProfileScreen() {
     const [formData, setFormData] = useState({
         price: 0, // Initialize price state
     });
+
+	const handleRadioChange = (e) => {
+		setFormData({
+		...formData,
+		gender: e.target.value,
+		})
+	}
+
+	const { name, gender} = formData
+
+
+	const formDataObj = new FormData()
+		formDataObj.append('name', name)
+		formDataObj.append('gender', gender)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -177,6 +191,16 @@ function ProfileScreen() {
 										placeholder=''
 										/>
 									</Grid>
+									<Grid item xs={6}>
+										<FormControl>
+											<FormLabel>Gender</FormLabel>
+											<RadioGroup name="gender" value={gender} onChange={handleRadioChange}>
+												<FormControlLabel value="male" control={<Radio />} label="Male (he/him)" />
+												<FormControlLabel value="female" control={<Radio />} label="Female (she/her)" />
+												<FormControlLabel value="other" control={<Radio />} label="Other" />
+											</RadioGroup>
+										</FormControl>
+									</Grid>
 								</Grid>
 							</Grid>
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
@@ -257,50 +281,12 @@ function ProfileScreen() {
 						</Collapse>
 						<Grow in={"Owned" === isOpen} timeout={2500}>
 							<Grid container spacing={4}>
-								{cards.map((card) => (
+								{cards.map((index, card) => (
 									<Grid item key={card} xs={12} sm={6} md={4} lg={3}>
-										<Box 
-										sx={{position: "relative"}}>
-											<Box 
-											sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", background: "linear-gradient(170deg, transparent, #ffffff)", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
-											<Card 
-												onMouseOver = {() => {setIsHovering(card)}} 
-												onMouseOut = {() => {setIsHovering(null)}} 
-												sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
-												>
-												<Link to={'/product'} style={{textDecoration: "none"}}>
-													<CardMedia
-													component="div"
-													sx={{
-													// 16:9
-													// pt: '56.25%',
-													// 1:1
-													pt: '100%',
-													}}
-													image="https://source.unsplash.com/random?wallpapers"
-													/>
-													<CardContent sx={{ flexGrow: 1 }}>
-														<Typography variant="h5" component="h2">
-														Item #{card}
-														</Typography>
-														<Typography>
-														@ Owner
-														</Typography>
-														<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
-														Prices (BTC)
-														</Typography>
-													</CardContent>
-												</Link>
-												<CardActions sx={{justifyContent: "space-around"}}>
-													<Link to={'/product'}>
-														<Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-													</Link>
-												</CardActions>
-											</Card>
-										</Box>
+										<CardItem index={index} />
 									</Grid>
 								))}
-							</Grid>
+                            </Grid>
 						</Grow>
 					</Box>
 				</Collapse>
@@ -375,50 +361,12 @@ function ProfileScreen() {
 						</Collapse>
 						<Grow in={"Sales" === isOpen} timeout={2500}>
 							<Grid container spacing={4}>
-								{cards.map((card) => (
+								{cards.map((index, card) => (
 									<Grid item key={card} xs={12} sm={6} md={4} lg={3}>
-										<Box 
-										sx={{position: "relative"}}>
-											<Box 
-											sx={{top: isHovering === card ? "5%" : "1%", left: "1%" , position: "absolute", width: "98%" , height: "98%", background: "linear-gradient(170deg, transparent, #ffffff)", zIndex: 1, transformOrigin: "top left", transition: "0.3s ease-in-out" , rotate: isHovering === card ? "2deg" : "0", borderRadius: "4px"}}/>
-											<Card 
-												onMouseOver = {() => {setIsHovering(card)}} 
-												onMouseOut = {() => {setIsHovering(null)}} 
-												sx={{ position: "relative", height: '100%', display: 'flex', flexDirection: 'column', zIndex: 2}}
-												>
-												<Link to={'/product'} style={{textDecoration: "none"}}>
-													<CardMedia
-													component="div"
-													sx={{
-													// 16:9
-													// pt: '56.25%',
-													// 1:1
-													pt: '100%',
-													}}
-													image="https://source.unsplash.com/random?wallpapers"
-													/>
-													<CardContent sx={{ flexGrow: 1 }}>
-														<Typography variant="h5" component="h2">
-														Item #{card}
-														</Typography>
-														<Typography>
-														@ Owner
-														</Typography>
-														<Typography variant="h7" color="primary" sx={{fontWeight: "bold"}}>
-														Prices (BTC)
-														</Typography>
-													</CardContent>
-												</Link>
-												<CardActions sx={{justifyContent: "space-around"}}>
-													<Link to={'/product'}>
-														<Button variant="contained" style={{borderRadius:"1vw"}}>View</Button>
-													</Link>
-												</CardActions>
-											</Card>
-										</Box>
+										<CardItem index={index} />
 									</Grid>
 								))}
-							</Grid>
+                            </Grid>
 						</Grow>
 					</Box>
 				</Collapse>

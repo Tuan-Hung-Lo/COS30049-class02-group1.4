@@ -6,10 +6,23 @@ import styled from 'styled-components'
 
 import { Link, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Button } from '@mui/material'
+import { Box, Button, Menu, MenuItem, useMediaQuery } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react'
 
 function NavBar() {
     const location = useLocation()
+    const isMobile = useMediaQuery('(max-width:1000px)');
+
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
 
     const NavigationBar = styled.div `
         height: 90px;
@@ -22,6 +35,11 @@ function NavBar() {
         justify-content: space-around;
         backdrop-filter: blur(15px);
         background-color: #101010a0;
+        ${isMobile &&
+        `
+            justify-content: space-between;
+
+        `}
     `;
 
     const NavLink = styled(Link)`
@@ -35,38 +53,30 @@ function NavBar() {
         }
 
         ${(props) => props.isSelected &&
-            `
-            text-decoration: underline;
-            `}
-
-        @media (max-width: 1000px) {
-            visibility: hidden;
-        }
+        `
+        text-decoration: underline;
+        `}
     `;
 
-    const Menu = styled.ul `
+    const MenuFull = styled.ul `
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: row;
-        gap: 40px;
+        gap: 3vw;
         align-items: center;
-        @media (max-width: 1000px) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        ${isMobile &&
+        `
+            gap: 0;
+        `}
     `;
+
 
     const Hr = styled.hr`
         height: 70%;
         border: 1px solid white;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-
-        @media (max-width: 1000px) {
-            visibility: hidden;
-        }
     `;
 
     const ProfilePicture = styled.img`
@@ -111,7 +121,8 @@ function NavBar() {
     return (
         <>
             <NavigationBar>
-                <Menu>
+            {!isMobile ? (
+                <MenuFull>
                     <Link to={'/'}>
                         <img src={logo} alt="Logo" className='logo'/>
                     </Link>
@@ -125,8 +136,50 @@ function NavBar() {
                     <li><NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
                         Wallet
                         </NavLink></li>
+                </MenuFull>
+            ) : (
+                <>
+                <MenuFull>
+                    <Button variant="text" color="primary" onClick={handleMenuOpen}>
+                        <MenuIcon />
+                    </Button>
+                    <Link to={'/'}>
+                        <img src={logo} alt="Logo" className='logo'/>
+                    </Link>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleMenuClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                >
+                    <MenuItem onClick={handleMenuClose}>
+                        <NavLink to={'/'} isSelected={location.pathname === '/'}>
+                            Home
+                        </NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleMenuClose}>
+                        <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
+                            Explore
+                        </NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleMenuClose}>
+                        <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
+                            Wallet
+                        </NavLink>
+                    </MenuItem>
                 </Menu>
-                <div style={{display: 'flex', alignItems: 'center', gap: "15px"}}>
+                </MenuFull>
+                </>
+            )}
+                
+                <Box sx={{display: 'flex', alignItems: 'center', gap: "15px"}}>
                     <SearchContainer>
                         <img src={searchIcon} alt="Search" />
                         <input type="text" className="search-box" placeholder="Search for art"/>
@@ -142,7 +195,7 @@ function NavBar() {
                             <ProfilePicture src={ProfilePic} alt="avatar"/>
                         </Button>
                     </Link>
-                </div>
+                </Box>
             </NavigationBar>
         </>
     )

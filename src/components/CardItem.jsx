@@ -1,28 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button , Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+import PaymentDialogDemo from './PurchaseScreen';
 
-const CardItem = ({ card }) => {
+const CardItem = ({ index , card }) => {
 
     const [isHovering, setIsHovering] = React.useState(null);
 
+    const [image, ] = useState("https://source.unsplash.com/random?wallpapers?rand=" + index)
+
     return (
         <Box sx={{ position: 'relative' }}>
-        <Box
+        <Box 
             sx={{
-            top: isHovering === card ? '5%' : '1%',
-            left: '1%',
-            position: 'absolute',
-            width: '98%',
-            height: '98%',
-            backgroundColor: '#ffffff',
-            zIndex: 1,
-            transformOrigin: 'top left',
-            transition: '0.3s ease-in-out',
-            rotate: isHovering === card ? '2deg' : '0',
-            borderRadius: '4px',
+                top: isHovering === card ? "5%" : "1%", 
+                left: "1%" , 
+                position: "absolute", 
+                width: "98%" , height: "98%", 
+                background: "linear-gradient(170deg, transparent, #ffffff)", zIndex: 1, 
+                transformOrigin: "top left", 
+                transition: "0.3s ease-in-out" , 
+                rotate: isHovering === card ? "2deg" : "0", 
+                borderRadius: "4px"
             }}
         />
         <Card
@@ -49,25 +50,25 @@ const CardItem = ({ card }) => {
                 // 1:1
                 pt: '100%',
                 }}
-                image="https://source.unsplash.com/random?wallpapers"
+                image={image}
             />
             <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h5" component="h2">
-                Item #{card}
+                Item #{index}
                 </Typography>
                 <Typography>
                 @ Owner
                 </Typography>
                 <Typography variant="h7" color="primary" sx={{ fontWeight: 'bold' }}>
-                Prices (BTC)
+                Prices (ETH)
                 </Typography>
             </CardContent>
             </Link>
             <CardActions sx={{ justifyContent: 'space-around' }}>
-            <Button variant="contained" style={{ borderRadius: '1vw' }}>Buy</Button>
-            <Link to={'/product'}>
-                <Button variant="outlined" style={{ borderRadius: '1vw' }}>View</Button>
-            </Link>
+                <PaymentDialogDemo />            
+                <Link to={'/product'}>
+                    <Button variant="outlined" style={{ borderRadius: '1vw' }}>View</Button>
+                </Link>
             </CardActions>
         </Card>
         </Box>
@@ -76,6 +77,7 @@ const CardItem = ({ card }) => {
 
 CardItem.propTypes = {
     card: PropTypes.number.isRequired,
+    index: PropTypes.int,
 };
 
 export default CardItem;

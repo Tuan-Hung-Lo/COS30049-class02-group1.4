@@ -8,9 +8,9 @@ const paymentDetails = {
   nftName: 'Sample NFT',
   contractAddress: '0x1234567890',
   valueETH: 1.5,
+  conversionrate: 2265.65,
   valueUSD: 3000,
 };
-
 function PaymentDialog(props) {
   const { onClose, open, handlePolicyDialogOpen } = props;
 
@@ -22,7 +22,7 @@ function PaymentDialog(props) {
     <Dialog onClose={handleClose} open={open} maxWidth={false}>
         <DialogTitle>Payment Details</DialogTitle>
         <Box sx={{ display: 'flex', justifyContent: 'center' , px: "auto" }}>
-            <List sx={{ width: "40vw", alignItems: "center" ,  margin: "auto" }}>
+            <List sx={{ width: "30vw", alignItems: "center" ,  margin: "auto" }}>
                 <ListItem>
                     <ListItemText primary={`Purchase Date: ${paymentDetails.purchaseDate}`} />
                 </ListItem>
@@ -37,8 +37,12 @@ function PaymentDialog(props) {
                 </ListItem>
                 <ListItem>
                     <Checkbox
-                      onChange={handlePolicyDialogOpen}
-                      inputProps={{ 'aria-label': 'Accept Policy' }}
+                        checked={props.accepted}
+                        onClick={e => {
+                            e.preventDefault()
+                            handlePolicyDialogOpen()
+                        }}
+                        inputProps={{ 'aria-label': 'Accept Policy' }}
                     />
                     <ListItemText primary="Accept Policy" />
                 </ListItem>
@@ -57,13 +61,21 @@ PaymentDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   handlePolicyDialogOpen: PropTypes.func.isRequired,
+  accepted: PropTypes.bool.isRequired,
 };
 
 function PolicyDialog(props) {
-  const { onClose, open } = props;
+  const { onAccept, open, setAccepted } = props;
 
+
+  const handleAccept = () => {
+    setAccepted(true);
+    onAccept();
+  };
+  
   const handleClose = () => {
-    onClose();
+    setAccepted(false);
+    onAccept();
   };
 
   return (
@@ -78,7 +90,7 @@ function PolicyDialog(props) {
             </ListItem>
             <ListItem sx={{display: "flex" , flexDirection: "column"}}>
                 <Typography>
-                    This User Agreement ("Agreement") is a legal agreement between you ("User") and [Your Company/Organization], governing your purchase of non-fungible tokens ("NFTs") through our platform.
+                    This User Agreement ("Agreement") is a legal agreement between you ("User") and <em>NiFTy</em>, governing your purchase of non-fungible tokens ("NFTs") through our platform.
                 </Typography>
             </ListItem>
             <ListItem sx={{display: "flex" , flexDirection: "column"}}>
@@ -181,7 +193,7 @@ function PolicyDialog(props) {
                 </Typography>
             </ListItem>
         </List>
-        <Button autoFocus onClick={handleClose} variant="contained">
+        <Button autoFocus onClick={handleAccept} variant="contained">
           I Accept
         </Button>
     </Dialog>
@@ -189,8 +201,9 @@ function PolicyDialog(props) {
 }
 
 PolicyDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onAccept: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  setAccepted: PropTypes.func.isRequired,
 };
 
 export default function PaymentDialogDemo() {
@@ -212,14 +225,16 @@ export default function PaymentDialogDemo() {
   const handlePolicyDialogClose = () => {
     setPolicyDialogOpen(false);
   };
+  
+  const [accepted, setAccepted] = React.useState(false)
 
   return (
     <>
-        <Button variant="contained" size='large' onClick={handleClickOpen} style={{borderRadius:"1vw" }}>
+        <Button variant="contained" size='large' onClick={handleClickOpen} style={{borderRadius:"2vw" }}>
             Buy
         </Button>
-        <PaymentDialog open={open} onClose={handleClose} handlePolicyDialogOpen={handlePolicyDialogOpen} />
-        <PolicyDialog open={policyDialogOpen} onClose={handlePolicyDialogClose} />
+        <PaymentDialog accepted={accepted} open={open} onClose={handleClose} handlePolicyDialogOpen={handlePolicyDialogOpen} />
+        <PolicyDialog setAccepted={setAccepted} open={policyDialogOpen} onAccept={handlePolicyDialogClose} />
     </>
   );
 }

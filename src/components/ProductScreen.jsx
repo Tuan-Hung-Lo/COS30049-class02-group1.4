@@ -22,7 +22,7 @@ function ProductScreen() {
     return (
         <>
             <NavBar />
-            <Box sx={{mt: 15 , display: "flex" , flexDirection: "column" , alignItems: "center" , width: 1 , gap: 2}}>
+            <Box sx={{mt: 13 , display: "flex" , flexDirection: "column" , alignItems: "center" , width: 1 , gap: 2}}>
                 <Header>
                     <h1>Product Detail</h1>
                 </Header>
