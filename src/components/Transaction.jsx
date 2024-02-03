@@ -1,11 +1,10 @@
-import styled from "styled-components";
 import { Box } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 
 function Transaction(){
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'id', headerName: 'ID', width: 100 },
         { field: 'purchasedDate', headerName: 'Purchased Date', width: 150 },
         { field: 'name', headerName: 'NFT Name', width: 150 },
         { field: 'collection', headerName: 'Collection', width: 150 },
@@ -19,7 +18,7 @@ function Transaction(){
     const rows = [];
         for (let i = 0; i < 20; i++) {
         const id = i + 1;
-        const purchasedDate = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString();
+        const purchasedDate = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];
         const name = `NFT #${id}`;
         const collection = `Collection #${Math.floor(Math.random() * 100)}`;
         const seller = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
@@ -47,7 +46,7 @@ function Transaction(){
                 <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
                     <h1>Transactions History</h1>
                 </Box>
-                <Box sx={{ width: "80vw" , height: "auto"}}>
+                <Box sx={{ width: "80vw" , height: "fit-content" , maxWidth: "fit-content"}}>
                     <DataGrid
                         rows={rows}
                         columns={columns}

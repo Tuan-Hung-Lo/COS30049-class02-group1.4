@@ -75,25 +75,25 @@ function WalletPage() {
     }
 
     const  columnsSend = [
-        { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
-        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
-        { field: 'date', headerName: 'Date', width: 150 },
+        { field: 'id', headerName: 'ID', width: 75 },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125, },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150, },
+        { field: 'date', headerName: 'Date', width: 200 },
         { field: 'receiver', headerName: 'To', width: 300 },
     ];
 
     const  columnsReceive = [
-        { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 100, },
-        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 100, },
-        { field: 'date', headerName: 'Date', width: 150 },
+        { field: 'id', headerName: 'ID', width: 75 },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125, },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150, },
+        { field: 'date', headerName: 'Date', width: 200 },
         { field: 'sender', headerName: 'From', width: 300 },
     ];
         
     const rows = [];
         for (let i = 0; i < 10; i++) {
         const id = i + 1;
-        const date = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];// Generate a random price for ETH
+        const date = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];
         const priceETH = Math.floor(Math.random() * 1000) * 0.01;
         const conversionRate = 2265.65;
         const priceUSD = (priceETH * conversionRate).toFixed(2);
@@ -133,7 +133,7 @@ function WalletPage() {
 
     return (
         <Fade in={true} timeout={1000}>
-            <Box sx={{ my: 15, height: "70vh" , display: "flex", flexDirection: "column", px: "auto" }}>
+            <Box sx={{ mt: 15, height: "auto" , display: "flex", flexDirection: "column", px: "auto" , width: 0.8 }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider', mx: "auto" }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                         <Tab label="Send" {...a11yProps(0)} />
@@ -142,7 +142,7 @@ function WalletPage() {
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
-                    <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"}>
+                    <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"} width={0.3}>
                         <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
                         <TextField  type="number" label="ETH Amount" variant="outlined" placeholder="" />
                         <TextField  
@@ -168,7 +168,7 @@ function WalletPage() {
                     <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
                         <h1>Transactions History</h1>
                     </Box>
-                    <Box sx={{ mt: 3 }}>
+                    <Box sx={{ mt: 3 , width: 1 , mx: "auto" , maxWidth: "fit-content"}}>
                         <DataGrid
                             rows={rows}
                             columns={ columnsSend}
@@ -191,7 +191,7 @@ function WalletPage() {
                             <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
                                 <h1>Transactions History</h1>
                             </Box>
-                            <Box mt={3}>
+                            <Box sx={{ mt: 3 , width: 1 , mx: "auto" , maxWidth: "fit-content"}}>
                                 <DataGrid
                                     rows={rows}
                                     columns={ columnsReceive}

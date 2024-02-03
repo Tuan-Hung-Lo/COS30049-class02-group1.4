@@ -67,7 +67,7 @@ const CardItem = ({ index , card }) => {
             <CardActions sx={{ justifyContent: 'space-around' }}>
                 <PaymentDialogDemo />            
                 <Link to={'/product'}>
-                    <Button variant="outlined" style={{ borderRadius: '1vw' }}>View</Button>
+                    <Button variant="outlined" style={{ borderRadius: '2vw' }}>View</Button>
                 </Link>
             </CardActions>
         </Card>

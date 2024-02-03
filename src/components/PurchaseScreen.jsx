@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, List, ListItem, ListItemText, DialogTitle, Dialog, Box, Checkbox, Typography } from '@mui/material';
+import { Button, List, ListItem, ListItemText, DialogTitle, Dialog, Box, Checkbox, Typography, Divider } from '@mui/material';
 
 const paymentDetails = {
   purchaseDate: new Date().toISOString().split('T')[0],
@@ -19,10 +19,10 @@ function PaymentDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} maxWidth={false}>
+    <Dialog onClose={handleClose} open={open} maxWidth={false} sx={{borderRadius: "5vw"}}>
         <DialogTitle>Payment Details</DialogTitle>
         <Box sx={{ display: 'flex', justifyContent: 'center' , px: "auto" }}>
-            <List sx={{ width: "30vw", alignItems: "center" ,  margin: "auto" }}>
+            <List sx={{ width: "30vw", alignItems: "center" ,  margin: "auto" , borderRadius: "5vw"}}>
                 <ListItem>
                     <ListItemText primary={`Purchase Date: ${paymentDetails.purchaseDate}`} />
                 </ListItem>
@@ -88,6 +88,7 @@ function PolicyDialog(props) {
                     User Agreement
                 </Typography>
             </ListItem>
+            <Divider />
             <ListItem sx={{display: "flex" , flexDirection: "column"}}>
                 <Typography>
                     This User Agreement ("Agreement") is a legal agreement between you ("User") and <em>NiFTy</em>, governing your purchase of non-fungible tokens ("NFTs") through our platform.

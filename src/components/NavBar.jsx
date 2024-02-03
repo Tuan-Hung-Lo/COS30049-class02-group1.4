@@ -12,7 +12,7 @@ import { useState } from 'react'
 
 function NavBar() {
     const location = useLocation()
-    const isMobile = useMediaQuery('(max-width:1000px)');
+    const isMobile = useMediaQuery('(max-width:900px)');
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -64,11 +64,11 @@ function NavBar() {
         padding: 0;
         display: flex;
         flex-direction: row;
-        gap: 3vw;
+        gap: 2.5vw;
         align-items: center;
         ${isMobile &&
         `
-            gap: 0;
+            gap: 1vw;
         `}
     `;
 
@@ -146,35 +146,35 @@ function NavBar() {
                     <Link to={'/'}>
                         <img src={logo} alt="Logo" className='logo'/>
                     </Link>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={handleMenuClose}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                >
-                    <MenuItem onClick={handleMenuClose}>
-                        <NavLink to={'/'} isSelected={location.pathname === '/'}>
-                            Home
-                        </NavLink>
-                    </MenuItem>
-                    <MenuItem onClick={handleMenuClose}>
-                        <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
-                            Explore
-                        </NavLink>
-                    </MenuItem>
-                    <MenuItem onClick={handleMenuClose}>
-                        <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
-                            Wallet
-                        </NavLink>
-                    </MenuItem>
-                </Menu>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                    >
+                        <MenuItem onClick={handleMenuClose}>
+                            <NavLink to={'/'} isSelected={location.pathname === '/'}>
+                                Home
+                            </NavLink>
+                        </MenuItem>
+                        <MenuItem onClick={handleMenuClose}>
+                            <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
+                                Explore
+                            </NavLink>
+                        </MenuItem>
+                        <MenuItem onClick={handleMenuClose}>
+                            <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
+                                Wallet
+                            </NavLink>
+                        </MenuItem>
+                    </Menu>
                 </MenuFull>
                 </>
             )}
