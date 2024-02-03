@@ -19,7 +19,7 @@ function PaymentDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} maxWidth={false} sx={{borderRadius: "5vw"}}>
+    <Dialog onClose={handleClose} open={open} maxWidth={false} sx={{color: "#2a2a2a"}}>
         <DialogTitle>Payment Details</DialogTitle>
         <Box sx={{ display: 'flex', justifyContent: 'center' , px: "auto" }}>
             <List sx={{ width: "30vw", alignItems: "center" ,  margin: "auto" , borderRadius: "5vw"}}>
@@ -81,7 +81,7 @@ function PolicyDialog(props) {
   return (
     <Dialog onClose={handleClose} open={open} maxWidth={false} sx={{display: "flex" , flexDirection: "column"}}>
         <DialogTitle mx={"auto"}>NFT Purchase User Agreement</DialogTitle>
-        <List sx={{ width: "50vw", alignItems: "center" , mx: "auto" , gap: 2  , px: "2vw"}}>
+        <List sx={{ width: "40vw", alignItems: "center" , mx: "auto" , gap: 2  , px: "2vw"}}>
             {/* Add your policy list items here */}
             <ListItem sx={{display: "flex" , flexDirection: "column"}}>
                 <Typography variant='h3'>

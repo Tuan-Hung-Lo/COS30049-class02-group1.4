@@ -39,7 +39,7 @@ function RegisterPage() {
     };
 
   return (
-    <div ref={loginBackgroundRef} style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <Box ref={loginBackgroundRef} sx={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <CssBaseline/>
         <Box sx={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
             <Fade in={true} timeout={1500}>
@@ -52,7 +52,7 @@ function RegisterPage() {
                     <h1>
                         Sign Up
                     </h1>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.5 , gap: 2}}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.8 , gap: 2}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -111,7 +111,7 @@ function RegisterPage() {
                 </Box>
             </Fade>
         </Box>
-    </div>
+    </Box>
   );
 }
 

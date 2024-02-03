@@ -225,58 +225,69 @@ function ProfileScreen() {
 						<Divider/>
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
-								<TextField
-									id="select-prices"
-									select
-									label="ORDER BY"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{prices.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<TextField
-									id="select-catergory"
-									select
-									label="CATERGORY"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{categories.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<TextField
-									id="select-collections"
-									select
-									label="PUBLISHED DATE"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{publishedDate.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<Box>
-									<span>PRICE RANGE</span>
-									<Slider
-										getAriaLabel={() => 'Temperature range'}
-										value={value}
-										onChange={handleChange}
-										getAriaValueText={valuetext}
-									/>
-									<span>Price: ${value[0]} - ${value[1]} </span>
-								</Box>
+								<Grid container spacing={2}>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-prices"
+											select
+											label="ORDER BY"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{prices.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-catergory"
+											select
+											label="CATERGORY"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{categories.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-collections"
+											select
+											label="PUBLISHED DATE"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{publishedDate.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<Box  width={0.9}>
+											<span>PRICE RANGE</span>
+											<Slider
+												getAriaLabel={() => 'Temperature range'}
+												value={value}
+												onChange={handleChange}
+												getAriaValueText={valuetext}
+												width= {0.5}
+											/>
+											<span>Price: ${value[0]} - ${value[1]}</span>
+										</Box>
+									</Grid>
+								</Grid>
 							</Box>
 						</Collapse>
 						<Grow in={"Owned" === isOpen} timeout={2500}>
@@ -305,58 +316,69 @@ function ProfileScreen() {
 						<Divider/>
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
-								<TextField
-									id="select-prices"
-									select
-									label="ORDER BY"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{prices.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<TextField
-									id="select-catergory"
-									select
-									label="CATERGORY"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{categories.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<TextField
-									id="select-collections"
-									select
-									label="PUBLISHED DATE"
-									defaultValue=""
-									variant="filled"
-									sx={{width: 0.2}}
-									>
-									{publishedDate.map((option) => (
-										<MenuItem key={option.value} value={option.value}>
-										{option.label}
-										</MenuItem>
-									))}
-								</TextField>
-								<Box>
-									<span>PRICE RANGE</span>
-									<Slider
-										getAriaLabel={() => 'Temperature range'}
-										value={value}
-										onChange={handleChange}
-										getAriaValueText={valuetext}
-									/>
-									<span>Price: ${value[0]} - ${value[1]} </span>
-								</Box>
+								<Grid container spacing={2}>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-prices"
+											select
+											label="ORDER BY"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{prices.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-catergory"
+											select
+											label="CATERGORY"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{categories.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<TextField
+											id="select-collections"
+											select
+											label="PUBLISHED DATE"
+											defaultValue=""
+											variant="filled"
+											sx={{width: 0.9}}
+											>
+											{publishedDate.map((option) => (
+												<MenuItem key={option.value} value={option.value}>
+												{option.label}
+												</MenuItem>
+											))}
+										</TextField>
+									</Grid>
+									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+										<Box  width={0.9}>
+											<span>PRICE RANGE</span>
+											<Slider
+												getAriaLabel={() => 'Temperature range'}
+												value={value}
+												onChange={handleChange}
+												getAriaValueText={valuetext}
+												width= {0.5}
+											/>
+											<span>Price: ${value[0]} - ${value[1]}</span>
+										</Box>
+									</Grid>
+								</Grid>
 							</Box>
 						</Collapse>
 						<Grow in={"Sales" === isOpen} timeout={2500}>

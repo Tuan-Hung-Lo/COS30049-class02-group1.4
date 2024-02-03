@@ -46,7 +46,7 @@ function Transaction(){
                 <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
                     <h1>Transactions History</h1>
                 </Box>
-                <Box sx={{ width: "80vw" , height: "fit-content" , maxWidth: "fit-content"}}>
+                <Box sx={{ width: 1, height: "fit-content" , maxWidth: "fit-content"}}>
                     <DataGrid
                         rows={rows}
                         columns={columns}

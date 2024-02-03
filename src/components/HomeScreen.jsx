@@ -28,7 +28,7 @@ function Dashboard() {
                         <Box sx={{ width: 0.9, mx: "auto" }}>
                             <Grid container spacing={4}>
                             {cards.map((index, card) => (
-                                <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+                                <Grid item key={card} xs={6} sm={6} md={4} lg={3}>
                                     <CardItem index={index} />
                                 </Grid>
                                 ))}

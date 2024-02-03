@@ -208,7 +208,7 @@ function WalletPage() {
                     </Box>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    <Box sx={{ mt: 3 }}>
+                    <Box sx={{ mt: 3 , mx: "auto" }}>
                         <Transaction />
                     </Box>
                 </CustomTabPanel>

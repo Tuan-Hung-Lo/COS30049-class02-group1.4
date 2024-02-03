@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Box, Divider } from "@mui/material";
+import { Box, Divider, useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Footer(){
+    
+    const isMobile = useMediaQuery('(max-width:900px)');
+
+
     const Footer = styled.div `
         margin-top: 10vh;
         height: 10vh;               
@@ -14,6 +18,10 @@ function Footer(){
         justify-content: space-around;
         align-items: center;
         background-color: #1a1a1a;
+        ${isMobile &&
+        `
+            flex-direction: column;
+        `}
     `;
 
     function getDate() {
