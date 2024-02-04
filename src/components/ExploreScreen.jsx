@@ -95,7 +95,7 @@ function Explore(){
                     <Collapse in={isOpen} timeout={750}>
                         <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+                                <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-prices"
                                         select
@@ -111,7 +111,7 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
-                                <Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+                                <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-catergory"
                                         select
@@ -127,7 +127,7 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
-                                <Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+                                <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-collections"
                                         select
@@ -143,11 +143,11 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
-                                <Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+                                <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <Box width={0.9}>
                                         <span>PRICE RANGE</span>
                                         <Slider
-                                            getAriaLabel={() => 'Temperature range'}
+                                            getAriaLabel={() => 'Price range'}
                                             value={value}
                                             onChange={handleChange}
                                             getAriaValueText={valuetext}

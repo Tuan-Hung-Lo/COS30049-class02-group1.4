@@ -148,6 +148,7 @@ function WalletPage() {
                         <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
                         <TextField  
                             type="number" label="ETH Amount" variant="outlined" placeholder="" 
+                            inputProps={{ min: 0 }} // Set minimum value as 0
                             onChange={(event) => {
                                 const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
                                 setFormData({
@@ -164,13 +165,6 @@ function WalletPage() {
                             value={(formData.price * conversionRate).toFixed(2)}
                             InputProps={{
                                 readOnly: true, // Make the input field readonly
-                            }}
-                            onChange={(event) => {
-                                const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
-                                setFormData({
-                                    ...formData,
-                                    price: newPrice // Update the price in formData with the new value
-                                });
                             }}
                         />
                         <Typography>

@@ -123,8 +123,8 @@ function ProfileScreen() {
 				</Box>
 				<Collapse in={"User Info" === isOpen} timeout={1000}>
 					<Box sx={{ width: 1 , display: "flex" , flexDirection: "column", alignItems: "center" , gap: 2 }}>
-						<Grid container spacing={2} justifyContent={"center"}>
-							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+						<Grid container spacing={2} justifyContent={"center"} >
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2 }}>
 								<h3>Email</h3>
 								<TextField
 									id="email"
@@ -136,25 +136,27 @@ function ProfileScreen() {
 										readOnly: true,
 										focused: true,
 									}}
+									fullWidth={true}
 								/>
 							</Grid>
-							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2 }}>
 								<h3>Mobile</h3>
 								<TextField
 									id="mobile"
 									label="Mobile"
+									value="+84 4256784369"
 									variant='outlined'
-									placeholder='example: +84425678436924'
+									placeholder='example: +84 4256784369'
+									InputProps={{
+										focused: true,
+									}}
+									fullWidth={true} 
 								/>
-								<Box sx={{ width: 0.3 , display: "flex" , flexDirection: "row" , justifyContent: "space-around"}}>
-									<Button variant='contained'>Edit</Button>
-									<Button variant='outlined'>Verify</Button>
-								</Box>
 							</Grid>
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
 								<h3>Personal Info</h3>
 								<Grid container spacing={2}>
-									<Grid item xs={6}>
+									<Grid item xs={12} md={6}>
 										<TextField
 										autoComplete="given-name"
 										name="firstName"
@@ -164,7 +166,7 @@ function ProfileScreen() {
 										autoFocus
 										/>
 									</Grid>
-									<Grid item xs={6}>
+									<Grid item xs={12} md={6}>
 										<TextField
 										fullWidth
 										id="lastName"
@@ -173,7 +175,7 @@ function ProfileScreen() {
 										autoComplete="family-name"
 										/>
 									</Grid>
-									<Grid item xs={6}>
+									<Grid item xs={12} md={6}>
 										<TextField
 										fullWidth
 										id="birthday"
@@ -182,7 +184,7 @@ function ProfileScreen() {
 										placeholder='mm/dd/yyyy'
 										/>
 									</Grid>
-									<Grid item xs={6}>
+									<Grid item xs={12} md={6}>
 										<TextField
 										fullWidth
 										id="nationality"
@@ -191,7 +193,7 @@ function ProfileScreen() {
 										placeholder=''
 										/>
 									</Grid>
-									<Grid item xs={6}>
+									<Grid item xs={12}>
 										<FormControl>
 											<FormLabel>Gender</FormLabel>
 											<RadioGroup name="gender" value={gender} onChange={handleRadioChange}>
@@ -226,7 +228,7 @@ function ProfileScreen() {
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-prices"
 											select
@@ -242,7 +244,7 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-catergory"
 											select
@@ -258,7 +260,7 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-collections"
 											select
@@ -274,11 +276,11 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<Box  width={0.9}>
 											<span>PRICE RANGE</span>
 											<Slider
-												getAriaLabel={() => 'Temperature range'}
+												getAriaLabel={() => 'Price range'}
 												value={value}
 												onChange={handleChange}
 												getAriaValueText={valuetext}
@@ -293,7 +295,7 @@ function ProfileScreen() {
 						<Grow in={"Owned" === isOpen} timeout={2500}>
 							<Grid container spacing={4}>
 								{cards.map((index, card) => (
-									<Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+									<Grid item key={card} xs={6} sm={6} md={4} lg={3}>
 										<CardItem index={index} />
 									</Grid>
 								))}
@@ -317,7 +319,7 @@ function ProfileScreen() {
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-prices"
 											select
@@ -333,7 +335,7 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-catergory"
 											select
@@ -349,7 +351,7 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<TextField
 											id="select-collections"
 											select
@@ -365,11 +367,11 @@ function ProfileScreen() {
 											))}
 										</TextField>
 									</Grid>
-									<Grid item xs={12} sm={3} sx={{display: "flex", justifyContent: "center"}}>
+									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
 										<Box  width={0.9}>
 											<span>PRICE RANGE</span>
 											<Slider
-												getAriaLabel={() => 'Temperature range'}
+												getAriaLabel={() => 'Price range'}
 												value={value}
 												onChange={handleChange}
 												getAriaValueText={valuetext}
@@ -384,7 +386,7 @@ function ProfileScreen() {
 						<Grow in={"Sales" === isOpen} timeout={2500}>
 							<Grid container spacing={4}>
 								{cards.map((index, card) => (
-									<Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+									<Grid item key={card} xs={6} sm={6} md={4} lg={3}>
 										<CardItem index={index} />
 									</Grid>
 								))}
