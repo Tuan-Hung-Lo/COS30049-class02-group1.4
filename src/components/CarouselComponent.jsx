@@ -54,10 +54,10 @@ function ImageCarousel() {
 
   return (
     <CustomCarousel>
-      <Carousel style={{ width: "100%", height: "100%", position: "relative" }}>
+      <Carousel style={{ maxWidth: "80vw", height: "auto", position: "relative" }}>
         <Carousel.Item
           interval={2000}
-          style={{ width: "100%", height: "100%" }}
+          style={{ maxWidth: "80vw", height: "auto" }}
         >
           <Image src={BackgroundImage1} alt="First slide" />
           <Carousel.Caption>
