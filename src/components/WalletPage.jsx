@@ -118,13 +118,15 @@ function WalletPage() {
         price: 0, // Initialize price state
     });
 
+    const conversionRate = 2265.65;
+
     const [transactionFee, setTransactionFee] = useState(0);
 
 	useEffect(() => {
         // Calculate transaction fee whenever price changes
         const calculatetransaction = () => {
             const price = parseFloat(formData.price);
-            const fee = price * 0.002; // 0.2% transaction fee
+            const fee = price * conversionRate * 0.002; // 0.2% transaction fee
             setTransactionFee(fee);
         };
 
@@ -144,12 +146,25 @@ function WalletPage() {
                 <CustomTabPanel value={value} index={0}>
                     <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"} width={0.3}>
                         <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
-                        <TextField  type="number" label="ETH Amount" variant="outlined" placeholder="" />
+                        <TextField  
+                            type="number" label="ETH Amount" variant="outlined" placeholder="" 
+                            onChange={(event) => {
+                                const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
+                                setFormData({
+                                    ...formData,
+                                    price: newPrice // Update the price in formData with the new value
+                                });
+                            }}
+                        />
                         <TextField  
                             type="number" 
                             label="USD" 
                             variant="outlined" 
                             inputProps={{ min: 0 }} // Set minimum value as 0
+                            value={(formData.price * conversionRate).toFixed(2)}
+                            InputProps={{
+                                readOnly: true, // Make the input field readonly
+                            }}
                             onChange={(event) => {
                                 const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
                                 setFormData({
@@ -162,7 +177,7 @@ function WalletPage() {
                             &#x2022; Transaction Fee (0.2%): ${transactionFee.toFixed(2)}
                         </Typography>
                         <Button variant="contained" color="primary">
-                            Clear + Send
+                            Send
                         </Button>
                     </Box>
                     <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
