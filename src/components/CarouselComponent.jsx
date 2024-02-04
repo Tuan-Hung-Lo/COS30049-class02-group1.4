@@ -61,17 +61,10 @@ function ImageCarousel() {
         >
           <Image src={BackgroundImage1} alt="First slide" />
           <Carousel.Caption>
-            <br></br>
-            <br></br>
-            <h1>Create and sell your own NFTs</h1>
-            <p>
-              We provide a secure marketplace for buying and selling your arts.
-              Join our community now and start earning.
-            </p>
             <Link to={"/explore"}>
-              <Button variant="contained" className="button" style={{ borderRadius: "1vw" }}>
+              {/* <Button variant="contained" className="button" style={{ borderRadius: "1vw" }}>
                 Explore
-              </Button>
+              </Button> */}
             </Link>
           </Carousel.Caption>
         </Carousel.Item>
@@ -79,18 +72,15 @@ function ImageCarousel() {
           <div style={{ width: "100%", height: "100%" }}>
             <Image src={BackgroundImage2} alt="Second slide" />
           </div>
-          <Carousel.Caption>
-            <h1>Exchange rate of ETH</h1>
-            <p id="exr">1 ETH = 2.265,65 USD</p>
-          </Carousel.Caption>
+          {/* <Carousel.Caption>
+          </Carousel.Caption> */}
         </Carousel.Item>
         <Carousel.Item
           interval={2000}
           style={{ width: "100%", height: "100%" }}
         >
           <Image src={BackgroundImage3} alt="Third slide" />
-            <Carousel.Caption>
-              <h1>Do anything with your wallet</h1>
+            {/* <Carousel.Caption>
               <Link to={{ pathname: "/wallet", search: "?open=Receive" }}>
                 <Button variant="contained" className="button" style={{ borderRadius: "1vw" }}>
                   Receive
@@ -101,7 +91,7 @@ function ImageCarousel() {
                   Send
                 </Button>
               </Link>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
       </Carousel>
     </CustomCarousel>
