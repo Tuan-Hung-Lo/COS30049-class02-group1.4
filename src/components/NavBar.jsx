@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import { Box, Button, Menu, MenuItem, useMediaQuery } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react'
+import '../index.css'
 
 // NavBar component
 function NavBar() {
@@ -117,11 +118,12 @@ function NavBar() {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 10vw;
+            max-width: 100vw;
         }
         border: 1px solid #3A3A3A;
         background-color: #101010;
-        max-width: 20vw;
+        max-width: 90vw;
+        width: 30vw;
     `;
 
     // Prop types for NavLink component
@@ -216,10 +218,6 @@ function NavBar() {
                 ) : (
                     // Render search box and profile picture with profile menu for mobile
                     <Box sx={{display: 'flex', alignItems: 'center', gap: "15px"}}>
-                        <SearchContainer>
-                            <SearchIcon />
-                            <input type="text" className="search-box" placeholder="Search for art"/>
-                        </SearchContainer>
                         <Button sx={{width: "60px" , height: "60px"}} onClick={handleProfileOpen}>
                             <ProfilePicture src={ProfilePic} alt="avatar"/>
                         </Button>
@@ -235,17 +233,51 @@ function NavBar() {
                                 vertical: 'top',
                                 horizontal: 'right',
                             }}
+                            slotProps={{
+                                paper: {
+                                  sx: {
+                                    color: 'red',
+                                    width: '100%',
+                                    maxWidth: '100%',
+                                    left: '0px',
+                                    right: '0px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                  },
+                                }
+                              }}
+                            marginThreshold={0}
                         >
+                            <SearchContainer>
+                                <SearchIcon />
+                                <input type="text" className="search-box MenuMobile" placeholder="Search for art"/>
+                            </SearchContainer>
+                            <MenuItem onClick={handleProfileClose}>
+                                <NavLink to={'/'} isSelected={location.pathname === '/'}>
+                                    Home
+                                </NavLink>
+                            </MenuItem>
+                            <MenuItem onClick={handleProfileClose}>
+                                <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
+                                    Explore
+                                </NavLink>
+                            </MenuItem>
+                            <MenuItem onClick={handleProfileClose}>
+                                <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
+                                    Wallet
+                                </NavLink>
+                            </MenuItem>
                             <MenuItem onClick={handleProfileClose}>
                                 <NavLink to={'/profile'}>
                                     View Profile
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem onClick={handleProfileClose}>
-                                <NavLink to={'/login'}>
-                                    Logout
-                                </NavLink>
-                            </MenuItem>
+                            <Link to={'/login'} alt="Login Page" style={{textDecoration: "none"}}>
+                                <Button variant="outlined" color="primary">
+                                    Log Out
+                                </Button>
+                            </Link>
                         </Menu>
                     </Box>
                 )}

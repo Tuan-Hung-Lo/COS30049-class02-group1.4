@@ -1,3 +1,8 @@
+// Team members:
+// 1. Tuan Hung Lo - ID: 103842425
+// 2. Chi Duc Luong - ID: 104181721
+// 3. Thanh An Ho - ID: 104177364
+// 4. Tran Bao Kien Le - ID: 104223584
 import { BrowserRouter , Routes , Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -38,18 +43,6 @@ function App() {
 		background-color: #101010;
 	`;
 
-// 	const fetchData = async () => {
-// 		try {
-// 		const response = await fetch("http://api.coinlayer.com/live?access_key=7abf43d1fd7e9077861e7bb14a3d46fb");
-// 		const data = await response.json();
-// 		console.log(data);
-// 		} catch (error) {
-// 		console.error('Error fetching data:', error);
-// 		}
-//    };
-//    fetchData()
-
-	
 	return(
 		<BrowserRouter>
 			<StyledCounter>

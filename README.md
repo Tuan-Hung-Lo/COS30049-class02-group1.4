@@ -1,3 +1,9 @@
+# Team members:
+1. Tuan Hung Lo - ID: 103842425
+2. Chi Duc Luong - ID: 104181721
+3. Thanh An Ho - ID: 104177364
+4. Tran Bao Kien Le - ID: 104223584
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

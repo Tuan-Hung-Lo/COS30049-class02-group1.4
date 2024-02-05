@@ -47,3 +47,10 @@ p {
   background-color: linear-gradient(0deg, #161616 0%, #2A2A2A 100%);
   transition: filter 1s ease;
 }
+
+/* .MuiMenu-list.MenuMobile {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
