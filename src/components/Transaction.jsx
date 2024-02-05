@@ -25,7 +25,7 @@ function Transaction() {
         const seller = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
         const price = Math.floor(Math.random() * 10000) * 0.01;
         const tokenId = Math.floor(Math.random() * 1000000);
-        const blockchain = ['Ethereum', 'Solana', 'Flow', 'Tezos', 'Binance Smart Chain'][Math.floor(Math.random() * 5)];
+        const blockchain = ['Ethereum'][Math.floor(Math.random() * 1)];
         const transactionHash = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
 
         // Add each row to the rows array
