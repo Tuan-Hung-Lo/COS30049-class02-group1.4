@@ -14,13 +14,16 @@ import CardItem from './CardItem';
 
 
 function ProfileScreen() {
+	// Define the number of cards to display
 	const numberOfCards = 12;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 
+	// State variables
     const [isOpen, setIsOpen] = useState("User Info");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const buttons = ["User Info", "Owned", "Sales", "Add Product"];
 
+	// Arrays for select options
     const prices = [
         { value: 'highest-price', label: 'Highest Price ' },
         { value: 'lowest-price', label: 'Lowest Price' },
@@ -38,11 +41,13 @@ function ProfileScreen() {
         { value: 'latest', label: 'Latest' },
     ];
 
+	// State variables for form data and slider value
     const [value, setValue] = useState([10, 70]);
     const [formData, setFormData] = useState({
         price: 0, // Initialize price state
     });
 
+	// Handle radio button change
 	const handleRadioChange = (e) => {
 		setFormData({
 		...formData,
@@ -50,8 +55,8 @@ function ProfileScreen() {
 		})
 	}
 
+	// Extract name and gender from form data
 	const { name, gender} = formData
-
 
 	const formDataObj = new FormData()
 		formDataObj.append('name', name)
@@ -66,28 +71,34 @@ function ProfileScreen() {
 		});
     };
 
+    const conversionRate = 2265.65;
+
     const [commissionFee, setCommissionFee] = useState(0);
 
+	// Effect to calculate commission fee based on price
 	useEffect(() => {
         // Calculate commission fee whenever price changes
         const calculateCommission = () => {
             const price = parseFloat(formData.price);
-            const fee = price * 0.005; // 0.5% commission fee
+            const fee = price * conversionRate * 0.005; // 0.5% commission fee
             setCommissionFee(fee);
         };
 
         calculateCommission();
     }, [formData.price]);
 
+	// Slider value text function
     function valuetext(value) {
         return `${value}`;
     }
 
 	return (
 		<>
+			{/* Background image */}
 			<Box sx={{mt: 12 , width: 1 , height: "300px" ,  position: "relative" , overflow: "hidden" , zIndex: 1 }}>
 				<img src="src\assets\bg\bg-image-19.jpg" alt="" style={{objectFit: "fit" , width: "100%" }} />
 			</Box>
+			{/* Profile header */}
 			<Box sx={{mt: -12 , zIndex: 2 , display: "flex" , flexDirection: "column" , alignItem: "center" , gap: 2}}>
 				<Box sx={{mx: "auto"}}>
 					<img src="src\assets\Capture.jpg" alt="ava" style={{width: "200px" , borderRadius: "5px" , boxShadow: "5px 5px #2a2a2a8a"}} />
@@ -96,12 +107,14 @@ function ProfileScreen() {
 					<h2 style={{margin: 0}}>
 						<b>UserName</b>
 					</h2>
+					{/* Social media icons */}
 					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
 						<FacebookIcon />
 						<InstagramIcon />
 						<XIcon />
 					</Box>
-					<div>
+					{/* Action buttons */}
+					<Box>
 						<Button>
 							<ShareIcon />
 						</Button>
@@ -110,10 +123,12 @@ function ProfileScreen() {
 								<ModeEditIcon />
 							</Button>
 						</Link>
-					</div>
+					</Box>
 				</Box>
 			</Box>
+			{/* Content section */}
 			<Box sx={{ mt: 5 , display: "flex" , flexDirection: "column" , alignItems: "center", width: 0.8 , gap : 2}}>
+				{/* Buttons for section navigation */}
 				<Box sx={{display: "flex", width: "100%" , alignItems: "center", gap: "1vw"}}>
 					{buttons.map((button) => (
 						<Button onClick={() => setIsOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{borderRadius:"5px"}}>
@@ -121,7 +136,10 @@ function ProfileScreen() {
 						</Button>
 					))}
 				</Box>
+				{/* Section content */}
+				{/* User Info section */}
 				<Collapse in={"User Info" === isOpen} timeout={1000}>
+					{/* User information fields */}
 					<Box sx={{ width: 1 , display: "flex" , flexDirection: "column", alignItems: "center" , gap: 2 }}>
 						<Grid container spacing={2} justifyContent={"center"} >
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2 }}>
@@ -212,6 +230,7 @@ function ProfileScreen() {
 						</Grid>
 					</Box>
 				</Collapse>
+				{/* Owned Products section */}
 				<Collapse in={"Owned" === isOpen} timeout={1000}> 
 					<Box sx={{ width: 1 , display: "flex" , flexDirection: "column" , gap: 5 , mt: 2}}>
 						<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
@@ -225,6 +244,7 @@ function ProfileScreen() {
 							</Button>
 						</Box>
 						<Divider/>
+						{/* Filter options */}
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
@@ -303,6 +323,7 @@ function ProfileScreen() {
 						</Grow>
 					</Box>
 				</Collapse>
+				{/* For Sales Products section */}
 				<Collapse in={"Sales" === isOpen} timeout={1000}>
 					<Box sx={{ width: 1, mx: "auto" , display: "flex" , flexDirection: "column" , gap: 5 , mt: 2 }}>
 						<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
@@ -316,6 +337,7 @@ function ProfileScreen() {
 							</Button>
 						</Box>
 						<Divider/>
+						{/* Filter options */}
 						<Collapse in={isFilterOpen}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
@@ -394,9 +416,10 @@ function ProfileScreen() {
 						</Grow>
 					</Box>
 				</Collapse>
+				{/* Add Product section */}
 				<Collapse in={"Add Product" === isOpen} timeout={1000}>
 					<Box sx={{ width: 1, mx: "auto" , display: "flex" , flexDirection: "column" , gap: 5}}>
-						<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center"}}>
+						<Box sx={{width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center"}}>
 							<h1>Add New Product</h1>
 						</Box>
 						<Divider/>
@@ -445,7 +468,7 @@ function ProfileScreen() {
 							</TextField>
 							<TextField
 								id="product-price"
-								label="Product Price ($)"
+								label="Product Price (ETH)"
 								variant="outlined"
 								type="number"
 								inputProps={{ min: 0 }} // Set minimum value as 0
@@ -457,6 +480,16 @@ function ProfileScreen() {
 									});
 								}}
 								name="price"
+							/>
+							<TextField  
+								type="number" 
+								label="USD" 
+								variant="outlined" 
+								inputProps={{ min: 0 }} // Set minimum value as 0
+								value={(formData.price * conversionRate).toFixed(2)}
+								InputProps={{
+									readOnly: true, // Make the input field readonly
+								}}
 							/>
 							<Typography>
 								&#x2022; Commission Fee (0.5%): ${commissionFee.toFixed(2)}

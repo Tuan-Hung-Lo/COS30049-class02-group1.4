@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import TOPOLOGY from "vanta/dist/vanta.topology.min";
+import TOPOLOGY from "vanta/dist/vanta.topology.min"; // Import Vanta Topology for background effect
 import TextField from "@mui/material/TextField";
 import { Button , Avatar , Grid , Box } from '@mui/material'
 import { CssBaseline } from "@mui/material";
@@ -8,10 +8,10 @@ import Fade from '@mui/material/Fade';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-
 function RegisterPage() {
-  const loginBackgroundRef = useRef(null);
+  const loginBackgroundRef = useRef(null); // Reference for the login background element
 
+    // Effect hook to initialize the Vanta Topology background effect
     useEffect(() => {
         if (loginBackgroundRef.current) {
             TOPOLOGY({
@@ -29,6 +29,7 @@ function RegisterPage() {
         }
     }, []);
 
+    // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -40,21 +41,26 @@ function RegisterPage() {
 
   return (
     <Box ref={loginBackgroundRef} sx={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-        <CssBaseline/>
+        <CssBaseline/> {/* Provides consistent styling across browsers */}
+        {/* Login box with background blur effect */}
         <Box sx={{ width: "50vw", height: "0vh", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", borderRadius: "30px", backdropFilter: "blur(2px)", backgroundColor: "#161616a6" }}>
+            {/* Fade animation */}
             <Fade in={true} timeout={1500}>
                 <Box
                 sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}
                 >
+                    {/* Avatar and title */}
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon sx={{fill: "#2a2a2a"}} />
                     </Avatar>
                     <h1>
                         Sign Up
                     </h1>
+                    {/* Form for user registration */}
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.8 , gap: 2}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
+                                {/* First Name field */}
                                 <TextField
                                 autoComplete="given-name"
                                 name="firstName"
@@ -66,6 +72,7 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
+                                {/* Last Name field */}
                                 <TextField
                                 required
                                 fullWidth
@@ -76,6 +83,7 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                {/* Email Address field */}
                                 <TextField
                                 required
                                 fullWidth
@@ -86,6 +94,7 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                {/* Password field */}
                                 <TextField
                                 required
                                 fullWidth
@@ -97,6 +106,7 @@ function RegisterPage() {
                                 />
                             </Grid>
                         </Grid>
+                        {/* Sign up button and link to login */}
                         <Box sx={{display: "flex" , flexDirection: "column" ,alignItems: "center" , mt: 2 , gap: 2}}>
                             <Link to={'/'} >
                                 <Button variant="contained" color="primary">
@@ -115,4 +125,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage
+export default RegisterPage;

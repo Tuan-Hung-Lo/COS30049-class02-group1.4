@@ -3,6 +3,7 @@ import * as React from 'react';
 import { PropTypes } from 'prop-types';
 import { Button, List, ListItem, ListItemText, DialogTitle, Dialog, Box, Checkbox, Typography, Divider } from '@mui/material';
 
+// Define static payment details
 const paymentDetails = {
   purchaseDate: new Date().toISOString().split('T')[0],
   nftName: 'Sample NFT',
@@ -11,11 +12,14 @@ const paymentDetails = {
   conversionrate: 2265.65,
   valueUSD: 3000,
 };
-function PaymentDialog(props) {
-  const { onClose, open, handlePolicyDialogOpen } = props;
 
-  const handleClose = () => {
-    onClose();
+// Payment dialog component
+function PaymentDialog(props) {
+    const { onClose, open, handlePolicyDialogOpen } = props;
+
+    // Close the payment dialog
+    const handleClose = () => {
+        onClose();
   };
 
   return (
@@ -23,6 +27,7 @@ function PaymentDialog(props) {
         <DialogTitle>Payment Details</DialogTitle>
         <Box sx={{ display: 'flex', justifyContent: 'center' , px: "auto" }}>
             <List sx={{ width: "30vw", alignItems: "center" ,  margin: "auto" , borderRadius: "5vw"}}>
+                {/* Render payment details */}
                 <ListItem>
                     <ListItemText primary={`Purchase Date: ${paymentDetails.purchaseDate}`} />
                 </ListItem>
@@ -35,6 +40,7 @@ function PaymentDialog(props) {
                 <ListItem>
                     <ListItemText primary={`Value: ${paymentDetails.valueETH} ETH / $${paymentDetails.valueUSD}`} />
                 </ListItem>
+                {/* Checkbox to accept policy */}
                 <ListItem>
                     <Checkbox
                         checked={props.accepted}
@@ -47,6 +53,7 @@ function PaymentDialog(props) {
                     <ListItemText primary="Accept Policy" />
                 </ListItem>
                 <ListItem>
+                    {/* Button to confirm payment */}
                     <Button autoFocus onClick={handleClose} variant="contained">
                     Confirm
                     </Button>
@@ -64,23 +71,26 @@ PaymentDialog.propTypes = {
   accepted: PropTypes.bool.isRequired,
 };
 
+// Policy dialog component
 function PolicyDialog(props) {
-  const { onAccept, open, setAccepted } = props;
+    const { onAccept, open, setAccepted } = props;
 
-
-  const handleAccept = () => {
-    setAccepted(true);
-    onAccept();
-  };
+    // Accept policy and close dialog
+    const handleAccept = () => {
+        setAccepted(true);
+        onAccept();
+    };
   
-  const handleClose = () => {
-    setAccepted(false);
-    onAccept();
-  };
+    // Close dialog without accepting policy
+    const handleClose = () => {
+        setAccepted(false);
+        onAccept();
+    };
 
   return (
     <Dialog onClose={handleClose} open={open} maxWidth={false} sx={{display: "flex" , flexDirection: "column"}}>
         <DialogTitle mx={"auto"}>NFT Purchase User Agreement</DialogTitle>
+        {/* Render user agreement */}
         <List sx={{ width: "40vw", alignItems: "center" , mx: "auto" , gap: 2  , px: "2vw"}}>
             {/* Add your policy list items here */}
             <ListItem sx={{display: "flex" , flexDirection: "column"}}>
@@ -207,6 +217,7 @@ PolicyDialog.propTypes = {
   setAccepted: PropTypes.func.isRequired,
 };
 
+// PaymentDialogDemo component
 export default function PaymentDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const [policyDialogOpen, setPolicyDialogOpen] = React.useState(false);

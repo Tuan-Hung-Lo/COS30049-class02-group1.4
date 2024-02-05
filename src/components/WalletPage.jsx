@@ -1,19 +1,18 @@
-import { Box, TextField, Button, Tab, Tabs, Typography } from '@mui/material'
-
-import PropTypes from 'prop-types'
-
-import Transaction from './Transaction'
-import { useState, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { Box, TextField, Button, Tab, Tabs, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import Transaction from './Transaction';
+import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid'; 
 import Fade from '@mui/material/Fade';
-import { DataGrid } from '@mui/x-data-grid'
-import { useSearchParams } from 'react-router-dom'
+import { DataGrid } from '@mui/x-data-grid';
+import { useSearchParams } from 'react-router-dom';
 
+// Function to generate a wallet ID using UUIDv4
 function generateWalletId() {
-  return `${uuidv4()}`
+  return `${uuidv4()}`;
 }
-console.log(generateWalletId())
 
+// Custom TabPanel component
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -34,12 +33,14 @@ function CustomTabPanel(props) {
     )
 }
 
+// Define prop types for CustomTabPanel component
 CustomTabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
 }
 
+// Function to generate accessibility props for tabs
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
@@ -47,51 +48,53 @@ function a11yProps(index) {
     }
 }
 
+// WalletPage component
 function WalletPage() {
-    const [queryParameters] = useSearchParams()
+    const [queryParameters] = useSearchParams(); // Get query parameters from URL
 
+    // Function to get the index of the currently open tab
     const getOpenTab = (tabName) => {
         switch(tabName) {
             case "Send":
-                return 0
+                return 0;
             case "Receive":
-                return 1
+                return 1;
             case "Transactions":
-                return 2
+                return 2;
             default:
-                return 0
+                return 0;
         }
     }
-    console.log()
-    const [value, setValue] = useState(getOpenTab(queryParameters.get('open')))
 
+    // State to manage the currently selected tab value
+    const [value, setValue] = useState(getOpenTab(queryParameters.get('open')));
+
+    // Handle tab change
     const handleChange = (event, newValue) => {
-        setValue(newValue)
-        const { name, value } = event.target;
-		setFormData({
-			...formData,
-			[name]: value,
-		});
+        setValue(newValue);
     }
 
-    const  columnsSend = [
+    // Define columns for sending transactions
+    const columnsSend = [
         { field: 'id', headerName: 'ID', width: 75 },
-        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125, },
-        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150, },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125 },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150 },
         { field: 'date', headerName: 'Date', width: 200 },
         { field: 'receiver', headerName: 'To', width: 300 },
     ];
 
-    const  columnsReceive = [
+    // Define columns for receiving transactions
+    const columnsReceive = [
         { field: 'id', headerName: 'ID', width: 75 },
-        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125, },
-        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150, },
+        { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125 },
+        { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150 },
         { field: 'date', headerName: 'Date', width: 200 },
         { field: 'sender', headerName: 'From', width: 300 },
     ];
-        
+
+    // Generate sample transaction data
     const rows = [];
-        for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         const id = i + 1;
         const date = new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0];
         const priceETH = Math.floor(Math.random() * 1000) * 0.01;
@@ -114,28 +117,35 @@ function WalletPage() {
         });
     }
 
+    // State for form data
     const [formData, setFormData] = useState({
         price: 0, // Initialize price state
     });
 
+    // Conversion rate for ETH to USD
     const conversionRate = 2265.65;
 
+    // State for transaction fee
     const [transactionFee, setTransactionFee] = useState(0);
 
-	useEffect(() => {
-        // Calculate transaction fee whenever price changes
-        const calculatetransaction = () => {
+    // Calculate transaction fee whenever price changes
+    useEffect(() => {
+        const calculateTransaction = () => {
             const price = parseFloat(formData.price);
             const fee = price * conversionRate * 0.002; // 0.2% transaction fee
             setTransactionFee(fee);
         };
 
-        calculatetransaction();
+        calculateTransaction();
     }, [formData.price]);
+
+    // Wallet balance
+    const walletBalance = 12345;
 
     return (
         <Fade in={true} timeout={1000}>
             <Box sx={{ mt: 15, height: "auto" , display: "flex", flexDirection: "column", px: "auto" , width: 0.8 }}>
+                {/* Tabs for Send, Receive, and Transactions */}
                 <Box sx={{ borderBottom: 1, borderColor: 'divider', mx: "auto" }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                         <Tab label="Send" {...a11yProps(0)} />
@@ -143,8 +153,14 @@ function WalletPage() {
                         <Tab label="Transactions" {...a11yProps(2)} />
                     </Tabs>
                 </Box>
+                {/* Tab Panels */}
                 <CustomTabPanel value={value} index={0}>
-                    <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"} width={0.3}>
+                    {/* Send Transaction Section */}
+                    <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
+                        <Typography variant="h5">Balance: {walletBalance} ETH</Typography>
+                    </Box>
+                    <Box className="send-section" display={'flex'} flexDirection={'column'} gap={2} mx={"auto"} width={0.3} mt={3}>
+                        {/* Form fields for sending transactions */}
                         <TextField  type="text" label="Wallet ID" variant="outlined" placeholder="" />
                         <TextField  
                             type="number" label="ETH Amount" variant="outlined" placeholder="" 
@@ -167,47 +183,55 @@ function WalletPage() {
                                 readOnly: true, // Make the input field readonly
                             }}
                         />
+                        {/* Display transaction fee */}
                         <Typography>
                             &#x2022; Transaction Fee (0.2%): ${transactionFee.toFixed(2)}
                         </Typography>
+                        {/* Button to send transaction */}
                         <Button variant="contained" color="primary">
                             Send
                         </Button>
                     </Box>
+                    {/* Transactions History */}
                     <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
-                        <h1>Transactions History</h1>
+                        <Typography variant="h5">Transactions History</Typography>
                     </Box>
                     <Box sx={{ mt: 3 , width: 1 , mx: "auto" , maxWidth: "fit-content"}}>
                         <DataGrid
                             rows={rows}
-                            columns={ columnsSend}
+                            columns={columnsSend}
                             initialState={{
-                            pagination: {
-                                paginationModel: { page: 0, pageSize: 5 },
-                            },
+                                pagination: {
+                                    paginationModel: { page: 0, pageSize: 5 },
+                                },
                             }}
                             pageSizeOptions={[5, 10]}
                             checkboxSelection
                         />
                     </Box>
                 </CustomTabPanel>
+                {/* Receive Tab Panel */}
                 <CustomTabPanel value={value} index={1}>
                     <Box display={"flex"} flexDirection={"column"} px={"auto"}>
                         <Box sx={{ mt: 3 , mx: "auto"}}>
                             <Typography variant="h5">My Wallet ID: {generateWalletId()}</Typography>
                         </Box>
+                        <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
+                            <Typography variant="h5">Balance: {walletBalance} ETH</Typography>
+                        </Box>
+                        {/* Transactions History */}
                         <Box sx={{ mt: 3 , justifyContent: "center"}}>
                             <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between"}}>
-                                <h1>Transactions History</h1>
+                                <Typography variant="h5">Transactions History</Typography>
                             </Box>
                             <Box sx={{ mt: 3 , width: 1 , mx: "auto" , maxWidth: "fit-content"}}>
                                 <DataGrid
                                     rows={rows}
-                                    columns={ columnsReceive}
+                                    columns={columnsReceive}
                                     initialState={{
-                                    pagination: {
-                                        paginationModel: { page: 0, pageSize: 5 },
-                                    },
+                                        pagination: {
+                                            paginationModel: { page: 0, pageSize: 5 },
+                                        },
                                     }}
                                     pageSizeOptions={[5, 10]}
                                     checkboxSelection
@@ -216,6 +240,7 @@ function WalletPage() {
                         </Box>
                     </Box>
                 </CustomTabPanel>
+                {/* Transactions Tab Panel */}
                 <CustomTabPanel value={value} index={2}>
                     <Box sx={{ mt: 3 , mx: "auto" }}>
                         <Transaction />
@@ -226,4 +251,4 @@ function WalletPage() {
     )
 }
 
-export default WalletPage
+export default WalletPage;

@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 
 function CreditCard() {
+    // Destructure values from usePaymentInputs hook
     const {
       meta,
       getCardImageProps,
@@ -17,6 +18,7 @@ function CreditCard() {
       getCVCProps
     } = usePaymentInputs();
 
+    // Styled component for custom styling
     const CreditCard = styled.div`
         .visa_card_container {
             display: grid;
@@ -118,6 +120,7 @@ function CreditCard() {
     return (
         <Box>
             <Divider />
+            {/* Formik handles form state and validation */}
             <Formik
                 initialValues={
                 {cardNumber: "",
@@ -126,6 +129,7 @@ function CreditCard() {
                     nameOnCard: ""}
                 }
 
+                // Define validation schema using Yup
                 validationSchema={
                 Yup.object().shape({
                     nameOnCard: Yup.string()
@@ -134,6 +138,7 @@ function CreditCard() {
                 })
                 }
                 
+                // Validate form inputs based on errors returned by meta
                 validate={() => {
                 let errors = {};
                 if (meta.erroredInputs.cardNumber) {
@@ -148,11 +153,13 @@ function CreditCard() {
                 return errors;
                 }}
                 onSubmit={async (values, {setErrors, setStatus, setSubmitting}) => {
+                    // Handle form submission
                 }}
             >
                 {({errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values}) => (
                 <form onSubmit={handleSubmit}>
                     <CreditCard >
+                        {/* Credit card styled container */}
                         <section className="visa_card">
                             <div className="visa_card_container">
 
@@ -174,6 +181,7 @@ function CreditCard() {
                     <Stack direction={"column"} spacing={"20px"} sx={{
                         width: "100%" , mt: 5
                     }}>
+                        {/* Name on Card */}
                         <FormControl error={Boolean(touched.nameOnCard && errors.nameOnCard)}>
                         <InputLabel>Name on Card</InputLabel>
                         <OutlinedInput
@@ -190,6 +198,7 @@ function CreditCard() {
                         )}
                         </FormControl>
                         
+                        {/* Card Number */}
                         <Field name="cardNumber">
                         {({ field }) => (
                             <TextField
@@ -220,6 +229,7 @@ function CreditCard() {
                         )}
                         </Field>
                         
+                        {/* Expiration Date and CVC */}
                         <Stack direction={"row"} spacing={"20px"} sx={{
                             width: "100%"
                         }}>
@@ -266,12 +276,13 @@ function CreditCard() {
                             </Field>
                         </Stack>
 
+                        {/* Submit button */}
                         <Stack direction={"row"} sx={{mt: "10px", alignItems: "center", justifyContent: "space-between"}}>
-                        <Box sx={{display: "flex", width: "100%", justifyContent: "center"}}>
-                            <Button variant="contained" type='submit'>
-                                Add card
-                            </Button>
-                        </Box>
+                            <Box sx={{display: "flex", width: "100%", justifyContent: "center"}}>
+                                <Button variant="contained" type='submit'>
+                                    Add card
+                                </Button>
+                            </Box>
                         </Stack>
                     </Stack>
                 </form>

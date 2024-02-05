@@ -12,6 +12,7 @@ function valuetext() {
 }
 
 function Explore(){
+    // Arrays for different options
     const prices = [
         {
           value: 'highest-price',
@@ -55,22 +56,23 @@ function Explore(){
 
     const [value, setValue] = useState([10, 70]);
 
+    // Handle slider change
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    // Number of cards to display
     const numberOfCards = 12;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
-
-    const [isOpen, setisOpen] = useState(false)
-
 	const itemsPerPage = 8
 
+    // State variables
+    const [isOpen, setisOpen] = useState(false)
 	const [currentPage , setCurrentPage] = useState(1)
-
     const [startIndex, setStartIndex] = useState((currentPage - 1) * itemsPerPage);
 	const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage)
 
+    // Handle change in pagination or items per page
     useEffect(()=>{
         setStartIndex((currentPage - 1) * itemsPerPage)
         setEndIndex(((currentPage - 1) * itemsPerPage) + itemsPerPage)
@@ -95,6 +97,7 @@ function Explore(){
                     <Collapse in={isOpen} timeout={750}>
                         <Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
                             <Grid container spacing={2}>
+                                {/* Dropdown for ordering by price */}
                                 <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-prices"
@@ -111,6 +114,7 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
+                                {/* Dropdown for selecting category */}
                                 <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-catergory"
@@ -127,6 +131,7 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
+                                {/* Dropdown for published date */}
                                 <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <TextField
                                         id="select-collections"
@@ -143,6 +148,7 @@ function Explore(){
                                         ))}
                                     </TextField>
                                 </Grid>
+                                {/* Slider for selecting price range */}
                                 <Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
                                     <Box width={0.9}>
                                         <span>PRICE RANGE</span>
@@ -160,12 +166,14 @@ function Explore(){
                     </Collapse>
                     <Box sx={{ width: 1, mx: "auto" }}>
                         <Grid container spacing={4}>
-                        {cards.slice(startIndex,endIndex).map((index, card) => (
-                            <Grid item key={card} xs={6} sm={6} md={4} lg={3}>
-                                <CardItem index={index} />
-                            </Grid>
+                            {/* Render card items */}
+                            {cards.slice(startIndex,endIndex).map((index, card) => (
+                                <Grid item key={card} xs={6} sm={6} md={4} lg={3}>
+                                    <CardItem index={index} />
+                                </Grid>
                             ))}
                         </Grid>
+                        {/* Pagination component */}
                         <PaginationComponent  cards = {cards} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage}/>
                     </Box>
                 </Box>
