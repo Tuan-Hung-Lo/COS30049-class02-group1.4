@@ -31,16 +31,6 @@ function NavBar() {
         setAnchorEl(null);
     };
 
-    // Function to handle opening the profile menu
-    const handleProfileOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    // Function to handle closing the profile menu
-    const handleProfileClose = () => {
-        setAnchorEl(null);
-    };
-
     // Styled components for the navigation bar elements
     const NavigationBar = styled(Box) `
         height: 90px;
@@ -163,35 +153,6 @@ function NavBar() {
                         <Link to={'/'}>
                             <img src={logo} alt="Logo" className='logo'/>
                         </Link>
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleMenuClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                        >
-                            <MenuItem onClick={handleMenuClose}>
-                                <NavLink to={'/'} isSelected={location.pathname === '/'}>
-                                    Home
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem onClick={handleMenuClose}>
-                                <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
-                                    Explore
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem onClick={handleMenuClose}>
-                                <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
-                                    Wallet
-                                </NavLink>
-                            </MenuItem>
-                        </Menu>
                     </MenuFull>
                     </>
                 )}
@@ -218,13 +179,15 @@ function NavBar() {
                 ) : (
                     // Render search box and profile picture with profile menu for mobile
                     <Box sx={{display: 'flex', alignItems: 'center', gap: "15px"}}>
-                        <Button sx={{width: "60px" , height: "60px"}} onClick={handleProfileOpen}>
-                            <ProfilePicture src={ProfilePic} alt="avatar"/>
-                        </Button>
+                        <Link to={'/profile'} alt="Profile Page" style={{textDecoration: "none"}}>
+                            <Button style={{width: "60px" , height: "60px"}}>
+                                <ProfilePicture src={ProfilePic} alt="avatar"/>
+                            </Button>
+                        </Link>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
-                            onClose={handleProfileClose}
+                            onClose={handleMenuClose}
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'right',
@@ -253,30 +216,27 @@ function NavBar() {
                                 <SearchIcon />
                                 <input type="text" className="search-box MenuMobile" placeholder="Search for art"/>
                             </SearchContainer>
-                            <MenuItem onClick={handleProfileClose}>
+                            <MenuItem onClick={handleMenuClose}>
                                 <NavLink to={'/'} isSelected={location.pathname === '/'}>
                                     Home
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem onClick={handleProfileClose}>
+                            <MenuItem onClick={handleMenuClose}>
                                 <NavLink to={'/explore'} isSelected={location.pathname === '/explore'}>
                                     Explore
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem onClick={handleProfileClose}>
+                            <MenuItem onClick={handleMenuClose}>
                                 <NavLink to={'/wallet'} isSelected={location.pathname === '/wallet'}>
                                     Wallet
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem onClick={handleProfileClose}>
-                                <NavLink to={'/profile'}>
-                                    View Profile
-                                </NavLink>
-                            </MenuItem>
                             <Link to={'/login'} alt="Login Page" style={{textDecoration: "none"}}>
-                                <Button variant="outlined" color="primary">
-                                    Log Out
-                                </Button>
+                                <Box display={"flex"} justifyContent={"center"}>
+                                    <Button variant="outlined" color="primary">
+                                        Log Out
+                                    </Button>
+                                </Box>
                             </Link>
                         </Menu>
                     </Box>

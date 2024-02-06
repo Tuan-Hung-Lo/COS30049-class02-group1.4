@@ -11,7 +11,7 @@ function Footer(){
 
     // Styled component for the footer
     const Footer = styled(Box)`
-        margin-top: 14vh;
+        margin-top: 15vh;
         height: 10vh;               
         width: 100%;
         bottom: 0;

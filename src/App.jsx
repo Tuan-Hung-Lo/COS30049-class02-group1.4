@@ -20,9 +20,6 @@ import EditProfile from "./components/EditProfilePage.jsx";
 import WalletPage from "./components/WalletPage.jsx";
 import PaymentDialogDemo from "./components/PurchaseScreen.jsx";
 
-import Fade from '@mui/material/Fade';
-
-
 function App() {
 	const StyledCounter = styled.div `
 		height: auto;
@@ -46,22 +43,20 @@ function App() {
 	return(
 		<BrowserRouter>
 			<StyledCounter>
-				<Fade in={true} timeout={1500}>
-					<Main>
-						<Routes>
-							<Route path="/login" element={<LoginPage/>}></Route>
-							<Route path="/register" element={<RegisterPage/>}></Route>
-							<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
-							<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
-							<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
-							<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
-							<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
-							<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
-							<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
-							<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
-						</Routes>
-					</Main>
-				</Fade>
+				<Main>
+					<Routes>
+						<Route path="/login" element={<LoginPage/>}></Route>
+						<Route path="/register" element={<RegisterPage/>}></Route>
+						<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
+						<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
+						<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
+						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
+						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
+						<Route path="/profile/editprofile" element={<><NavBar/><EditProfile/><Footer /></>}></Route>
+						<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
+						<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
+					</Routes>
+				</Main>
 			</StyledCounter>
 		</BrowserRouter>	
 	);
