@@ -57,7 +57,7 @@ function RegisterPage() {
                         Sign Up
                     </h1>
                     {/* Form for user registration */}
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.8 , gap: 2}}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.75 , gap: 2}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 {/* First Name field */}
