@@ -279,7 +279,7 @@ function ProfileScreen() {
 						</Box>
 						<Divider/>
 						{/* Filter options */}
-						<Collapse in={isFilterOpen}>
+						<Collapse in={isFilterOpen} timeout={750}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
 									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
@@ -372,7 +372,7 @@ function ProfileScreen() {
 						</Box>
 						<Divider/>
 						{/* Filter options */}
-						<Collapse in={isFilterOpen}>
+						<Collapse in={isFilterOpen} timeout={750}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
 									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
