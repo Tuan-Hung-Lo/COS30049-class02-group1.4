@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Box , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material'
+import { Box , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Tooltip } from '@mui/material'
 import ShareIcon from '@mui/icons-material/Share';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Link } from 'react-router-dom';
 import CreditCard  from './CreditCard';
 import CardItem from './CardItem';
 
@@ -115,14 +113,11 @@ function ProfileScreen() {
 					</Box>
 					{/* Action buttons */}
 					<Box>
-						<Button>
-							<ShareIcon />
-						</Button>
-						<Link to={'/profile/editprofile'}>	
+						<Tooltip title="Share your profile">
 							<Button>
-								<ModeEditIcon />
+								<ShareIcon />
 							</Button>
-						</Link>
+						</Tooltip>
 					</Box>
 				</Box>
 			</Box>
@@ -193,33 +188,72 @@ function ProfileScreen() {
 										autoComplete="family-name"
 										/>
 									</Grid>
-									<Grid item xs={12} md={6}>
+									<Grid item xs={12}>
+										{/* Public Address Key field */}
 										<TextField
 										fullWidth
-										id="birthday"
-										label="Birthday"
-										name="birthday"
-										placeholder='mm/dd/yyyy'
-										/>
-									</Grid>
-									<Grid item xs={12} md={6}>
-										<TextField
-										fullWidth
-										id="nationality"
-										label="Nationality"
-										name="nationality"
-										placeholder=''
+										id="publicKey"
+										label="Public Key"
+										name="publicKey"
+										autoComplete="publicKey"
 										/>
 									</Grid>
 									<Grid item xs={12}>
-										<FormControl>
-											<FormLabel>Gender</FormLabel>
-											<RadioGroup name="gender" value={gender} onChange={handleRadioChange}>
-												<FormControlLabel value="male" control={<Radio />} label="Male (he/him)" />
-												<FormControlLabel value="female" control={<Radio />} label="Female (she/her)" />
-												<FormControlLabel value="other" control={<Radio />} label="Other" />
-											</RadioGroup>
-										</FormControl>
+										{/* Private Address Key field */}
+										<TextField
+										fullWidth
+										id="privateKey"
+										label="Private Key"
+										name="privateKey"
+										autoComplete="privateKey"
+										/>
+									</Grid>
+								</Grid>
+								<Grid item xs={12} md={6}>
+									<FormControl>
+										<FormLabel>Gender</FormLabel>
+										<RadioGroup name="gender" value={gender} onChange={handleRadioChange}>
+											<FormControlLabel value="male" control={<Radio />} label="Male (he/him)" />
+											<FormControlLabel value="female" control={<Radio />} label="Female (she/her)" />
+											<FormControlLabel value="other" control={<Radio />} label="Other" />
+										</RadioGroup>
+									</FormControl>
+								</Grid>
+							</Grid>
+							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
+								<h3>Account</h3>
+								<Grid container spacing={2}>
+									<Grid item xs={12}>
+										<TextField
+										autoComplete="username"
+										name="username"
+										fullWidth
+										id="username"
+										label="Username"
+										placeholder='Username'
+										value={"UserName"}
+										InputProps={{
+											focused: true,
+										}}
+										/>
+									</Grid>
+									<Grid item xs={12} md={6}>
+										<TextField
+										fullWidth
+										id="currentPassword"
+										label="Current Password"
+										name="currentPassword"
+										autoComplete="currentPassword"
+										/>
+									</Grid>
+									<Grid item xs={12} md={6}>
+										<TextField
+										fullWidth
+										id="newPassword"
+										label="New Password"
+										name="newPassword"
+										placeholder=''
+										/>
 									</Grid>
 								</Grid>
 							</Grid>
@@ -245,7 +279,7 @@ function ProfileScreen() {
 						</Box>
 						<Divider/>
 						{/* Filter options */}
-						<Collapse in={isFilterOpen}>
+						<Collapse in={isFilterOpen} timeout={750}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
 									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>
@@ -338,7 +372,7 @@ function ProfileScreen() {
 						</Box>
 						<Divider/>
 						{/* Filter options */}
-						<Collapse in={isFilterOpen}>
+						<Collapse in={isFilterOpen} timeout={750}>
 							<Box sx={{width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto"}}>
 								<Grid container spacing={2}>
 									<Grid item xs={12} md={3} sx={{display: "flex", justifyContent: "center"}}>

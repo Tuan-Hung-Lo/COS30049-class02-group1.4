@@ -214,7 +214,7 @@ function WalletPage() {
                 <CustomTabPanel value={value} index={1}>
                     <Box display={"flex"} flexDirection={"column"} px={"auto"}>
                         <Box sx={{ mt: 3 , mx: "auto"}}>
-                            <Typography variant="h5">My Wallet ID: {generateWalletId()}</Typography>
+                            <Typography variant="h5">My Wallet ID (Public Key): {generateWalletId()}</Typography>
                         </Box>
                         <Box sx={{display: "flex" , flexDirection: "column" , alignItems: "center" , justifyContent: "space-between" , mt: 3}}>
                             <Typography variant="h5">Balance: {walletBalance} ETH</Typography>

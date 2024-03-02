@@ -57,7 +57,7 @@ function RegisterPage() {
                         Sign Up
                     </h1>
                     {/* Form for user registration */}
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.8 , gap: 2}}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , width: 0.75 , gap: 2}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 {/* First Name field */}
@@ -83,14 +83,25 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {/* Email Address field */}
+                                {/* Public Address Key field */}
                                 <TextField
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="publicKey"
+                                label="Public Key"
+                                name="publicKey"
+                                autoComplete="publicKey"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                {/* Private Address Key field */}
+                                <TextField
+                                required
+                                fullWidth
+                                id="privateKey"
+                                label="Private Key"
+                                name="privateKey"
+                                autoComplete="privateKey"
                                 />
                             </Grid>
                             <Grid item xs={12}>

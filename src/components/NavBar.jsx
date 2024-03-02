@@ -46,7 +46,6 @@ function NavBar() {
         ${isMobile &&
         `
             justify-content: space-between;
-
         `}
     `;
 
