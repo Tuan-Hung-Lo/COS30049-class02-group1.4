@@ -83,14 +83,25 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {/* Email Address field */}
+                                {/* Public Address Key field */}
                                 <TextField
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="publicKey"
+                                label="Public Key"
+                                name="publicKey"
+                                autoComplete="publicKey"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                {/* Private Address Key field */}
+                                <TextField
+                                required
+                                fullWidth
+                                id="privateKey"
+                                label="Private Key"
+                                name="privateKey"
+                                autoComplete="privateKey"
                                 />
                             </Grid>
                             <Grid item xs={12}>
