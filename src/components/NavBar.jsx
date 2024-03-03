@@ -59,6 +59,7 @@ function NavBar() {
         text-decoration: underline;
         }
 
+        // eslint-disable-next-line react/prop-types
         ${(props) => props.isSelected &&
         `
         text-decoration: underline;
@@ -111,8 +112,8 @@ function NavBar() {
         }
         border: 1px solid #3A3A3A;
         background-color: #101010;
-        max-width: 90vw;
-        width: 30vw;
+        max-width: 80vw;
+        width: 40vw;
     `;
 
     // Prop types for NavLink component

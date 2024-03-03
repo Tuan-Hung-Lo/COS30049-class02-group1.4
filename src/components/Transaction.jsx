@@ -11,7 +11,6 @@ function Transaction() {
         { field: 'priceETH', headerName: 'ETH', type: 'number', width: 125 },
         { field: 'priceUSD', headerName: 'USD', type: 'number', width: 150 },
         { field: 'blockchain', headerName: 'Blockchain', width: 150 },
-        { field: 'transactionHash', headerName: 'Transaction Hash', width: 300 },
     ];
 
     // Generate sample data for rows
@@ -25,7 +24,6 @@ function Transaction() {
         const conversionRate = 2265.65;
         const priceUSD = (priceETH * conversionRate).toFixed(2);
         const blockchain = ['Ethereum'][Math.floor(Math.random() * 1)];
-        const transactionHash = `0x${Math.floor(Math.random() * 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0).toString(16)}`;
 
         // Add each row to the rows array
         rows.push({
@@ -36,7 +34,6 @@ function Transaction() {
             priceETH,
             priceUSD,
             blockchain,
-            transactionHash,
         });
     }
 

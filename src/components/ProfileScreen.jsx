@@ -137,35 +137,6 @@ function ProfileScreen() {
 					{/* User information fields */}
 					<Box sx={{ width: 1 , display: "flex" , flexDirection: "column", alignItems: "center" , gap: 2 }}>
 						<Grid container spacing={2} justifyContent={"center"} >
-							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2 }}>
-								<h3>Email</h3>
-								<TextField
-									id="email"
-									label="Email"
-									value="user@gmail.com"
-									variant='outlined'
-									placeholder='user@gmail.com'
-									InputProps={{
-										readOnly: true,
-										focused: true,
-									}}
-									fullWidth={true}
-								/>
-							</Grid>
-							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2 }}>
-								<h3>Mobile</h3>
-								<TextField
-									id="mobile"
-									label="Mobile"
-									value="+84 4256784369"
-									variant='outlined'
-									placeholder='example: +84 4256784369'
-									InputProps={{
-										focused: true,
-									}}
-									fullWidth={true} 
-								/>
-							</Grid>
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
 								<h3>Personal Info</h3>
 								<Grid container spacing={2}>
@@ -209,16 +180,6 @@ function ProfileScreen() {
 										/>
 									</Grid>
 								</Grid>
-								<Grid item xs={12} md={6}>
-									<FormControl>
-										<FormLabel>Gender</FormLabel>
-										<RadioGroup name="gender" value={gender} onChange={handleRadioChange}>
-											<FormControlLabel value="male" control={<Radio />} label="Male (he/him)" />
-											<FormControlLabel value="female" control={<Radio />} label="Female (she/her)" />
-											<FormControlLabel value="other" control={<Radio />} label="Other" />
-										</RadioGroup>
-									</FormControl>
-								</Grid>
 							</Grid>
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
 								<h3>Account</h3>
@@ -256,10 +217,6 @@ function ProfileScreen() {
 										/>
 									</Grid>
 								</Grid>
-							</Grid>
-							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
-								<h3>Banking</h3>
-								<CreditCard />
 							</Grid>
 						</Grid>
 					</Box>
