@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Tooltip } from '@mui/material'
+import { Box , Grid , Typography , Button , Collapse, TextField, Divider, MenuItem, Slider , Grow, Tooltip } from '@mui/material'
 import ShareIcon from '@mui/icons-material/Share';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -7,7 +7,6 @@ import XIcon from '@mui/icons-material/X';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import CreditCard  from './CreditCard';
 import CardItem from './CardItem';
 
 
@@ -44,14 +43,6 @@ function ProfileScreen() {
     const [formData, setFormData] = useState({
         price: 0, // Initialize price state
     });
-
-	// Handle radio button change
-	const handleRadioChange = (e) => {
-		setFormData({
-		...formData,
-		gender: e.target.value,
-		})
-	}
 
 	// Extract name and gender from form data
 	const { name, gender} = formData
