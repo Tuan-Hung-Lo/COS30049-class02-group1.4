@@ -96,20 +96,6 @@ function ProfileScreen() {
 					<h2 style={{margin: 0}}>
 						<b>UserName</b>
 					</h2>
-					{/* Social media icons */}
-					<Box sx={{display: "flex" , flexDirection: "row" , justifyContent: "space-around" , width: 0.5}}>
-						<FacebookIcon />
-						<InstagramIcon />
-						<XIcon />
-					</Box>
-					{/* Action buttons */}
-					<Box>
-						<Tooltip title="Share your profile">
-							<Button>
-								<ShareIcon />
-							</Button>
-						</Tooltip>
-					</Box>
 				</Box>
 			</Box>
 			{/* Content section */}
