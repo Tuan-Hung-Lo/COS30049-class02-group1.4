@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import TOPOLOGY from "vanta/dist/vanta.topology.min"; // Import Vanta Topology for background effect
 import TextField from "@mui/material/TextField";
 import { Button , Avatar , Grid , Box } from '@mui/material'
 import { CssBaseline } from "@mui/material";
 import { Link } from 'react-router-dom';
 import Fade from '@mui/material/Fade';
+import axios from 'axios';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -29,14 +30,24 @@ function RegisterPage() {
         }
     }, []);
 
+
+    [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        userName: '',
+        password: '',
+    });
+
+    const handleChange = (event) => {
+
+        setValues({...values, [event.target.name]:[event.target.value] })
+    }
     // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
+        axios.post('http://localhost:3001/signup', values)
+        .then(res => console.log("Registered successfully"))
+        .catch(err => console.log("Error registering"));
     };
 
   return (
@@ -65,6 +76,7 @@ function RegisterPage() {
                                 autoComplete="given-name"
                                 name="firstName"
                                 required
+                                onchange={handleChange}
                                 fullWidth
                                 id="firstName"
                                 label="First Name"
@@ -75,6 +87,7 @@ function RegisterPage() {
                                 {/* Last Name field */}
                                 <TextField
                                 required
+                                onchange={handleChange}
                                 fullWidth
                                 id="lastName"
                                 label="Last Name"
@@ -83,31 +96,22 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {/* Public Address Key field */}
-                                <TextField
-                                required
-                                fullWidth
-                                id="publicKey"
-                                label="Public Key"
-                                name="publicKey"
-                                autoComplete="publicKey"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
                                 {/* Private Address Key field */}
                                 <TextField
                                 required
+                                onchange={handleChange}
                                 fullWidth
-                                id="privateKey"
-                                label="Private Key"
-                                name="privateKey"
-                                autoComplete="privateKey"
+                                id="userName"
+                                label="Username"
+                                name="userName"
+                                autoComplete="userName  "
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 {/* Password field */}
                                 <TextField
                                 required
+                                onchange={handleChange}
                                 fullWidth
                                 name="password"
                                 label="Password"

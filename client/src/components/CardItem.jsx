@@ -1,42 +1,41 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardMedia,
   CardContent,
-  Typography,
+  Typography, 
   CardActions,
   Button,
   Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Papa from "papaparse";
 
 const CardItem = ({ index }) => {
   const [data, setData] = useState([]);
   const [isHovering, setIsHovering] = useState(null);
 
   useEffect(() => {
-    fetch("../../data/dataset/assets.csv")
-      .then((response) => response.text())
-      .then((csvData) => {
-        Papa.parse(csvData, {
-          header: true,
-          complete: (result) => {
-            setData(result.data);
-          },
-        });
+    fetch("http://localhost:3001/assets")
+      .then((response) => response.json())
+      .then((apiData) => {
+        console.log("API data:", apiData); // Log received data
+        setData(apiData.assets);
       })
       .catch((error) => {
-        console.error("Error fetching CSV:", error);
+        console.error("Error fetching data from API:", error);
       });
   }, []);
+  
 
   const currentItem = data[index - 1];
   const [image] = useState(
     "https://source.unsplash.com/random?wallpapers?rand=" + index
   );
 
+  if (!currentItem) {
+    return null; // or render a loading state or handle it as you see fit
+  }
   return (
     <Box sx={{ position: "relative" }}>
       <Box
@@ -81,7 +80,7 @@ const CardItem = ({ index }) => {
             <Typography variant="h5" component="h2">
               {currentItem && currentItem.name}
             </Typography>
-            <Typography>@ {currentItem && currentItem.authorId}</Typography>
+            <Typography> {currentItem && currentItem.username}</Typography>
             <Typography
               variant="h7"
               color="primary"
@@ -92,9 +91,7 @@ const CardItem = ({ index }) => {
           </CardContent>
         </Link>
         <CardActions sx={{ justifyContent: "space-around" }}>
-          <Button variant="outlined" style={{ borderRadius: "2vw" }}>
-            Payment
-          </Button>
+          
           <Link to={"/product"}>
             <Button variant="outlined" style={{ borderRadius: "2vw" }}>
               View
