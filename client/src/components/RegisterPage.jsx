@@ -13,6 +13,7 @@ function RegisterPage() {
   const loginBackgroundRef = useRef(null); // Reference for the login background element
 
     // Effect hook to initialize the Vanta Topology background effect
+
     useEffect(() => {
         if (loginBackgroundRef.current) {
             TOPOLOGY({
@@ -30,8 +31,10 @@ function RegisterPage() {
         }
     }, []);
 
+    // Function to handle form submission
 
-    [values, setValues] = useState({
+
+    const [values, setValues] = useState({
         firstName: '',
         lastName: '',
         userName: '',

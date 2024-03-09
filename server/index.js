@@ -51,7 +51,7 @@ app.get("/assets", (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
-  const sql = "INSERT INTO account (username, password, firstName, lastName) VALUES (?)";
+  const sql = "INSERT INTO account (username, password, firstName, lastName) VALUES (?, ?, ?, ?)";
   const values = [req.body.userName, req.body.password, req.body.firstName, req.body.lastName];
 
   connection.query(sql, values, (error, results) => {

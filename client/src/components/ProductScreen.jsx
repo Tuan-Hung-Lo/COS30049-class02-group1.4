@@ -1,6 +1,7 @@
+import React from 'react'; // Import React
 import { Box , CardMedia , CardContent , Typography , CardActions , Button, Grid, Grow, Slide } from "@mui/material";
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PaymentDialogDemo from './PurchaseScreen';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -10,12 +11,22 @@ import SubjectIcon from '@mui/icons-material/Subject';
 import CardItem from './CardItem';
 
 function ProductScreen() {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const item = {
+        name: queryParams.get('name'),
+        username: queryParams.get('username'),
+        price: parseFloat(queryParams.get('price')),
+        description: queryParams.get('description'),
+        publishDate: queryParams.get('publishDate'),
+        username: queryParams.get('username'),
+    };
     // Styled component for header
     const Header = styled.div `
         display: flex;
         flex-direction: column;
         align-items: center;
-    `
+    `;
 
     // Array of categories
     const categories = [
@@ -53,16 +64,16 @@ function ProductScreen() {
                         {/* Accordion for product description */}
                         <Accordion defaultExpanded>
                             <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1-content"
+                                id="panel1-header"
                             >
                                 <SubjectIcon />
                                 Description
                             </AccordionSummary>
                             <AccordionDetails>
                                 {/* Dummy product description */}
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                {item ? item.description : "Product Name"}
                             </AccordionDetails>
                         </Accordion>
                     </Grid>
@@ -71,26 +82,26 @@ function ProductScreen() {
                         {/* Card content section */}
                         <CardContent sx={{ display: "flex" , flexDirection: "column" , gap: 2}}>
                             <Typography variant="h2">
-                                Item
+                                {item ? item.name : "Product Name"}
                             </Typography>
                             <Typography variant="h8" color="#6A6A6A">
-                                Published Date:
+                                Published Date: ${item ? item.publishDate : "N/A"}
                             </Typography>
                             <Typography variant="h8" color="#6A6A6A">
                                 {/* Render categories as buttons with links */}
                                 {categories.map((option) => (
                                     <Link to={"/explore"} key={option.value}>
-                                        <Button variant="contained" key={option.value} value={option.value} sx={{mx: 2}}> 
-                                            {option.label} 
+                                        <Button variant="contained" key={option.value} value={option.value} sx={{mx: 2}}>
+                                            {option.label}
                                         </Button>
                                     </Link>
                                 ))}
                             </Typography>
                             <Typography  variant="h4">
-                                @ Author
+                                {`@ ${item ? item.username : "Author"}`}
                             </Typography>
                             <Typography variant="h4" color="primary" sx={{fontWeight: "bold"}}>
-                                Value (ETH)
+                                {`Value (ETH): ${item ? item.price : "N/A"}`}
                             </Typography>
                         </CardContent>
                         {/* Card actions section */}
@@ -108,21 +119,21 @@ function ProductScreen() {
                     </Link>
                 </Box>
                 {/* Grid to display more cards */}
-                <Grow in={true} timeout={2500}>     
+                <Grow in={true} timeout={2500}>
                     <Box sx={{ width: 0.9, mx: "auto" }}>
                         <Grid container spacing={4}>
                             {/* Map through cards to render CardItem component */}
                             {cards.map((index, card) => (
                                 <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
-                                    <CardItem index={index} />
+                                    <CardItem index={index} item={item}/>
                                 </Grid>
                             ))}
                         </Grid>
                     </Box>
-                </Grow> 
+                </Grow>
             </Box>
         </Slide>
     );
 }
 
-export default ProductScreen
+export default ProductScreen;

@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const CardItem = ({ index }) => {
+const CardItem = ({ index, item }) => {
   const [data, setData] = useState([]);
   const [isHovering, setIsHovering] = useState(null);
 
@@ -26,10 +26,11 @@ const CardItem = ({ index }) => {
         console.error("Error fetching data from API:", error);
       });
   }, []);
-  
 
-  const currentItem = data[index - 1];
-  const [image] = useState(
+
+    const currentItem = item || data[index - 1];
+
+    const [image] = useState(
     "https://source.unsplash.com/random?wallpapers?rand=" + index
   );
 
@@ -68,7 +69,9 @@ const CardItem = ({ index }) => {
           zIndex: 2,
         }}
       >
-        <Link to={"/product"} style={{ textDecoration: "none" }}>
+        <Link to={`/product?${Object.entries(currentItem)
+            .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+            .join('&')}`} style={{ textDecoration: "none" }}>
           <CardMedia
             component="div"
             sx={{
@@ -92,7 +95,9 @@ const CardItem = ({ index }) => {
         </Link>
         <CardActions sx={{ justifyContent: "space-around" }}>
           
-          <Link to={"/product"}>
+          <Link to={`/product?${Object.entries(currentItem)
+              .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+              .join('&')}`}>
             <Button variant="outlined" style={{ borderRadius: "2vw" }}>
               View
             </Button>
@@ -105,6 +110,12 @@ const CardItem = ({ index }) => {
 
 CardItem.propTypes = {
   index: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    username: PropTypes.string,
+    price: PropTypes.number,
+    // Add more propTypes as needed based on your 'item' structure
+  }),
 };
 
 export default CardItem;
