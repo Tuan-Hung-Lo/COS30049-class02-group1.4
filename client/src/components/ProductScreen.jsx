@@ -19,7 +19,6 @@ function ProductScreen() {
         price: parseFloat(queryParams.get('price')),
         description: queryParams.get('description'),
         publishDate: queryParams.get('publishDate'),
-        username: queryParams.get('username'),
     };
     // Styled component for header
     const Header = styled.div `

@@ -3,7 +3,7 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Typography, 
+  Typography,
   CardActions,
   Button,
   Box,
@@ -27,10 +27,9 @@ const CardItem = ({ index, item }) => {
       });
   }, []);
 
+  const currentItem = item || data[index - 1];
 
-    const currentItem = item || data[index - 1];
-
-    const [image] = useState(
+  const [image] = useState(
     "https://source.unsplash.com/random?wallpapers?rand=" + index
   );
 
@@ -69,9 +68,12 @@ const CardItem = ({ index, item }) => {
           zIndex: 2,
         }}
       >
-        <Link to={`/product?${Object.entries(currentItem)
+        <Link
+          to={`/product?${Object.entries(currentItem)
             .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-            .join('&')}`} style={{ textDecoration: "none" }}>
+            .join("&")}`}
+          style={{ textDecoration: "none" }}
+        >
           <CardMedia
             component="div"
             sx={{
@@ -94,10 +96,11 @@ const CardItem = ({ index, item }) => {
           </CardContent>
         </Link>
         <CardActions sx={{ justifyContent: "space-around" }}>
-          
-          <Link to={`/product?${Object.entries(currentItem)
+          <Link
+            to={`/product?${Object.entries(currentItem)
               .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-              .join('&')}`}>
+              .join("&")}`}
+          >
             <Button variant="outlined" style={{ borderRadius: "2vw" }}>
               View
             </Button>
