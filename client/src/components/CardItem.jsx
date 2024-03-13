@@ -115,7 +115,6 @@ CardItem.propTypes = {
     price: PropTypes.number,
     // Add more propTypes as needed based on your 'item' structure
   }),
-  updateFetchedData: PropTypes.func.isRequired,
 };
 
 export default CardItem;
