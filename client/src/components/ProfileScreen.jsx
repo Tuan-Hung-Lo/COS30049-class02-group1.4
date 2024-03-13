@@ -8,12 +8,14 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CardItem from './CardItem';
+import PaginationComponent from './PaginationComponent.jsx';
 
 
 function ProfileScreen() {
 	// Define the number of cards to display
 	const numberOfCards = 12;
     const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
+	const itemsPerPage = 8;
 
 	// State variables
     const [isOpen, setIsOpen] = useState("User Info");
@@ -80,6 +82,11 @@ function ProfileScreen() {
     function valuetext(value) {
         return `${value}`;
     }
+
+	// State variables for pagination
+	const [currentPage , setCurrentPage] = useState(1)
+    const [startIndex, setStartIndex] = useState((currentPage - 1) * itemsPerPage);
+	const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage)
 
 	return (
 		<>
@@ -279,6 +286,8 @@ function ProfileScreen() {
 								))}
                             </Grid>
 						</Grow>
+                        {/* Pagination component */}
+                        <PaginationComponent  cards = {cards} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage}/>
 					</Box>
 				</Collapse>
 				{/* For Sales Products section */}
@@ -372,6 +381,8 @@ function ProfileScreen() {
 								))}
                             </Grid>
 						</Grow>
+						{/* Pagination component */}
+						<PaginationComponent cards = {cards} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage}/>
 					</Box>
 				</Collapse>
 				{/* Add Product section */}
