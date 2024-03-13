@@ -29,8 +29,6 @@ const CardItem = ({ index, item }) => {
 
   const currentItem = item || data[index - 1];
 
-
-
   if (!currentItem) {
     return null; // or render a loading state or handle it as you see fit
   }
@@ -117,6 +115,7 @@ CardItem.propTypes = {
     price: PropTypes.number,
     // Add more propTypes as needed based on your 'item' structure
   }),
+  updateFetchedData: PropTypes.func.isRequired,
 };
 
 export default CardItem;
