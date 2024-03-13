@@ -50,6 +50,9 @@ function LoginPage() {
     );
     if (matchedUser) {
       console.log("Login successful");
+        // Redirect to the explore page
+        window.location.href = "/explore";
+        
     } else {
       console.log("Invalid credentials");
     }
