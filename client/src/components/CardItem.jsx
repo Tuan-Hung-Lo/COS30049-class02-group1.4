@@ -29,9 +29,7 @@ const CardItem = ({ index, item }) => {
 
   const currentItem = item || data[index - 1];
 
-  const [image] = useState(
-    "https://source.unsplash.com/random?wallpapers?rand=" + index
-  );
+
 
   if (!currentItem) {
     return null; // or render a loading state or handle it as you see fit
@@ -79,7 +77,7 @@ const CardItem = ({ index, item }) => {
             sx={{
               pt: "100%",
             }}
-            image={image}
+            image={currentItem && currentItem.link}
           />
           <CardContent sx={{ flexGrow: 1 }}>
             <Typography variant="h5" component="h2">

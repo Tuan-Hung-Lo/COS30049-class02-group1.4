@@ -14,6 +14,7 @@ function ProductScreen() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const item = {
+        link: queryParams.get('link'),
         name: queryParams.get('name'),
         username: queryParams.get('username'),
         price: parseFloat(queryParams.get('price')),
@@ -35,9 +36,7 @@ function ProductScreen() {
         },
     ];
 
-    // Number of cards to display
-    const numberOfCards = 4;
-    const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
+
 
     // JSX content for ProductScreen component
     return (
@@ -58,7 +57,7 @@ function ProductScreen() {
                                 width: 1,
                                 pt: '56.25%' // Aspect ratio 16:9
                             }}
-                            image="https://source.unsplash.com/random?wallpapers" // Sample image URL
+                            image={item ? item.link : "Product Image"} // Sample image URL
                         />
                         {/* Accordion for product description */}
                         <Accordion defaultExpanded>
@@ -111,25 +110,7 @@ function ProductScreen() {
                     </Grid>
                 </Grid>
                 {/* Section to explore more products */}
-                <Box sx={{display: "flex",	flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: 1}}>
-                    <h1>Explore more Products</h1>
-                    <Link to='/explore' style={{textDecoration: "none"}}>
-                        <Button onClick={() => console.log("Button clicked")}>View All →</Button>
-                    </Link>
-                </Box>
-                {/* Grid to display more cards */}
-                <Grow in={true} timeout={2500}>
-                    <Box sx={{ width: 0.9, mx: "auto" }}>
-                        <Grid container spacing={4}>
-                            {/* Map through cards to render CardItem component */}
-                            {cards.map((index, card) => (
-                                <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
-                                    <CardItem index={index} item={item}/>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Box>
-                </Grow>
+
             </Box>
         </Slide>
     );
