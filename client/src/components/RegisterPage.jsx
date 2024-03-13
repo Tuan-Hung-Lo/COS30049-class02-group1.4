@@ -99,7 +99,7 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {/* Private Address Key field */}
+                                {/* Username field */}
                                 <TextField
                                 required
                                 onchange={handleChange}

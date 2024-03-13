@@ -146,16 +146,6 @@ function ProfileScreen() {
 										autoComplete="publicKey"
 										/>
 									</Grid>
-									<Grid item xs={12}>
-										{/* Private Address Key field */}
-										<TextField
-										fullWidth
-										id="privateKey"
-										label="Private Key"
-										name="privateKey"
-										autoComplete="privateKey"
-										/>
-									</Grid>
 								</Grid>
 							</Grid>
 							<Grid item xs={8} sx={{ height: "auto" , display: "flex" , flexDirection: "column" , gap: 2 , alignItems: "center" , p: 2}}>
