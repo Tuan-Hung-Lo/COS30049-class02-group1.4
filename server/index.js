@@ -52,23 +52,7 @@ app.get("/assets", (req, res) => {
     res.json({ assets: results });
   });
 });
-app.post("/upload", upload.single("file"), async (req, res) => {
-    const file = req.file;
-    const params = new putObjectCommand({
-        Bucket: bucketName,
-        Key: file.originalname,
-        Body: file.buffer,
-        contentType: file.mimetype,
-    });
 
-    const command = new putObjectCommand({params});
-
-    await s3Client.send(command);
-
-    res.send({});
-
-
-});
 
 
 
