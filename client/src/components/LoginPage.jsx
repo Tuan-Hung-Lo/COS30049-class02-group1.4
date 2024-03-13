@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -15,7 +14,6 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     fetch("http://localhost:3001/users")
@@ -52,10 +50,8 @@ function LoginPage() {
     );
     if (matchedUser) {
       console.log("Login successful");
-      history.push("/explore");
     } else {
       console.log("Invalid credentials");
-      history.push("/login");
     }
   };
 
