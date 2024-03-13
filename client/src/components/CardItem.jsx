@@ -16,7 +16,7 @@ const CardItem = ({ index, item }) => {
   const [isHovering, setIsHovering] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/assets")
+    fetch("http://localhost:3001/api/assets")
       .then((response) => response.json())
       .then((apiData) => {
         console.log("API data:", apiData); // Log received data
