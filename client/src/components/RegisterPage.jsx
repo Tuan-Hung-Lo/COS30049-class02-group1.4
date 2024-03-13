@@ -99,6 +99,17 @@ function RegisterPage() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                {/* Public Key Address field */}
+                                <TextField
+                                required
+                                onchange={handleChange}
+                                fullWidth
+                                id="publicKey"
+                                label="Public Key"
+                                name="publicKey"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
                                 {/* Username field */}
                                 <TextField
                                 required
