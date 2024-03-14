@@ -49,6 +49,8 @@ function LoginPage() {
       (user) => user.username === username && user.password === password
     );
     if (matchedUser) {
+
+      
       console.log("Login successful");
       // Redirect to the explore page
       window.location.href = "/explore";
@@ -127,7 +129,7 @@ function LoginPage() {
                 alt="Register Page"
                 style={{ textDecoration: "none" }}
               >
-                Haven't got an account yet? Register now.
+                Haven&apos;t got an account yet? Register now.
               </Link>
             </div>
           </div>
