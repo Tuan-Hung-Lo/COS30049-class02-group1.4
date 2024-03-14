@@ -19,123 +19,89 @@ function valuetext(value) {
   return `${value}`;
 }
 
-function Explore() {
-  // Arrays for different options
+const Explore = () => {
   const categories = [
-    {
-      value: "All categories",
-      label: "All Categories",
-    },
-    {
-      value: "painting",
-      label: "Painting",
-    },
-    {
-      value: "digital",
-      label: "Digital",
-    },
-    {
-      value: "photograph",
-      label: "Photograph",
-    },
+    { value: "All categories", label: "All Categories" },
+    { value: "Painting", label: "Painting" },
+    { value: "Digital", label: "Digital" },
+    { value: "Photograph", label: "Photograph" },
   ];
 
   const publishedDate = [
-    {
-      value: "All dates",
-      label: "All Dates",
-    },
-    {
-      value: "newest",
-      label: "Newest",
-    },
-    {
-      value: "oldest",
-      label: "Oldest",
-    },
+    { value: "All dates", label: "All Dates" },
+    { value: "newest", label: "Newest" },
+    { value: "oldest", label: "Oldest" },
   ];
 
   const [value, setValue] = useState([10, 70]);
   const [selectedCategory, setSelectedCategory] = useState("All categories");
   const [selectedDate, setSelectedDate] = useState("All dates");
+  const [originalCards, setOriginalCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isOpen, setOpen] = useState(false);
+  const itemsPerPage = 8;
 
-  // Handle slider change
+  useEffect(() => {
+    fetch("http://localhost:3001/api/assets")
+      .then((response) => response.json())
+      .then((apiData) => {
+        console.log("API data:", apiData);
+        setOriginalCards(apiData.assets);
+        setFilteredCards(apiData.assets);
+      })
+      .catch((error) => {
+        console.error("Error fetching data from API:", error);
+      });
+  }, []);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // Handle apply filter button click
   const applyFilter = () => {
-    // Filter the cards based on selected options
-    const filteredResults = cards.filter((card) => {
-      // Filter by price
-      const priceInRange = card.price >= value[0] && card.price <= value[1];
-      // Filter by category
+    console.log("Selected Category:", selectedCategory);
+    console.log("Selected Date:", selectedDate);
+    console.log("Selected Price Range:", value);
+
+    const filteredResults = originalCards.filter((card) => {
+      console.log("Card Category:", card.category);
+      console.log("Card Date:", card.publishDate);
+      console.log("Card Price:", card.price);
+
+      // Apply category filtering
       const categoryMatches =
         selectedCategory === "All categories" ||
-        card.category === selectedCategory;
-      // Filter by published date
-      let dateMatches = true;
-      if (selectedDate === "oldest") {
-        // If "Oldest" is selected, compare with the oldest date
-        dateMatches = card.date === "oldest";
-      } else if (selectedDate === "newest") {
-        // If "Newest" is selected, compare with the newest date
-        dateMatches = card.date === "newest";
-      } else {
-        dateMatches =
-          selectedDate === "All dates" || card.date === selectedDate;
-      }
-      return priceInRange && categoryMatches && dateMatches;
+        card.category.toLowerCase() === selectedCategory.toLowerCase();
+      return categoryMatches;
     });
 
-    // Sort filtered cards by time if "Oldest" or "Newest" is selected
+    // Apply date filtering
+    let sortedResults = [...filteredResults];
     if (selectedDate === "oldest") {
-      filteredResults.sort((a, b) => {
-        // Assuming "date" is in a format suitable for comparison
-        return new Date(a.date) - new Date(b.date);
-      });
+      sortedResults.sort(
+        (a, b) => new Date(a.publishDate) - new Date(b.publishDate)
+      );
     } else if (selectedDate === "newest") {
-      filteredResults.sort((a, b) => {
-        // Assuming "date" is in a format suitable for comparison
-        return new Date(b.date) - new Date(a.date);
-      });
+      sortedResults.sort(
+        (a, b) => new Date(b.publishDate) - new Date(a.publishDate)
+      );
     }
 
-    // Update filtered cards
-    setFilteredCards(filteredResults);
+    // Apply price range filtering
+    const [minPrice, maxPrice] = value;
+    const priceFilteredResults = sortedResults.filter((card) => {
+      const priceInRange = card.price >= minPrice && card.price <= maxPrice;
+      return priceInRange;
+    });
+
+    console.log("Filtered Results:", sortedResults);
+    setFilteredCards(sortedResults);
+    setCurrentPage(1);
   };
 
-  // Number of cards to display
-  const numberOfCards = 12;
-  const cards = Array.from({ length: numberOfCards }, (_, index) => ({
-    id: index + 1,
-    price: Math.floor(Math.random() * 100),
-    category: categories[Math.floor(Math.random() * categories.length)].value,
-    date: publishedDate[Math.floor(Math.random() * publishedDate.length)].value,
-  }));
-  const itemsPerPage = 8;
-
-  // State variables
-  const [isOpen, setOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [startIndex, setStartIndex] = useState(
-    (currentPage - 1) * itemsPerPage
-  );
-  const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
-
-  // Handle change in pagination or items per page
-  useEffect(() => {
-    applyFilter(); // Apply filter when component mounts
-    setStartIndex((currentPage - 1) * itemsPerPage);
-    setEndIndex((currentPage - 1) * itemsPerPage + itemsPerPage);
-  }, [itemsPerPage, currentPage]);
-
-  // Apply default filter on component mount
-  useEffect(() => {
-    setFilteredCards(cards); // Set initial filtered cards to all cards
-  }, []); // Empty dependency array to run only once on mount
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
   return (
     <Grow in={true} timeout={1500}>
@@ -170,17 +136,11 @@ function Explore() {
           >
             <h1>NFT Products</h1>
             <Button
-              onClick={() => setOpen(!isOpen)}
-              variant={!isOpen ? "contained" : "outlined"}
+              variant="contained"
               color="primary"
               size="large"
-              endIcon={
-                !isOpen ? (
-                  <FilterAltOutlinedIcon sx={{ fill: "#2a2a2a" }} />
-                ) : (
-                  <CloseIcon />
-                )
-              }
+              endIcon={<FilterAltOutlinedIcon sx={{ fill: "#2a2a2a" }} />}
+              onClick={() => setOpen(!isOpen)}
             >
               Filter
             </Button>
@@ -198,7 +158,6 @@ function Explore() {
               }}
             >
               <Grid container spacing={2}>
-                {/* Dropdown for selecting category */}
                 <Grid
                   item
                   xs={12}
@@ -221,7 +180,6 @@ function Explore() {
                     ))}
                   </TextField>
                 </Grid>
-                {/* Dropdown for published date */}
                 <Grid
                   item
                   xs={12}
@@ -244,7 +202,6 @@ function Explore() {
                     ))}
                   </TextField>
                 </Grid>
-                {/* Slider for selecting price range */}
                 <Grid
                   item
                   xs={12}
@@ -263,7 +220,6 @@ function Explore() {
                     </span>
                   </Box>
                 </Grid>
-                {/* Button to apply filters */}
                 <Grid
                   item
                   xs={12}
@@ -282,14 +238,12 @@ function Explore() {
           </Collapse>
           <Box sx={{ width: 1, mx: "auto" }}>
             <Grid container spacing={4}>
-              {/* Render card items */}
-              {filteredCards.slice(startIndex, endIndex).map((card) => (
-                <Grid item key={card.id} xs={6} sm={6} md={4} lg={3}>
-                  <CardItem index={card.id} />
+              {filteredCards.slice(startIndex, endIndex).map((card, index) => (
+                <Grid item key={index} xs={6} sm={6} md={4} lg={3}>
+                  <CardItem index={index + 1} item={card} />
                 </Grid>
               ))}
             </Grid>
-            {/* Pagination component */}
             <PaginationComponent
               cards={filteredCards}
               setCurrentPage={setCurrentPage}
@@ -300,6 +254,6 @@ function Explore() {
       </Box>
     </Grow>
   );
-}
+};
 
 export default Explore;
