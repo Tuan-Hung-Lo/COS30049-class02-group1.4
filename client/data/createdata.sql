@@ -1,6 +1,8 @@
 -- Drop tables if they exist
 
+DROP TABLE IF EXISTS keyss;
 DROP TABLE IF EXISTS assets_receipt;
+DROP TABLE IF EXISTS transaction;
 DROP TABLE IF EXISTS assets;
 DROP TABLE IF EXISTS account;
 
@@ -11,8 +13,15 @@ CREATE TABLE account (
     username VARCHAR(50),
     password VARCHAR(50),
     firstName VARCHAR(50),
-    lastName VARCHAR(50),
-    publicKey VARCHAR(255)
+    lastName VARCHAR(50)
+);
+
+CREATE TABLE keyss (
+    keysId INT AUTO_INCREMENT PRIMARY KEY,
+    accountId INT,
+    privateKey VARCHAR(255),
+    publicKey VARCHAR(255),
+    FOREIGN KEY (accountId) REFERENCES account(accountId)
 );
 
 CREATE TABLE assets (
@@ -34,4 +43,14 @@ CREATE TABLE assets_receipt (
     date DATE,
     FOREIGN KEY (accountId) REFERENCES account(accountId),
     FOREIGN KEY (assetId) REFERENCES assets(assetId)
+);
+
+CREATE TABLE transaction (
+    transactionId INT AUTO_INCREMENT PRIMARY KEY,
+    accountId INT,
+    amount DECIMAL(10,4),
+    price DECIMAL(10,4),
+    date DATE,
+    toaccount VARCHAR(255),
+    FOREIGN KEY (accountId) REFERENCES account(accountId)
 );

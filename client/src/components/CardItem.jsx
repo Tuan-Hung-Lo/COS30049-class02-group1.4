@@ -11,16 +11,11 @@ import {
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const CardItem = ({ index, item, userAccountId }) => {
+const CardItem = ({ index, item }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   if (!item) {
     return null; // If item is null or undefined, render nothing
-  }
-
-  // Render only if the author of the item matches the user's account ID
-  if (item.authorId !== userAccountId) {
-    return null;
   }
 
   return (
@@ -105,10 +100,8 @@ CardItem.propTypes = {
     username: PropTypes.string,
     price: PropTypes.number,
     link: PropTypes.string,
-    authorId: PropTypes.number,
     // Add more propTypes as needed based on your 'item' structure
   }),
-  userAccountId: PropTypes.number.isRequired, // Add userAccountId prop
 };
 
 export default CardItem;
