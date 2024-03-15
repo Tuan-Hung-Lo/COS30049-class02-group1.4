@@ -1,4 +1,13 @@
 
-POST http://localhost:3001/api/login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjYsInVzZXJuYW1lIjoiYmVnYXI1IiwiaWF0IjoxNzEwNDczODkyLCJleHAiOjE3MTA0Nzc0OTJ9.aqBqUbZ7TN6CjUo5o-02r7XEILKxwwLQiltzSrOsJLI
+
+###
+
+POST  http://localhost:3001/api/login
 Content-Type: application/json
+
+{
+  "username": "begar5",
+  "password": "123456"
+}
 
