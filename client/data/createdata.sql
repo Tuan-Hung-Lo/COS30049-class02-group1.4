@@ -1,7 +1,6 @@
 -- Drop tables if they exist
 
 DROP TABLE IF EXISTS assets_receipt;
-DROP TABLE IF EXISTS transaction;
 DROP TABLE IF EXISTS assets;
 DROP TABLE IF EXISTS account;
 
@@ -35,14 +34,4 @@ CREATE TABLE assets_receipt (
     date DATE,
     FOREIGN KEY (accountId) REFERENCES account(accountId),
     FOREIGN KEY (assetId) REFERENCES assets(assetId)
-);
-
-CREATE TABLE transaction (
-    transactionId INT AUTO_INCREMENT PRIMARY KEY,
-    accountId INT,
-    amount DECIMAL(10,4),
-    price DECIMAL(10,4),
-    date DATE,
-    toaccount VARCHAR(255),
-    FOREIGN KEY (accountId) REFERENCES account(accountId)
 );
