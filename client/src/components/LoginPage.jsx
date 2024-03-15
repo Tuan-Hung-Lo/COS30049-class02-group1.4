@@ -7,16 +7,18 @@ import { CssBaseline } from "@mui/material";
 import { Link } from "react-router-dom";
 import Fade from "@mui/material/Fade";
 
+
 // LoginPage component
 function LoginPage() {
   const loginBackgroundRef = useRef(null);
   // State variables for username, password, and login success
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
+<<<<<<< Updated upstream
+    fetch("http://localhost:3001/api/users")
       .then((response) => response.json())
       .then((userData) => {
         setUsers(userData.users);
@@ -25,6 +27,8 @@ function LoginPage() {
         console.error("Error fetching user data:", error);
       });
 
+=======
+>>>>>>> Stashed changes
     if (loginBackgroundRef.current) {
       TOPOLOGY({
         el: loginBackgroundRef.current,
@@ -44,18 +48,32 @@ function LoginPage() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if the entered username and password match any user in the fetched data
-    const matchedUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
-    if (matchedUser) {
 
-      
+    try {
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Invalid username or password");
+      }
+
+      const tokens = await response.json();
+      localStorage.setItem("accessToken", tokens.accessToken);
+      localStorage.setItem("refreshToken", tokens.refreshToken);
       console.log("Login successful");
-      // Redirect to the explore page
+      // Redirect to the explore page or handle authentication state as needed
       window.location.href = "/explore";
-    } else {
-      console.log("Invalid credentials");
+    } catch (error) {
+      console.error("Error logging in:", error.message);
+      setError("Invalid username or password");
     }
   };
 
@@ -123,6 +141,7 @@ function LoginPage() {
                 Login
               </Button>
             </form>
+            {error && <div>{error}</div>}
             <div>
               <Link
                 to={"/register"}
