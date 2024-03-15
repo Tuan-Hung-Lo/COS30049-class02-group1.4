@@ -72,7 +72,7 @@ const Explore = () => {
       // Apply category filtering
       const categoryMatches =
         selectedCategory === "All categories" ||
-        card.category.toLowerCase() === selectedCategory.toLowerCase();
+        card.category === selectedCategory;
       return categoryMatches;
     });
 

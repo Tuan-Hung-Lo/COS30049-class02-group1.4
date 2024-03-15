@@ -16,7 +16,7 @@ function LoginPage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
+    fetch("http://localhost:3001/api/users")
       .then((response) => response.json())
       .then((userData) => {
         setUsers(userData.users);
