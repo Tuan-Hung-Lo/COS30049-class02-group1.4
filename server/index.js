@@ -106,6 +106,21 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+app.post("/api/register", (req, res) => {
+  const { firstName, lastName, username, publicKey, password } = req.body;
+  const values = [firstName, lastName, username, publicKey, password];
+  const query = "INSERT INTO account (firstName, lastName, username, publicKey, password) VALUES (?, ?, ?, ?, ?)";
+  
+  connection.query(query, values, (error, results) => {
+    if (error) {
+      console.error("Error registering user:", error);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    res.status(201).send("User registered successfully");
+  });
+});
+
 
 const generateTokens = (payload) => {
   const { accountId, username } = payload;
@@ -187,20 +202,7 @@ app.get("/getToken", (req, res) => {
   return process.env.ACCESS_TOKEN_SECRET;
 });
 
-const posts = [
-	{
-		userId: 1,
-		post: 'Chinatsu'
-	},
-	{
-		userId: 2,
-		post: 'begar5'
-	},
-	{
-		userId: 6,
-		post: 'post henry 2'
-	}
-]
+
 
 // app
 app.get('/posts', verifyToken, (req, res) => {

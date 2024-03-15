@@ -41,15 +41,20 @@ function RegisterPage() {
   });
 
   const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: [event.target.value] });
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
+
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/signup", values)
-      .then((res) => console.log("Registered successfully"))
-      .catch((err) => console.log("Error registering"));
+      .post("http://localhost:3001/api/register", values)
+      .then((res) => {
+        console.log("Registered successfully");
+        // Redirect user to login page after successful registration
+        window.location.href = "/login";
+      })
+      .catch((err) => console.log("Error registering:", err.response.data));
   };
 
   return (
@@ -127,17 +132,6 @@ function RegisterPage() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  {/* Public Key Address field */}
-                  <TextField
-                    required
-                    onChange={handleChange}
-                    fullWidth
-                    id="publicKey"
-                    label="Public Key"
-                    name="publicKey"
-                  />
-                </Grid>
-                <Grid item xs={12}>
                   {/* Username field */}
                   <TextField
                     required
@@ -147,6 +141,19 @@ function RegisterPage() {
                     label="Username"
                     name="userName"
                     autoComplete="userName  "
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  {/* First Name field */}
+                  <TextField
+                    autoComplete="given-name"
+                    name="publicKey"
+                    required
+                    onChange={handleChange}
+                    fullWidth
+                    id="publicKey"
+                    label="Public Key"
+                    autoFocus
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -173,11 +180,9 @@ function RegisterPage() {
                   gap: 2,
                 }}
               >
-                <Link to={"/"}>
-                  <Button variant="contained" color="primary">
-                    Sign Up
-                  </Button>
-                </Link>
+                <Button type="submit" variant="contained" color="primary">
+                  Sign Up
+                </Button>
                 <Link
                   to={"/login"}
                   variant="body2"
