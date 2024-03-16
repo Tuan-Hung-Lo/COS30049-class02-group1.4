@@ -53,6 +53,7 @@ app.get("/api/assets", (req, res) => {
     res.json({ assets: results });
   });
 });
+
 const updateRefreshToken = (username, refreshToken) => {
   const query = "UPDATE refresh_tokens SET refreshToken = ?, expirationDate = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE accountId = ?";
   connection.query(query, [refreshToken, username], (error, results) => {
@@ -62,7 +63,6 @@ const updateRefreshToken = (username, refreshToken) => {
   });
 };
 
-// Inside your /api/login endpoint handler
 // Inside your /api/login endpoint handler
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
@@ -92,8 +92,7 @@ app.post("/api/login", (req, res) => {
         console.log("Refresh Token:", tokens.refreshToken);
         console.log(user);
         const accountId = user.accountId; // Get the account ID from the user object
-        const token = generateTokens({ accountId, username }); // Pass accountId to generateTokens function
-      
+        const token = generateTokens({ accountId, username }); // Pass accountId to generateTokens function      
         res.json({ ...tokens, accountId }); // Send accountId along with tokens
       } else {
         // Password does not match
@@ -126,23 +125,23 @@ const generateTokens = (payload) => {
   const { accountId, username } = payload;
 
   const accessToken = jwt.sign(
-      { accountId, username },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1h" }
+    { accountId, username },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "1h" }
   );
 
   const refreshToken = jwt.sign(
-      { accountId, username },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1h" }
+    { accountId, username },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: "1h" }
   );
 
   // Store refresh token in the database
   const query = "INSERT INTO refresh_tokens (accountId, refreshToken, expirationDate) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))";
   connection.query(query, [accountId, refreshToken], (error, results) => {
-      if (error) {
-          console.error("Error storing refresh token:", error);
-      }
+    if (error) {
+      console.error("Error storing refresh token:", error);
+    }
   });
 
   return { accessToken, refreshToken };
@@ -154,26 +153,26 @@ app.post("/token", (req, res) => {
   if (!refreshToken) return res.sendStatus(401);
 
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
-      if (err) return res.sendStatus(403);
+    if (err) return res.sendStatus(403);
 
-      const { accountId, username } = decoded;
+    const { accountId, username } = decoded;
 
-      // Check if the refresh token exists and is not expired
-      const query = "SELECT * FROM refresh_tokens WHERE accountId = ? AND refreshToken = ? AND expirationDate > NOW()";
-      connection.query(query, [accountId, refreshToken], (error, results) => {
-          if (error) {
-              console.error("Error checking refresh token:", error);
-              return res.sendStatus(500);
-          }
+    // Check if the refresh token exists and is not expired
+    const query = "SELECT * FROM refresh_tokens WHERE accountId = ? AND refreshToken = ? AND expirationDate > NOW()";
+    connection.query(query, [accountId, refreshToken], (error, results) => {
+      if (error) {
+        console.error("Error checking refresh token:", error);
+        return res.sendStatus(500);
+      }
 
-          if (results.length === 0) {
-              return res.sendStatus(403); // Invalid refresh token
-          }
+      if (results.length === 0) {
+        return res.sendStatus(403); // Invalid refresh token
+      }
 
-          // Generate new access token
-          const accessToken = jwt.sign({ accountId, username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5m" });
-          res.json({ accessToken });
-      });
+      // Generate new access token
+      const accessToken = jwt.sign({ accountId, username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5m" });
+      res.json({ accessToken });
+    });
   });
 });
 app.post("/api/logout", (req, res) => {
@@ -192,7 +191,7 @@ app.post("/api/logout", (req, res) => {
         console.error("Error deleting refresh token:", error);
         return res.sendStatus(500);
       }
-      
+
       res.sendStatus(204); // No Content - Successfully logged out
     });
   });
@@ -202,12 +201,11 @@ app.get("/getToken", (req, res) => {
   return process.env.ACCESS_TOKEN_SECRET;
 });
 
-
-
 // app
 app.get('/posts', verifyToken, (req, res) => {
-	res.json(posts.filter(post => post.userId === req.userId))
+  res.json(posts.filter(post => post.userId === req.userId))
 })
+
 // Close the MySQL connection when the server shuts down
 process.on("SIGINT", () => {
   connection.end();
