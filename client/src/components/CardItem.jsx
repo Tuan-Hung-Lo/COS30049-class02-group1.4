@@ -61,7 +61,7 @@ const CardItem = ({ index, item }) => {
             sx={{
               pt: "100%",
             }}
-            image={item && item.link}
+            image="https://cos30049.s3.eu-west-1.amazonaws.com/images1.jpeg"
           />
           <CardContent sx={{ flexGrow: 1 }}>
             <Typography variant="h5" component="h2">

@@ -37,7 +37,7 @@ app.get("/api/users", (req, res) => {
 
 app.get("/api/assets", (req, res) => {
   const query = `
-    Select a2.assetID, a1.username, a2.name, a2.category, a2.publishDate, a2.amount, a2.price, a2.description, a2.link
+    Select a2.assetID, a1.username, a2.name, a2.category, a2.publishDate, a2.amount, a2.price, a2.description 
     From account a1
     Join assets a2
     On a1.accountID = a2.authorId
@@ -203,11 +203,6 @@ app.get("/getToken", (req, res) => {
 });
 
 
-
-// app
-app.get('/posts', verifyToken, (req, res) => {
-	res.json(posts.filter(post => post.userId === req.userId))
-})
 // Close the MySQL connection when the server shuts down
 process.on("SIGINT", () => {
   connection.end();
