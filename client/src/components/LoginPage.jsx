@@ -7,7 +7,6 @@ import { CssBaseline } from "@mui/material";
 import { Link } from "react-router-dom";
 import Fade from "@mui/material/Fade";
 
-
 // LoginPage component
 function LoginPage() {
   const loginBackgroundRef = useRef(null);
@@ -56,6 +55,7 @@ function LoginPage() {
       const tokens = await response.json();
       localStorage.setItem("accessToken", tokens.accessToken);
       localStorage.setItem("refreshToken", tokens.refreshToken);
+      localStorage.setItem("username", username);
       console.log("Login successful");
       // Redirect to the explore page or handle authentication state as needed
       window.location.href = "/explore";
