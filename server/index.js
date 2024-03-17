@@ -35,6 +35,26 @@ app.get("/api/users", (req, res) => {
   });
 });
 
+app.get("/api/owned", (req, res) => {
+  const username = req.query.username; // Retrieve username from query parameter
+  const query = `
+    SELECT a2.assetID, a1.username, a2.name, a2.category, a2.publishDate, a2.amount, a2.price, a2.description 
+    FROM account a1
+    JOIN assets a2 ON a1.accountID = a2.authorId
+    WHERE username = ?`;
+
+  connection.query(query, [username], (error, results) => { // Wrap username in an array
+    if (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+
+    res.json({ assets: results });
+  });
+});
+
+
 app.get("/api/assets", (req, res) => {
   const query = `
     Select a2.assetID, a1.username, a2.name, a2.category, a2.publishDate, a2.amount, a2.price, a2.description 
@@ -119,7 +139,22 @@ app.post("/api/register", (req, res) => {
     res.status(201).send("User registered successfully");
   });
 });
-
+  app.post("/api/update-profile", (req, res) => {
+    const { firstName, lastName, publicKey, password, username } = req.body;
+    const values = [firstName, lastName, publicKey, password, username]; 
+    // Extract accountId from the authenticated user
+    
+    // Update the user profile data in the database
+    const query = "UPDATE account SET firstName = ?, lastName = ?, publicKey = ?, password = ? WHERE username = ? Limit 1";
+    connection.query(query, values, (error, results) => {
+      if (error) {
+        console.error("Error updating profile:", error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+      res.status(200).send("Profile updated successfully");
+    });
+  });
 
 const generateTokens = (payload) => {
   const { accountId, username } = payload;
