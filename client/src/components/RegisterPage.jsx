@@ -52,7 +52,7 @@ function RegisterPage() {
       .then((res) => {
         console.log("Registered successfully");
         // Redirect user to login page after successful registration
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch((err) => console.log("Error registering:", err.response.data));
   };
@@ -184,7 +184,7 @@ function RegisterPage() {
                   Sign Up
                 </Button>
                 <Link
-                  to={"/login"}
+                  to={"/"}
                   variant="body2"
                   style={{ textDecoration: "none" }}
                 >

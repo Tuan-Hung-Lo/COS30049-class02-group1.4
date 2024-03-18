@@ -58,7 +58,7 @@ function LoginPage() {
       localStorage.setItem("username", username);
       console.log("Login successful");
       // Redirect to the explore page or handle authentication state as needed
-      window.location.href = "/explore";
+      window.location.href = "/home";
     } catch (error) {
       console.error("Error logging in:", error.message);
       setError("Invalid username or password");

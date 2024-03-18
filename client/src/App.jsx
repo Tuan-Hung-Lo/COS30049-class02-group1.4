@@ -44,9 +44,9 @@ function App() {
 			<StyledCounter>
 				<Main>
 					<Routes>
-						<Route path="/login" element={<LoginPage/>}></Route>
+						<Route path="/" element={<LoginPage/>}></Route>
 						<Route path="/register" element={<RegisterPage/>}></Route>
-						<Route path="/" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
+						<Route path="/home" element={<><NavBar/><Dashboard/><Footer /></>}></Route>
 						<Route path="/explore" element={<><NavBar/><Explore/><Footer /></>}></Route>
 						<Route path="/wallet" element={<><NavBar/><WalletPage/><Footer /></>}></Route>
 						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>

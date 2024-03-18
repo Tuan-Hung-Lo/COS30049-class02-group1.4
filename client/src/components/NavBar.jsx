@@ -171,12 +171,12 @@ function NavBar() {
     <NavigationBar>
       {!isMobile ? (
         <MenuFull>
-          <Link to={"/"}>
+          <Link to={"/home"}>
             <img src={logo} alt="Logo" className="logo" />
           </Link>
           <Hr />
           <li>
-            <NavLink to={"/"} isSelected={location.pathname === "/"}>
+            <NavLink to={"/home"} isSelected={location.pathname === "/home"}>
               Home
             </NavLink>
           </li>
@@ -202,7 +202,7 @@ function NavBar() {
           <Button variant="text" color="primary" onClick={handleMenuOpen}>
             <MenuIcon />
           </Button>
-          <Link to={"/"}>
+          <Link to={"/home"}>
             <img src={logo} alt="Logo" className="logo" />
           </Link>
         </MenuFull>
@@ -223,7 +223,7 @@ function NavBar() {
             />
           </SearchContainer>
           <Link
-            to={"/login"}
+            to={"/"}
             alt="Login Page"
             style={{ textDecoration: "none" }}
           >
@@ -295,7 +295,7 @@ function NavBar() {
               </form>
             </SearchContainer>
             <MenuItem onClick={handleMenuClose}>
-              <NavLink to={"/"} isSelected={location.pathname === "/"}>
+              <NavLink to={"/home"} isSelected={location.pathname === "/home"}>
                 Home
               </NavLink>
             </MenuItem>
@@ -316,7 +316,7 @@ function NavBar() {
               </NavLink>
             </MenuItem>
             <Link
-              to={"/login"}
+              to={"/"}
               alt="Login Page"
               style={{ textDecoration: "none" }}
             >
