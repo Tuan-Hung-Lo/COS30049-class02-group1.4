@@ -1,22 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Box, Grid, Typography, Button, Collapse, TextField, Divider, MenuItem, Slider, Grow, Tooltip } from '@mui/material'
+import { Box, Grid, Button, Collapse, TextField} from '@mui/material'
 import { jwtDecode } from "jwt-decode";
 
 
 function ProfileScreen() {
-	// Define the number of cards to display
-	const numberOfCards = 12;
-	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
-	const itemsPerPage = 8;
 	const [username, setUsername] = useState('');
-	const [accountID, setAccountId] = useState();
 
-	const [formUploadAsset, setFormUploadAsset] = useState({
-		description: '',
-		name: '',
-		category: '',
-		amount: '',
-	});
 	const [formUserData, setFormUserData] = useState({
 		firstName: '',
 		lastName: '',
@@ -50,7 +39,6 @@ function ProfileScreen() {
 
 	// State variables
 	const [isOpen, setIsOpen] = useState("User Info");
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const buttons = ["User Info"];
 
 	
@@ -68,7 +56,6 @@ function ProfileScreen() {
 			...prevUserData,
 			[name]: value,
 		}));
-	
 	}
 	const handleSubmitUserData = async (e) => {
 		e.preventDefault();
@@ -91,55 +78,8 @@ function ProfileScreen() {
 			alert('Failed to update profile');
 		}
 	};
-	const handleSubmitUpload = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await fetch('http://localhost:3001/api/upload-product', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					// Include your authentication token here if required
-					// 'Authorization': `Bearer ${token}`
-				},
-				body: JSON.stringify(formUploadAsset),
-			});
-			if (!response.ok) {
-				throw new Error('Failed to upload product');
-			}
-			alert('Product uploaded successfully');
-			// Clear form fields after successful upload
-			setFormUploadAsset({
-				authorId: `${accountID}`,
-				description: '',
-				name: '',
-				category: '',
-				amount: '',
-			});
-		} catch (error) {
-			console.error('Error uploading product:', error);
-			alert('Failed to upload product');
-		}
-	};
-	// Arrays for select options
-	const prices = [
-		{ value: 'highest-price', label: 'Highest Price ' },
-		{ value: 'lowest-price', label: 'Lowest Price' },
-	];
-
-	const categories = [
-		{ value: 'all-items', label: 'All Items' },
-		{ value: 'painting', label: 'Painting' },
-		{ value: 'digital', label: 'Digital' },
-		{ value: 'photograph', label: 'Photograph' },
-	];
-
-	const publishedDate = [
-		{ value: 'oldest', label: 'Oldest' },
-		{ value: 'latest', label: 'Latest' },
-	];
 
 	// State variables for form data and slider value
-	const [value, setValue] = useState([10, 70]);
 	const [formData, setFormData] = useState({
 		price: 0, // Initialize price state
 	});
@@ -176,11 +116,6 @@ function ProfileScreen() {
 		calculateCommission();
 	}, [formData.price]);
 
-	// Slider value text function
-	function valuetext(value) {
-		return `${value}`;
-	}
-
 	return (
 		<>
 			{/* Background image */}
@@ -209,6 +144,76 @@ function ProfileScreen() {
 					))}
 				</Box>
 				{/* Section content */}
+				{/* User Info section */}
+				<Collapse in={true} timeout={1000}>
+					<Box sx={{ width: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+						<form onSubmit={handleSubmitUserData}>
+							<Grid container spacing={2} justifyContent={'center'}>
+								<Grid item xs={8} sx={{ height: 'auto', display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center', p: 2 }}>
+									<h3>Personal Info</h3>
+									<Grid container spacing={2}>
+										<Grid item xs={12} md={6}>
+											<TextField
+												autoComplete="given-name"
+												name="firstName"
+												fullWidth
+												id="firstName"
+												label="First Name"
+												autoFocus
+												value={formUserData.firstName}
+												onChange={handleChangeUserData}
+											/>
+										</Grid>
+										<Grid item xs={12} md={6}>
+											<TextField
+												fullWidth
+												id="lastName"
+												label="Last Name"
+												name="lastName"
+												autoComplete="family-name"
+												value={formUserData.lastName}
+												onChange={handleChangeUserData}
+											/>
+										</Grid>
+										<Grid item xs={12}>
+											<TextField
+												fullWidth
+												id="publicKey"
+												label="Public Key"
+												name="publicKey"
+												autoComplete="publicKey"
+												value={formUserData.publicKey}
+												onChange={handleChangeUserData}
+											/>
+										</Grid>
+									</Grid>
+								</Grid>
+								<Grid item xs={8} sx={{ height: 'auto', display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center', p: 2 }}>
+									<h3>Account</h3>
+									<Grid container spacing={2}>
+										<Grid item xs={12} md={6}>
+											<TextField
+												fullWidth
+												id="password"
+												label="New Password"
+												name="password"
+												placeholder=""
+												type="password"
+												value={formUserData.password}
+												onChange={handleChangeUserData}
+											/>
+										</Grid>
+									</Grid>
+								</Grid>
+								<Grid item xs={8} sx={{ height: 'auto', display: 'flex', justifyContent: 'center', p: 2 }}>
+									<Button variant="contained" color="primary" type="submit">
+										Update Profile
+									</Button>
+								</Grid>
+							</Grid>
+						</form>
+					</Box>
+				</Collapse>
 			</Box>
 		</>
 	)
