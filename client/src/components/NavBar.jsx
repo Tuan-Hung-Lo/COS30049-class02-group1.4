@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Box, Button, Menu, MenuItem, useMediaQuery } from "@mui/material";
@@ -125,8 +125,8 @@ function NavBar() {
     }
     border: 1px solid #3a3a3a;
     background-color: #101010;
-    max-width: 80vw;
-    width: 40vw;
+    max-width: 40vw;
+    width: 30vw;
   `;
 
   NavLink.propTypes = {
@@ -168,6 +168,30 @@ function NavBar() {
               isSelected={location.pathname === "/wallet"}
             >
               Wallet
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/owned"}
+              isSelected={location.pathname === "/owned"}
+            >
+              Owned
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/sales"}
+              isSelected={location.pathname === "/sales"}
+            >
+              Sales
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/addproduct"}
+              isSelected={location.pathname === "/addproduct"}
+            >
+              Add Product
             </NavLink>
           </li>
         </MenuFull>
@@ -283,6 +307,30 @@ function NavBar() {
                 isSelected={location.pathname === "/wallet"}
               >
                 Wallet
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/owned"}
+                isSelected={location.pathname === "/owned"}
+              >
+                Owned
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/sales"}
+                isSelected={location.pathname === "/sales"}
+              >
+                Sales
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/addproduct"}
+                isSelected={location.pathname === "/addproduct"}
+              >
+                Add Product
               </NavLink>
             </MenuItem>
             <Link to={"/"} alt="Login Page" style={{ textDecoration: "none" }}>
