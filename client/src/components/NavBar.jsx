@@ -15,21 +15,6 @@ function NavBar() {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [originalCards, setOriginalCards] = useState([]);
-  const [filteredCards, setFilteredCards] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api/assets")
-      .then((response) => response.json())
-      .then((apiData) => {
-        console.log("API data:", apiData);
-        setOriginalCards(apiData.assets);
-        setFilteredCards(apiData.assets);
-      })
-      .catch((error) => {
-        console.error("Error fetching data from API:", error);
-      });
-  }, []);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,19 +32,11 @@ function NavBar() {
   const performSearch = () => {
     console.log("Performing search for:", searchQuery);
 
-    const matchedItem = originalCards.find((item) =>
-      item.name.toLowerCase().startsWith(searchQuery.toLowerCase())
-    );
+    // Encode the searchQuery to make sure it's properly formatted for URL
+    const encodedSearchQuery = encodeURIComponent(searchQuery);
 
-    if (matchedItem) {
-      const queryParams = Object.entries(matchedItem)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join("&");
-      window.location.href = `/product?${queryParams}`;
-    } else {
-      // Handle case when no match is found
-      console.log("No matching item found");
-    }
+    // Redirect to another page with the searchQuery as a query parameter
+    window.location.href = `/home?search=${encodedSearchQuery}`;
   };
 
   const handleKeyDown = (event) => {
@@ -80,10 +57,7 @@ function NavBar() {
     justify-content: space-around;
     backdrop-filter: blur(15px);
     background-color: #101010a0;
-    ${isMobile &&
-    `
-            justify-content: space-between;
-        `}
+    ${isMobile && `justify-content: space-between;`}
   `;
 
   const NavLink = styled(Link)`
@@ -222,11 +196,7 @@ function NavBar() {
               onKeyDown={handleKeyDown}
             />
           </SearchContainer>
-          <Link
-            to={"/"}
-            alt="Login Page"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to={"/"} alt="Login Page" style={{ textDecoration: "none" }}>
             <Button variant="outlined" color="primary">
               Log Out
             </Button>
@@ -315,11 +285,7 @@ function NavBar() {
                 Wallet
               </NavLink>
             </MenuItem>
-            <Link
-              to={"/"}
-              alt="Login Page"
-              style={{ textDecoration: "none" }}
-            >
+            <Link to={"/"} alt="Login Page" style={{ textDecoration: "none" }}>
               <Box display={"flex"} justifyContent={"center"}>
                 <Button variant="outlined" color="primary">
                   Log Out
