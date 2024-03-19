@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./ERC721Full.sol";
 
-contract Marketplace is ERC721Full {
+contract UploadSale is ERC721Full {
 
     // Variables
     address payable public feeAccount; // the account that receives fees
