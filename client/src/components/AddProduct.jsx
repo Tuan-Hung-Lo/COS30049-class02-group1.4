@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, TextField, Divider, MenuItem} from '@mui/material'
+import { Box, Button, TextField, Divider, MenuItem, Collapse, Typography} from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { jwtDecode } from "jwt-decode";
 
 function AddProduct(){
 
@@ -11,14 +10,25 @@ function AddProduct(){
 		category: '',
 		amount: '',
 	});
-    
+
+    const categories = [
+        { value: 'all-items', label: 'All Items' },
+        { value: 'painting', label: 'Painting' },
+        { value: 'digital', label: 'Digital' },
+        { value: 'photograph', label: 'Photograph' },
+    ];
+
+    // State variables for form data and slider value
+    const [formData, setFormData] = useState({
+        price: 0, // Initialize price state
+    });
+
 	const handleUploadAsset = (e) => {
 		const { name, value } = e.target;
 		setFormUploadAsset((prevUserData) => ({
 			...prevUserData,
 			[name]: value,
 		}));
-	
 	}
 	const handleSubmitUpload = async (e) => {
 		e.preventDefault();
@@ -83,18 +93,18 @@ function AddProduct(){
 	}, [formData.price]);
 
     return(
-        <Box>
-            <Box sx={{ width: 1, mx: "auto", display: "flex", flexDirection: "column", gap: 5 }}>
-                <Box sx={{ width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center" }}>
-                    <h1>Add New Product</h1>
-                </Box>
-                <Divider />
-                <form onSubmit={handleSubmitUpload}>
-                    <Box sx={{ width: 1, display: "flex", flexDirection: "column", gap: 2 }}>
+        <Collapse timeout={1000}>
+            <Box sx={{ mt: 15, display: "flex", flexDirection: "column", alignItems: "center", width: 0.8, gap: 2 }}>
+                <Box sx={{ width: 1, mx: "auto" , display: "flex" , flexDirection: "column" , gap: 5}}>
+                    <Box sx={{width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center"}}>
+                        <h1>Add New Product</h1>
+                    </Box>
+                    <Divider/>
+                    <Box sx={{width: 1, display: "flex", flexDirection: "column", gap: 2}}>
                         {/* Placeholder for image */}
-                        <Box sx={{ width: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", gap: 2, mx: "auto" }}>
-                            <Box sx={{ width: 1 }}>
-                                <Box sx={{ width: '100%', paddingBottom: '100%', boxShadow: "5px 5px #1a1a1a", position: 'relative' }}>
+                        <Box sx={{ width: 1, display: "flex", flexDirection: "column" , justifyContent: "space-between" , alignItems: "center" , gap: 2 , mx: "auto"}}>
+                            <Box sx={{ width: 1}}>
+                                <Box sx={{ width: '100%', paddingBottom: '100%' , boxShadow: "5px 5px #1a1a1a" , position: 'relative' }}>
                                     <img
                                         src="https://source.unsplash.com/random?wallpapers"
                                         alt="ava"
@@ -102,7 +112,7 @@ function AddProduct(){
                                     />
                                 </Box>
                             </Box>
-                            <Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{ fill: "#2a2a2a" }} />}>
+                            <Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{fill: "#2a2a2a"}} />}>
                                 Upload File
                                 <input type="file" style={{ display: 'none' }} />
                             </Button>
@@ -111,9 +121,6 @@ function AddProduct(){
                             id="product-name"
                             label="Product Name"
                             variant="outlined"
-                            name="name"
-                            value={formUploadAsset.name}
-                            onChange={handleUploadAsset}
                         />
                         <TextField
                             id="product-description"
@@ -121,9 +128,6 @@ function AddProduct(){
                             variant="outlined"
                             multiline
                             rows={4}
-                            name="description"
-                            value={formUploadAsset.description}
-                            onChange={handleUploadAsset}
                         />
                         <TextField
                             id="product-category"
@@ -132,9 +136,6 @@ function AddProduct(){
                             variant="outlined"
                             defaultValue=""
                             sx={{ width: "100%" }}
-                            name="category"
-                            value={formUploadAsset.category}
-                            onChange={handleUploadAsset}
                         >
                             {categories.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
@@ -143,23 +144,41 @@ function AddProduct(){
                             ))}
                         </TextField>
                         <TextField
-                            id="product-amount"
-                            label="Product Amount"
+                            id="product-price"
+                            label="Product Price (ETH)"
                             variant="outlined"
                             type="number"
-                            inputProps={{ min: 0 }}
-                            name="amount"
-                            value={formUploadAsset.amount}
-                            onChange={handleUploadAsset}
+                            inputProps={{ min: 0 }} // Set minimum value as 0
+                            onChange={(event) => {
+                                const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
+                                setFormData({
+                                    ...formData,
+                                    price: newPrice // Update the price in formData with the new value
+                                });
+                            }}
+                            name="price"
                         />
+                        <TextField  
+                            type="number" 
+                            label="USD" 
+                            variant="outlined" 
+                            inputProps={{ min: 0 }} // Set minimum value as 0
+                            value={(formData.price * conversionRate).toFixed(2)}
+                            InputProps={{
+                                readOnly: true, // Make the input field readonly
+                            }}
+                        />
+                        <Typography>
+                            &#x2022; Commission Fee (0.5%): ${commissionFee.toFixed(2)}
+                        </Typography>
                         {/* Add more fields as needed */}
-                        <Button variant="contained" color="primary" size='large' type="submit">
+                        <Button variant="contained" color="primary" size='large'>
                             Add Product
                         </Button>
                     </Box>
-                </form>
+                </Box>
             </Box>
-        </Box>
+        </Collapse>
     )
 }
 
