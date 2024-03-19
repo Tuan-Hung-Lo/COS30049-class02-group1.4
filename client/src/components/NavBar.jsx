@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Box, Button, Menu, MenuItem, useMediaQuery } from "@mui/material";
@@ -15,21 +15,6 @@ function NavBar() {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [originalCards, setOriginalCards] = useState([]);
-  const [filteredCards, setFilteredCards] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api/assets")
-      .then((response) => response.json())
-      .then((apiData) => {
-        console.log("API data:", apiData);
-        setOriginalCards(apiData.assets);
-        setFilteredCards(apiData.assets);
-      })
-      .catch((error) => {
-        console.error("Error fetching data from API:", error);
-      });
-  }, []);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,19 +32,11 @@ function NavBar() {
   const performSearch = () => {
     console.log("Performing search for:", searchQuery);
 
-    const matchedItem = originalCards.find((item) =>
-      item.name.toLowerCase().startsWith(searchQuery.toLowerCase())
-    );
+    // Encode the searchQuery to make sure it's properly formatted for URL
+    const encodedSearchQuery = encodeURIComponent(searchQuery);
 
-    if (matchedItem) {
-      const queryParams = Object.entries(matchedItem)
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join("&");
-      window.location.href = `/product?${queryParams}`;
-    } else {
-      // Handle case when no match is found
-      console.log("No matching item found");
-    }
+    // Redirect to another page with the searchQuery as a query parameter
+    window.location.href = `/home?search=${encodedSearchQuery}`;
   };
 
   const handleKeyDown = (event) => {
@@ -80,10 +57,7 @@ function NavBar() {
     justify-content: space-around;
     backdrop-filter: blur(15px);
     background-color: #101010a0;
-    ${isMobile &&
-    `
-            justify-content: space-between;
-        `}
+    ${isMobile && `justify-content: space-between;`}
   `;
 
   const NavLink = styled(Link)`
@@ -151,8 +125,8 @@ function NavBar() {
     }
     border: 1px solid #3a3a3a;
     background-color: #101010;
-    max-width: 80vw;
-    width: 40vw;
+    max-width: 40vw;
+    width: 30vw;
   `;
 
   NavLink.propTypes = {
@@ -196,6 +170,30 @@ function NavBar() {
               Wallet
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to={"/owned"}
+              isSelected={location.pathname === "/owned"}
+            >
+              Owned
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/sales"}
+              isSelected={location.pathname === "/sales"}
+            >
+              Sales
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/addproduct"}
+              isSelected={location.pathname === "/addproduct"}
+            >
+              Add Product
+            </NavLink>
+          </li>
         </MenuFull>
       ) : (
         <MenuFull>
@@ -222,11 +220,7 @@ function NavBar() {
               onKeyDown={handleKeyDown}
             />
           </SearchContainer>
-          <Link
-            to={"/"}
-            alt="Login Page"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to={"/"} alt="Login Page" style={{ textDecoration: "none" }}>
             <Button variant="outlined" color="primary">
               Log Out
             </Button>
@@ -315,11 +309,31 @@ function NavBar() {
                 Wallet
               </NavLink>
             </MenuItem>
-            <Link
-              to={"/"}
-              alt="Login Page"
-              style={{ textDecoration: "none" }}
-            >
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/owned"}
+                isSelected={location.pathname === "/owned"}
+              >
+                Owned
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/sales"}
+                isSelected={location.pathname === "/sales"}
+              >
+                Sales
+              </NavLink>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <NavLink
+                to={"/addproduct"}
+                isSelected={location.pathname === "/addproduct"}
+              >
+                Add Product
+              </NavLink>
+            </MenuItem>
+            <Link to={"/"} alt="Login Page" style={{ textDecoration: "none" }}>
               <Box display={"flex"} justifyContent={"center"}>
                 <Button variant="outlined" color="primary">
                   Log Out

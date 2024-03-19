@@ -5,22 +5,36 @@ import ImageCarousel from "./CarouselComponent";
 import Fade from "@mui/material/Fade";
 import Grow from "@mui/material/Grow";
 import CardItem from "./CardItem";
+import { useLocation } from "react-router-dom";
 
 // Dashboard component
 function Dashboard() {
   const [cards, setCards] = useState([]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search");
 
   useEffect(() => {
+    // Fetch data from the API
     fetch("http://localhost:3001/api/assets")
       .then((response) => response.json())
       .then((apiData) => {
         console.log("API data:", apiData);
-        setCards(apiData.assets);
+        // Filter the data based on searchQuery if it's not null
+        if (searchQuery) {
+          const filteredData = apiData.assets.filter((item) =>
+            item.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+          );
+          setCards(filteredData);
+        } else {
+          // Set the fetched data if searchQuery is null
+          setCards(apiData.assets);
+        }
       })
       .catch((error) => {
         console.error("Error fetching data from API:", error);
       });
-  }, []);
+  }, [searchQuery]); // Include searchQuery as a dependency
 
   return (
     <Fade in={true} timeout={1000}>

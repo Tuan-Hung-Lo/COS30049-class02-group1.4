@@ -155,6 +155,22 @@ app.post("/api/register", (req, res) => {
       res.status(200).send("Profile updated successfully");
     });
   });
+  app.post("/api/upload-product", (req, res) => {
+    const { authorId,name, description, category, amount } = req.body;
+    const values = [authorId, name, description, category, amount]; 
+    // Extract accountId from the authenticated user
+    
+    // Update the user profile data in the database
+    const query = "Insert Into assets (authorId, name, description, category, amount, publishDate, price) VALUES (?, ?, ?, ?, ?, CURDATE(), 1)";
+    connection.query(query, values, (error, results) => {
+      if (error) {
+        console.error("Error uploading product:", error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+      res.status(200).send("Product uploaded seccessfully");
+    });
+  });
 
 const generateTokens = (payload) => {
   const { accountId, username } = payload;

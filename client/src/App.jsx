@@ -18,6 +18,9 @@ import ProductScreen from "./components/ProductScreen.jsx";
 import ProfileScreen from "./components/ProfileScreen.jsx";
 import WalletPage from "./components/WalletPage.jsx";
 import PaymentDialogDemo from "./components/PurchaseScreen.jsx";
+import OwnedProduct from "./components/OwnedProduct.jsx";
+import SalesProduct from "./components/SalesProduct.jsx";
+import AddProduct from "./components/AddProduct.jsx";
 
 function App() {
 	const StyledCounter = styled.div `
@@ -52,6 +55,9 @@ function App() {
 						<Route path="/product" element={<><NavBar/><ProductScreen/><Footer /></>}></Route>
 						<Route path="/profile" element={<><NavBar/><ProfileScreen/><Footer /></>}></Route>
 						<Route path="/test" element={<><NavBar/><PaymentDialogDemo /><Footer /></>}></Route>
+						<Route path="/owned" element={<><NavBar/><OwnedProduct /><Footer /></>}></Route>
+						<Route path="/sales" element={<><NavBar/><SalesProduct /><Footer /></>}></Route>
+						<Route path="/addproduct" element={<><NavBar/><AddProduct /><Footer /></>}></Route>
 						<Route path="*" element={<><NavBar/><ErrorPage/><Footer /></>}></Route>
 					</Routes>
 				</Main>
