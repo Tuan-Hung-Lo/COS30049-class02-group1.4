@@ -11,6 +11,5 @@ module.exports = {
         gas: 5000000 
     }
 }
-
   
 }

@@ -37,22 +37,6 @@ contract Ownership is ERC721Full {
         totalBatch = 0;
     }
 
-    // function HashCourse (
-    //     uint courseID
-
-    // )
-    // view
-    // private
-    // returns(bytes32)
-
-    // {
-
-    //    bytes32 courseHash = keccak256(abi.encodePacked(courseID, msg.sender));
-
-    //    return courseHash;
-
-    // }
-
     // function getPrice() public view returns(uint256) {
     //   return price;
     // }
