@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CardItem from './CardItem';
 import PaginationComponent from './PaginationComponent.jsx';
-import { jwtDecode } from  "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 
 function ProfileScreen() {
@@ -14,30 +14,51 @@ function ProfileScreen() {
 	const cards = Array.from({ length: numberOfCards }, (_, index) => index + 1);
 	const itemsPerPage = 8;
 	const [username, setUsername] = useState('');
+	const [accountID, setAccountId] = useState();
 
-  useEffect(() => {
-    // Get the JWT token from localStorage
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      // Decode the JWT token
-      const decoded = jwtDecode(token);
-      // Extract the username from the decoded payload
-      const { username } = decoded;
-      // Set the username in the state
-      setUsername(username);
-    }
-  }, []);
-	// State variables
-	const [isOpen, setIsOpen] = useState("User Info");
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const buttons = ["User Info", "Owned", "Sales", "Add Product"];
+	const [formUploadAsset, setFormUploadAsset] = useState({
+		description: '',
+		name: '',
+		category: '',
+		amount: '',
+	});
 	const [formUserData, setFormUserData] = useState({
 		firstName: '',
 		lastName: '',
 		publicKey: '',
 		password: '',
-		username: username
 	});
+	
+
+	useEffect(() => {
+		// Get the JWT token from localStorage
+		const token = localStorage.getItem('accessToken');
+		if (token) {
+			// Decode the JWT token
+			const decoded = jwtDecode(token);
+			// Extract the username and accountId from the decoded payload
+			const { accountId, username } = decoded;
+			// Set the username and accountId in the state
+			setUsername(username);
+			setAccountId(accountId);
+			// Update the authorId in the form state
+			setFormUploadAsset(prevState => ({
+				...prevState,
+				authorId: accountId,
+			}));
+			setFormUserData(prevState => ({	
+				...prevState,
+				username: username,
+			}));
+		}
+	}, []);
+
+	// State variables
+	const [isOpen, setIsOpen] = useState("User Info");
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const buttons = ["User Info", "Owned", "Sales", "Add Product"];
+
+	
 
 	const handleChangeUserData = (e) => {
 		const { name, value } = e.target;
@@ -46,7 +67,14 @@ function ProfileScreen() {
 			[name]: value,
 		}));
 	};
-
+	const handleUploadAsset = (e) => {
+		const { name, value } = e.target;
+		setFormUploadAsset((prevUserData) => ({
+			...prevUserData,
+			[name]: value,
+		}));
+	
+	}
 	const handleSubmitUserData = async (e) => {
 		e.preventDefault();
 		try {
@@ -66,6 +94,35 @@ function ProfileScreen() {
 		} catch (error) {
 			console.error('Error updating profile:', error);
 			alert('Failed to update profile');
+		}
+	};
+	const handleSubmitUpload = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await fetch('http://localhost:3001/api/upload-product', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					// Include your authentication token here if required
+					// 'Authorization': `Bearer ${token}`
+				},
+				body: JSON.stringify(formUploadAsset),
+			});
+			if (!response.ok) {
+				throw new Error('Failed to upload product');
+			}
+			alert('Product uploaded successfully');
+			// Clear form fields after successful upload
+			setFormUploadAsset({
+				authorId: `${accountID}`,
+				description: '',
+				name: '',
+				category: '',
+				amount: '',
+			});
+		} catch (error) {
+			console.error('Error uploading product:', error);
+			alert('Failed to upload product');
 		}
 	};
 	// Arrays for select options
@@ -424,89 +481,83 @@ function ProfileScreen() {
 				</Collapse>
 				{/* Add Product section */}
 				<Collapse in={"Add Product" === isOpen} timeout={1000}>
-					<Box sx={{ width: 1, mx: "auto", display: "flex", flexDirection: "column", gap: 5 }}>
-						<Box sx={{ width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center" }}>
-							<h1>Add New Product</h1>
-						</Box>
-						<Divider />
-						<Box sx={{ width: 1, display: "flex", flexDirection: "column", gap: 2 }}>
-							{/* Placeholder for image */}
-							<Box sx={{ width: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", gap: 2, mx: "auto" }}>
-								<Box sx={{ width: 1 }}>
-									<Box sx={{ width: '100%', paddingBottom: '100%', boxShadow: "5px 5px #1a1a1a", position: 'relative' }}>
-										<img
-											src="https://source.unsplash.com/random?wallpapers"
-											alt="ava"
-											style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '5px', objectFit: 'cover' }}
-										/>
-									</Box>
-								</Box>
-								<Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{ fill: "#2a2a2a" }} />}>
-									Upload File
-									<input type="file" style={{ display: 'none' }} />
-								</Button>
-							</Box>
-							<TextField
-								id="product-name"
-								label="Product Name"
-								variant="outlined"
-							/>
-							<TextField
-								id="product-description"
-								label="Product Description"
-								variant="outlined"
-								multiline
-								rows={4}
-							/>
-							<TextField
-								id="product-category"
-								select
-								label="Product Category"
-								variant="outlined"
-								defaultValue=""
-								sx={{ width: "100%" }}
-							>
-								{categories.map((option) => (
-									<MenuItem key={option.value} value={option.value}>
-										{option.label}
-									</MenuItem>
-								))}
-							</TextField>
-							<TextField
-								id="product-price"
-								label="Product Price (ETH)"
-								variant="outlined"
-								type="number"
-								inputProps={{ min: 0 }} // Set minimum value as 0
-								onChange={(event) => {
-									const newPrice = parseFloat(event.target.value); // Parse the entered value to a float
-									setFormData({
-										...formData,
-										price: newPrice // Update the price in formData with the new value
-									});
-								}}
-								name="price"
-							/>
-							<TextField
-								type="number"
-								label="USD"
-								variant="outlined"
-								inputProps={{ min: 0 }} // Set minimum value as 0
-								value={(formData.price * conversionRate).toFixed(2)}
-								InputProps={{
-									readOnly: true, // Make the input field readonly
-								}}
-							/>
-							<Typography>
-								&#x2022; Commission Fee (0.5%): ${commissionFee.toFixed(2)}
-							</Typography>
-							{/* Add more fields as needed */}
-							<Button variant="contained" color="primary" size='large'>
-								Add Product
-							</Button>
-						</Box>
-					</Box>
-				</Collapse>
+    <Box sx={{ width: 1, mx: "auto", display: "flex", flexDirection: "column", gap: 5 }}>
+        <Box sx={{ width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center" }}>
+            <h1>Add New Product</h1>
+        </Box>
+        <Divider />
+        <form onSubmit={handleSubmitUpload}>
+            <Box sx={{ width: 1, display: "flex", flexDirection: "column", gap: 2 }}>
+                {/* Placeholder for image */}
+                <Box sx={{ width: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", gap: 2, mx: "auto" }}>
+                    <Box sx={{ width: 1 }}>
+                        <Box sx={{ width: '100%', paddingBottom: '100%', boxShadow: "5px 5px #1a1a1a", position: 'relative' }}>
+                            <img
+                                src="https://source.unsplash.com/random?wallpapers"
+                                alt="ava"
+                                style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '5px', objectFit: 'cover' }}
+                            />
+                        </Box>
+                    </Box>
+                    <Button component="label" variant="contained" startIcon={<CloudUploadIcon sx={{ fill: "#2a2a2a" }} />}>
+                        Upload File
+                        <input type="file" style={{ display: 'none' }} />
+                    </Button>
+                </Box>
+                <TextField
+                    id="product-name"
+                    label="Product Name"
+                    variant="outlined"
+                    name="name"
+                    value={formUploadAsset.name}
+                    onChange={handleUploadAsset}
+                />
+                <TextField
+                    id="product-description"
+                    label="Product Description"
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    name="description"
+                    value={formUploadAsset.description}
+                    onChange={handleUploadAsset}
+                />
+                <TextField
+                    id="product-category"
+                    select
+                    label="Product Category"
+                    variant="outlined"
+                    defaultValue=""
+                    sx={{ width: "100%" }}
+                    name="category"
+                    value={formUploadAsset.category}
+                    onChange={handleUploadAsset}
+                >
+                    {categories.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    id="product-amount"
+                    label="Product Amount"
+                    variant="outlined"
+                    type="number"
+                    inputProps={{ min: 0 }}
+                    name="amount"
+                    value={formUploadAsset.amount}
+                    onChange={handleUploadAsset}
+                />
+                {/* Add more fields as needed */}
+                <Button variant="contained" color="primary" size='large' type="submit">
+                    Add Product
+                </Button>
+            </Box>
+        </form>
+    </Box>
+</Collapse>
+
 			</Box>
 		</>
 	)
