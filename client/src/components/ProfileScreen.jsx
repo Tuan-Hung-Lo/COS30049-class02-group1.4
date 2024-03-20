@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 
 function ProfileScreen() {
 	const [username, setUsername] = useState('');
+	const [accountId, setAccountId] = useState('');
+	const [value, setValue] = useState(0);
 
 	const [formUserData, setFormUserData] = useState({
 		firstName: '',
@@ -26,10 +28,7 @@ function ProfileScreen() {
 			setUsername(username);
 			setAccountId(accountId);
 			// Update the authorId in the form state
-			setFormUploadAsset(prevState => ({
-				...prevState,
-				authorId: accountId,
-			}));
+			
 			setFormUserData(prevState => ({	
 				...prevState,
 				username: username,
@@ -38,8 +37,7 @@ function ProfileScreen() {
 	}, []);
 
 	// State variables
-	const [isOpen, setIsOpen] = useState("User Info");
-	const buttons = ["User Info"];
+
 
 	
 
@@ -50,13 +48,7 @@ function ProfileScreen() {
 			[name]: value,
 		}));
 	};
-	const handleUploadAsset = (e) => {
-		const { name, value } = e.target;
-		setFormUploadAsset((prevUserData) => ({
-			...prevUserData,
-			[name]: value,
-		}));
-	}
+
 	const handleSubmitUserData = async (e) => {
 		e.preventDefault();
 		try {
@@ -136,13 +128,7 @@ function ProfileScreen() {
 			{/* Content section */}
 			<Box sx={{ mt: 5, display: "flex", flexDirection: "column", alignItems: "center", width: 0.8, gap: 2 }}>
 				{/* Buttons for section navigation */}
-				<Box sx={{ display: "flex", width: "100%", alignItems: "center", gap: "1vw" }}>
-					{buttons.map((button) => (
-						<Button onClick={() => setIsOpen(button)} key={button} variant={button === isOpen ? "contained" : "outlined"} color="primary" style={{ borderRadius: "5px" }}>
-							{button}
-						</Button>
-					))}
-				</Box>
+				
 				{/* Section content */}
 				{/* User Info section */}
 				<Collapse in={true} timeout={1000}>
@@ -191,7 +177,7 @@ function ProfileScreen() {
 								<Grid item xs={8} sx={{ height: 'auto', display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center', p: 2 }}>
 									<h3>Account</h3>
 									<Grid container spacing={2}>
-										<Grid item xs={12} md={6}>
+										<Grid item xs={12}>
 											<TextField
 												fullWidth
 												id="password"

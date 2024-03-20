@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, TextField, Divider, MenuItem, Collapse, Typography, Grow} from '@mui/material'
+import { Box, Button, TextField, Divider, MenuItem, Typography, Grow} from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { jwtDecode } from "jwt-decode";
 
 
 function AddProduct(){
+
+    const [username, setUsername] = useState('');
+    const [accountID, setAccountId] = useState('');
+    const [value, setValue] = useState(0);
+    const [formUserData, setFormUserData] = useState({});
 
 	const [formUploadAsset, setFormUploadAsset] = useState({
 		description: '',
