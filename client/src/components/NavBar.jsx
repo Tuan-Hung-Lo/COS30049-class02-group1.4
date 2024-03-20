@@ -36,7 +36,7 @@ function NavBar() {
     const encodedSearchQuery = encodeURIComponent(searchQuery);
 
     // Redirect to another page with the searchQuery as a query parameter
-    window.location.href = `/home?search=${encodedSearchQuery}`;
+    window.location.href = `/explore?search=${encodedSearchQuery}`;
   };
 
   const handleKeyDown = (event) => {

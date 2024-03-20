@@ -56,6 +56,7 @@ function LoginPage() {
       localStorage.setItem("accessToken", tokens.accessToken);
       localStorage.setItem("refreshToken", tokens.refreshToken);
       localStorage.setItem("username", username);
+      localStorage.setItem("accountId", accountId);
       console.log("Login successful");
       // Redirect to the explore page or handle authentication state as needed
       window.location.href = "/home";

@@ -14,6 +14,7 @@ import {
 import Grow from "@mui/material/Grow";
 import PaginationComponent from "./PaginationComponent";
 import CardItem from "./CardItem";
+import { useLocation } from "react-router-dom";
 
 function valuetext(value) {
   return `${value}`;
@@ -41,14 +42,26 @@ const Explore = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpen, setOpen] = useState(false);
   const itemsPerPage = 8;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search");
 
   useEffect(() => {
     fetch("http://localhost:3001/api/assets")
       .then((response) => response.json())
       .then((apiData) => {
         console.log("API data:", apiData);
-        setOriginalCards(apiData.assets);
-        setFilteredCards(apiData.assets);
+        if (searchQuery) {
+          const filteredData = apiData.assets.filter((item) =>
+            item.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+          );
+          setOriginalCards(filteredData);
+          setFilteredCards(filteredData);
+        } else {
+          // Set the fetched data if searchQuery is null
+          setOriginalCards(apiData.assets);
+          setFilteredCards(apiData.assets);
+        }
       })
       .catch((error) => {
         console.error("Error fetching data from API:", error);
@@ -91,12 +104,12 @@ const Explore = () => {
     // Apply price range filtering
     const [minPrice, maxPrice] = value;
     const priceFilteredResults = sortedResults.filter((card) => {
-      const priceInRange = card.price >= minPrice && card.price <= maxPrice;
+      const priceInRange = card.amount >= minPrice && card.amount <= maxPrice;
       return priceInRange;
     });
 
-    console.log("Filtered Results:", sortedResults);
-    setFilteredCards(sortedResults);
+    console.log("Filtered Results:", priceFilteredResults);
+    setFilteredCards(priceFilteredResults);
     setCurrentPage(1);
   };
 
