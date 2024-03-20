@@ -68,100 +68,102 @@ function SalesProduct(){
 	const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage)
 
     return(
-        <Box sx={{ mt: 10, display: "flex", flexDirection: "column", alignItems: "center", width: 0.8, gap: 2 }}>
-            <Box sx={{ width: 1, mx: "auto", display: "flex", flexDirection: "column", gap: 5, mt: 2 }}>
-						<Box sx={{ width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center" }}>
-							<h1>For Sales Products</h1>
-							<Button onClick={() => setIsFilterOpen(!isFilterOpen)}
-								variant={!isFilterOpen ? "contained" : "outlined"}
-								color="primary"
-								size="large"
-								endIcon={!isFilterOpen ? <FilterAltOutlinedIcon sx={{ fill: "#2a2a2a" }} /> : <CloseIcon />}>
-								Filter
-							</Button>
-						</Box>
-						<Divider />
-						{/* Filter options */}
-						<Collapse in={isFilterOpen} timeout={750}>
-							<Box sx={{ width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto" }}>
-								<Grid container spacing={2}>
-									<Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
-                                <TextField
-                                    id="select-prices"
-                                    select
-                                    label="ORDER BY"
-                                    defaultValue=""
-                                    variant="filled"
-                                    sx={{ width: 0.9 }}
-                                >
-                                    {prices.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+        <Grow in={true} timeout={2000}>
+            <Box sx={{ mt: 10, display: "flex", flexDirection: "column", alignItems: "center", width: 0.8, gap: 2 }}>
+                <Box sx={{ width: 1, mx: "auto", display: "flex", flexDirection: "column", gap: 5, mt: 2 }}>
+                            <Box sx={{ width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", mx: "auto", alignItems: "center" }}>
+                                <h1>For Sales Products</h1>
+                                <Button onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                    variant={!isFilterOpen ? "contained" : "outlined"}
+                                    color="primary"
+                                    size="large"
+                                    endIcon={!isFilterOpen ? <FilterAltOutlinedIcon sx={{ fill: "#2a2a2a" }} /> : <CloseIcon />}>
+                                    Filter
+                                </Button>
+                            </Box>
+                            <Divider />
+                            {/* Filter options */}
+                            <Collapse in={isFilterOpen} timeout={750}>
+                                <Box sx={{ width: 1, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", mx: "auto" }}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
+                                    <TextField
+                                        id="select-prices"
+                                        select
+                                        label="ORDER BY"
+                                        defaultValue=""
+                                        variant="filled"
+                                        sx={{ width: 0.9 }}
+                                    >
+                                        {prices.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
+                                    <TextField
+                                        id="select-catergory"
+                                        select
+                                        label="CATERGORY"
+                                        defaultValue=""
+                                        variant="filled"
+                                        sx={{ width: 0.9 }}
+                                    >
+                                        {categories.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
+                                    <TextField
+                                        id="select-collections"
+                                        select
+                                        label="PUBLISHED DATE"
+                                        defaultValue=""
+                                        variant="filled"
+                                        sx={{ width: 0.9 }}
+                                    >
+                                        {publishedDate.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
+                                    <Box width={0.9}>
+                                        <span>PRICE RANGE</span>
+                                        <Slider
+                                            getAriaLabel={() => 'Price range'}
+                                            value={value}
+                                            onChange={handleChange}
+                                            getAriaValueText={valuetext}
+                                            width={0.5}
+                                        />
+                                        <span>Price: ${value[0]} - ${value[1]}</span>
+                                    </Box>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
-                                <TextField
-                                    id="select-catergory"
-                                    select
-                                    label="CATERGORY"
-                                    defaultValue=""
-                                    variant="filled"
-                                    sx={{ width: 0.9 }}
-                                >
-                                    {categories.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
-                                <TextField
-                                    id="select-collections"
-                                    select
-                                    label="PUBLISHED DATE"
-                                    defaultValue=""
-                                    variant="filled"
-                                    sx={{ width: 0.9 }}
-                                >
-                                    {publishedDate.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={12} md={3} sx={{ display: "flex", justifyContent: "center" }}>
-                                <Box width={0.9}>
-                                    <span>PRICE RANGE</span>
-                                    <Slider
-                                        getAriaLabel={() => 'Price range'}
-                                        value={value}
-                                        onChange={handleChange}
-                                        getAriaValueText={valuetext}
-                                        width={0.5}
-                                    />
-                                    <span>Price: ${value[0]} - ${value[1]}</span>
-                                </Box>
-                            </Grid>
+                        </Box>
+                    </Collapse>
+                    <Grow in={"Sales" === isOpen} timeout={2500}>
+                        <Grid container spacing={4}>
+                            {cards.map((index, card) => (
+                                <Grid item key={card} xs={6} sm={6} md={4} lg={3}>
+                                    <CardItem index={index} />
+                                </Grid>
+                            ))}
                         </Grid>
-                    </Box>
-                </Collapse>
-                <Grow in={"Sales" === isOpen} timeout={2500}>
-                    <Grid container spacing={4}>
-                        {cards.map((index, card) => (
-                            <Grid item key={card} xs={6} sm={6} md={4} lg={3}>
-                                <CardItem index={index} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Grow>
-                {/* Pagination component */}
-                <PaginationComponent cards={cards} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage} />
+                    </Grow>
+                    {/* Pagination component */}
+                    <PaginationComponent cards={cards} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage} />
+                </Box>
             </Box>
-        </Box>
+        </Grow>
     )
 }
 

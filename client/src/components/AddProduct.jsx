@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, TextField, Divider, MenuItem, Collapse, Typography} from '@mui/material'
+import { Box, Button, TextField, Divider, MenuItem, Collapse, Typography, Grow} from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { jwtDecode } from "jwt-decode";
+
 
 function AddProduct(){
 
@@ -22,6 +24,29 @@ function AddProduct(){
     const [formData, setFormData] = useState({
         price: 0, // Initialize price state
     });
+
+    useEffect(() => {
+		// Get the JWT token from localStorage
+		const token = localStorage.getItem('accessToken');
+		if (token) {
+			// Decode the JWT token
+			const decoded = jwtDecode(token);
+			// Extract the username and accountId from the decoded payload
+			const { accountId, username } = decoded;
+			// Set the username and accountId in the state
+			setUsername(username);
+			setAccountId(accountId);
+			// Update the authorId in the form state
+			setFormUploadAsset(prevState => ({
+				...prevState,
+				authorId: accountId,
+			}));
+			setFormUserData(prevState => ({	
+				...prevState,
+				username: username,
+			}));
+		}
+	}, []);
 
 	const handleUploadAsset = (e) => {
 		const { name, value } = e.target;
@@ -93,14 +118,21 @@ function AddProduct(){
 	}, [formData.price]);
 
     return(
-        <Collapse timeout={1000}>
-            <Box sx={{ mt: 15, display: "flex", flexDirection: "column", alignItems: "center", width: 0.8, gap: 2 }}>
-                <Box sx={{ width: 1, mx: "auto" , display: "flex" , flexDirection: "column" , gap: 5}}>
+        <Grow in={true} timeout={2000}>
+            <Box sx={{
+                    mt: 15,
+                    width: 0.9,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 5,
+                    justifyContent: "center"
+                    }}>
+                <Box sx={{ width: 0.9, mx: "auto" , display: "flex" , flexDirection: "column" , gap: 5}}>
                     <Box sx={{width: 1, display: "flex", flexDirection: "row", mx: "auto", alignItems: "center"}}>
                         <h1>Add New Product</h1>
                     </Box>
                     <Divider/>
-                    <Box sx={{width: 1, display: "flex", flexDirection: "column", gap: 2}}>
+                    <Box sx={{width: 0.6, display: "flex", flexDirection: "column", gap: 2, mx: "auto"}}>
                         {/* Placeholder for image */}
                         <Box sx={{ width: 1, display: "flex", flexDirection: "column" , justifyContent: "space-between" , alignItems: "center" , gap: 2 , mx: "auto"}}>
                             <Box sx={{ width: 1}}>
@@ -178,7 +210,7 @@ function AddProduct(){
                     </Box>
                 </Box>
             </Box>
-        </Collapse>
+        </Grow>
     )
 }
 
