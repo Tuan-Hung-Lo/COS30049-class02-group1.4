@@ -99,7 +99,7 @@ function ProductScreen() {
                                 {`@ ${item ? item.username : "Author"}`}
                             </Typography>
                             <Typography variant="h4" color="primary" sx={{fontWeight: "bold"}}>
-                                {`Value (ETH): ${item ? item.price : "N/A"}`}
+                                {`Value (HETH): ${item ? item.price : "N/A"}`}
                             </Typography>
                         </CardContent>
                         {/* Card actions section */}

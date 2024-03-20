@@ -142,7 +142,7 @@ function WalletPage() {
   });
 
   // Conversion rate for ETH to USD
-  const conversionRate = 2265.65;
+  const conversionRate = 2400;
 
   // State for transaction fee
   const [transactionFee, setTransactionFee] = useState(0);
@@ -197,7 +197,7 @@ function WalletPage() {
               mt: 3,
             }}
           >
-            <Typography variant="h5">Balance: {walletBalance} ETH</Typography>
+            <Typography variant="h5">Balance: {walletBalance} HETH</Typography>
           </Box>
           <Box
             className="send-section"
